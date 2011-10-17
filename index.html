@@ -17,18 +17,20 @@
 	 */
 
 		body{
-			background:#333333;
+			background:#444;
 		}
 		h1{
-			font-family: 'Lato', sans-serif;
 			font-weight: normal;
-			font-size:50px;
-			text-align: left;
-			color:white;
+			font-size:60px;
+			line-height: 45px;
+			text-align: right;
+			color:rgba(0,0,0,0.1);
+			text-shadow: 0 0 5px rgba(0,0,0,.5), 1px 1px 5px rgba(255,255,255,.2);
 			margin: 0;
-			margin-top: 0;
+			margin-top: 10px;
 			margin-left: 50px;
 			display: inline-block;
+			letter-spacing: 1px;
 			-webkit-transform:rotate(180deg);
 			-webkit-transform-origin:50% 50%;
 			-moz-transform:rotate(180deg);
@@ -38,6 +40,11 @@
 		h1.test{
 			font-family: 'Ubuntu Mono', sans-serif;
 		}
+		#gitHub{
+			position: absolute;
+			right: 20px;
+			top:20px;
+		}
 
 
 
@@ -45,8 +52,9 @@
 </head>
 <body>
 
-<h1 class="test">pupunzi<br>experiments</h1>
 
+<h1 class="test">pupunzi<br>experiments</h1>
+<a id="gitHub" href="https://github.com/pupunzi"><img border="0" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6-hover.svg"/></a>
 
 </body>
 </html>
