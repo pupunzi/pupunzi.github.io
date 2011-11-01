@@ -33,6 +33,10 @@
             margin: auto;
             width:1000px;
         }
+        #demo{
+            font: 0/0 'Ubuntu Mono', sans-serif;
+        }
+        
         .imagePanWrapper {
             background: #000;
         }
@@ -75,26 +79,28 @@
 
 <div id="wrapper">
     <h1>jquery.mb.zoomPan demo</h1>
-    <img src="elements/01.jpg" data-width="200" >
-    <img src="elements/02.jpg" data-width="696" >
-    <img src="elements/03.jpg" ><br>
-    <img src="elements/04.jpg" data-width="696" >
-    <img src="elements/06.jpg" data-width="200" >
+    <div id="demo">
+        <img src="elements/01.jpg" data-width="200" >
+        <img src="elements/02.jpg" data-width="700" >
+        <img src="elements/03.jpg" ><br>
+        <img src="elements/04.jpg" data-width="700" >
+        <img src="elements/06.jpg" data-width="200" >
+    </div>
     <p>fork this on <a href="https://github.com/pupunzi/jquery.mb.zoomPan">gitHub</a></p>
     <p>back to <a href="http://pupunzi.github.com">pupunzi experiments</a></p>
 </div>
 
 <script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-10907260-1']);
-  _gaq.push(['_trackPageview']);
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-10907260-1']);
+    _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
 </script>
 
