@@ -32,7 +32,7 @@
             width:1000px;
         }
         .imagePanWrapper {
-           background: #000;
+            background: #000;
         }
 
     </style>
@@ -40,6 +40,14 @@
     <script type="text/javascript" src="inc/jquery.mb.zoomPan.js"></script>
 
     <script type="text/javascript">
+        $(function(){
+            if (self.location.href == top.location.href){
+                $("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
+                var logo=$("<a href='http://pupunzi.com/#mb.components/mb.gallery/gallery.html' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
+                $("body").prepend(logo);
+                $("#logo").fadeIn();
+            }
+        });
 
         $(function(){
             $("#wrapper img").zoomPan({
@@ -64,7 +72,6 @@
     <img src="elements/06.jpg" ><br>
     <img src="elements/06.jpg" data-width="696" >
     <img src="elements/06.jpg" data-width="200" >
-    <img src="elements/06.jpg" >
 </div>
 
 </body>
