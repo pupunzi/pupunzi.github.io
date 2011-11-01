@@ -40,7 +40,7 @@
                 var el=$el.get(0);
                 el.opt=$.extend({},$.zoomPan.defaults,opt);
 
-                $el.css({opacity:0}).hide();
+                $el.css({opacity:0});
                 $el.load(function(){
 
                     //todo: Add height conditioning
@@ -62,7 +62,9 @@
                     el.opt.maxScale=el.opt.maxScale-el.opt.minScale;
 
                     $el.css({width:$el.width()*el.opt.startScale,height:$el.height()*el.opt.startScale, top:0, left:0});
-                    $el.show();
+
+
+
                     var imgWrapper=$("<div/>").css({overflow:"hidden", width:el.opt.cWidth,height:el.opt.cHeight, position:"relative", display:el.opt.display, margin:0});
                     $el.css({position:"absolute"}).wrap(imgWrapper);
 
@@ -81,12 +83,19 @@
 
             //todo: Add height conditioning
             //first verify width and height, than add css
-            
+            var ratio;
             if(w<el.opt.cWidth){
-                var ratio = el.opt.cWidth/w;
+                ratio = el.opt.cWidth/w;
                 w=el.opt.cWidth;
                 h = h*ratio;
             }
+
+            if(h<el.opt.cHeight){
+                ratio = el.opt.cHeight/h;
+                w=w*ratio;
+                h = el.opt.cHeight;
+            }
+
 
             var t= - Math.random()*((h-el.opt.cHeight));
             var l= - Math.random()*((w-el.opt.cWidth));
