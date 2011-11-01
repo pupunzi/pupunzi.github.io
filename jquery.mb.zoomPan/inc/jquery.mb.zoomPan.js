@@ -40,7 +40,7 @@
                 var el=$el.get(0);
                 el.opt=$.extend({},$.zoomPan.defaults,opt);
 
-                $el.css({opacity:0});
+                $el.css({opacity:0}).hide();
                 $el.load(function(){
 
                     //todo: Add height conditioning
@@ -62,9 +62,7 @@
                     el.opt.maxScale=el.opt.maxScale-el.opt.minScale;
 
                     $el.css({width:$el.width()*el.opt.startScale,height:$el.height()*el.opt.startScale, top:0, left:0});
-
-
-
+                    $el.show();
                     var imgWrapper=$("<div/>").css({overflow:"hidden", width:el.opt.cWidth,height:el.opt.cHeight, position:"relative", display:el.opt.display, margin:0});
                     $el.css({position:"absolute"}).wrap(imgWrapper);
 
