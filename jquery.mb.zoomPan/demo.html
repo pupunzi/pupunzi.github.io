@@ -1,0 +1,71 @@
+<!doctype html>
+
+<!--
+	~ jquery.mb.components
+	~ Copyright (c) 2001-2011. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+	~ email: mbicocchi@open-lab.com
+	~ site: http://pupunzi.com
+	~
+	~ Licences: MIT, GPL
+	~ http://www.opensource.org/licenses/mit-license.php
+	~ http://www.gnu.org/licenses/gpl.html
+	-->
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>mb.zoomPan 1.0</title>
+    <style type="text/css">
+
+
+        body{
+            margin: 0;
+            padding: 40px;
+            white-space: inherit;
+            background: #999;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        #wrapper{
+            position: relative;
+            padding: 50px;
+            margin: auto;
+            width:1000px;
+        }
+        .imagePanWrapper {
+           background: #000;
+        }
+
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="inc/jquery.mb.zoomPan.js"></script>
+
+    <script type="text/javascript">
+
+        $(function(){
+            $("#wrapper img").zoomPan({
+                startScale:2,
+                minScale:.1,
+                maxScale:1.5,
+                cWidth:900,
+                cHeight:200,
+                velocity:[2000,4000],
+                type:"ease",
+                display:"inline-block"
+            });
+        })
+    </script>
+</head>
+<body>
+
+<div id="wrapper">
+    <h1>jquery.mb.imagePan demo</h1>
+    <img src="elements/06.jpg" data-width="200" >
+    <img src="elements/06.jpg" data-width="696" >
+    <img src="elements/06.jpg" ><br>
+    <img src="elements/06.jpg" data-width="696" >
+    <img src="elements/06.jpg" data-width="200" >
+    <img src="elements/06.jpg" >
+</div>
+
+</body>
+</html>
