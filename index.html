@@ -12,6 +12,7 @@
         }
 
         #wrapper{
+            font: 16px/19px 'Ubuntu Mono', sans-serif;
             width: 900px;
             margin: auto;
             margin-top: 100px;
@@ -70,7 +71,6 @@
     <script>
         $(function(){
             if (self.location.href == top.location.href){
-                $("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
                 var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
                 $("body").prepend(logo);
                 $("#logo").fadeIn();
