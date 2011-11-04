@@ -13,10 +13,10 @@
         }
 
         #wrapper{
+            position: relative;
             font: 16px/19px 'Ubuntu Mono', sans-serif;
             width: 900px;
             margin: auto;
-            margin-top: 100px;
         }
 
         #links{
@@ -24,36 +24,33 @@
         }
 
         h1{
+            font-family: 'Ubuntu Mono', sans-serif;
             font-weight: normal;
             font-size:100px;
             line-height: 80px;
             text-align: right;
-            color: rgba(255,255,255,0.9);
-            /*color: rgba(0,102,153,0.5);*/
-            /*text-shadow: -1px -1px 2px rgba(0,0,0,.2);*/
+            color: rgba(255,255,255,0.6);
             margin: 0;
             margin-top: 10px;
             margin-left: 50px;
             display: inline-block;
             letter-spacing: 1px;
+            margin-top: 80px;
+
             -webkit-transform:rotate(180deg);
             -webkit-transform-origin:50% 50%;
             -moz-transform:rotate(180deg);
             -moz-transform-origin:50% 50%;
         }
 
-        h1.test{
-            font-family: 'Ubuntu Mono', sans-serif;
-        }
-
         a{
             font-family: 'Ubuntu Mono', sans-serif;
             font-size:50px;
             text-decoration: none;
-            color: #fff;
+            color: #000;
         }
         a:hover{
-            color: #000;
+            color: #fff;
         }
 
         p{
@@ -88,18 +85,18 @@
         $(function(){
             if (self.location.href == top.location.href){
                 var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
-                $("body").prepend(logo);
+                $("#wrapper").prepend(logo);
                 $("#logo").fadeIn();
             }
         });
     </script>
 </head>
 <body>
+<a href="http://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
 <div id="wrapper">
-    <h1 class="test">pupunzi experiments</h1>
-    <a href="http://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
+    <h1>pupunzi experiments</h1>
     <div id="links">
-        <a href="jquery.mb.zoomPan/demo.html" target="_blank">---> mb.zoomPan</a>
+        <a href="jquery.mb.zoomPan/demo.html" target="_blank">-> mb.zoomPan</a>
         <p>A zoom and pan images experiment: it animate an image getting a random zoom level and panning to a random xy point of the image with a random timer.</p>
     </div>
 </div>

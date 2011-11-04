@@ -57,11 +57,11 @@
         $(function(){
             if (self.location.href == top.location.href){
                 var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
-                $("body").prepend(logo);
+                $("#wrapper").append(logo);
                 $("#logo").fadeIn();
             }
 
-            $("#wrapper img").zoomPan({
+            $("#wrapper #demo img").zoomPan({
                 startScale:2,
                 minScale:.5,
                 maxScale:1.2,
