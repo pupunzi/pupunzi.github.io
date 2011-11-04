@@ -192,11 +192,10 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
                 var desc= imgObj.description ? imgObj.description : $(imgObj).attr("title");
 
                 if(desc){
-                    var description=$("<div>").addClass("imageDesc")
-                        .css({position:"absolute"}).html(desc).hide();
+                    var description=$("<div>").addClass("imageDesc").css({position:"absolute"}).html(desc).hide();
                     elementWrapper.append(description);
                     if(element.data("index")==1){
-                        setTimeout(function(){description.fadeIn();},100);
+                        setTimeout(function(){description.fadeIn();},1000);
                     }
                 }
                 if(link){
@@ -303,7 +302,6 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
                     target.addClass("zoom");
                 allImages.css("z-index",0);
                 target.css("z-index",1);
-
             });
             if(anim)
                 $(".imageDesc", $(this)).fadeOut();
