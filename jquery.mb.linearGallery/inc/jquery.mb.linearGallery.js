@@ -110,15 +110,17 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
                     var el = $(this);
                     el.css({width:"auto",height:"100%"}).hide();
 
-//                    el.load(function(){
                     if(el.width()>=el.parent().width()){
                         el.css({width:"100%",height:"auto"});
                     }
-                    $(".imageDesc").css({position:"absolute", left:$("img",el.parent()).position().left, width:$("img",el.parent()).width()});
-
-                    el.fadeIn(3000);
-//                    });
-
+                    /*
+                     el.load(function(){
+                     });
+                     */
+                    $(".imageDesc",el).hide();
+                    el.fadeIn(2000, function(){
+                        $(".imageDesc",el).css({position:"absolute", left:el.position().left, width:el.width()});
+                    });
                 });
 
                 $(window).resize(function(){$.mbLinearGallery.refresh(gallery)});
@@ -147,11 +149,11 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
                 padding: 0,
                 "vertical-align":"top"
             }).click(function(){
-                if($(this).children().length>0){
-                    var idx= $(this).index();
-                    $(gallery).goTo(idx,true);
-                }
-            });
+                    if($(this).children().length>0){
+                        var idx= $(this).index();
+                        $(gallery).goTo(idx,true);
+                    }
+                });
 
             if(typeof imgObj == "object"){
                 var url= imgObj.url ? imgObj.url : $(imgObj).attr("src");
@@ -161,7 +163,7 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
                 if($(imgObj).data("nozoom") || link)
                     elementWrapper.addClass("noZoom");
 
-                
+
 
                 if(url){
                     element=$("<img>").addClass("galleryImage element").css({position:"relative"});
@@ -178,7 +180,7 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
                         cursor: "pointer",
                         height: "100%"
                     });
-                    var c= $(imgObj).clone().css({height: $(gallery).height()}).show()
+                    var c= $(imgObj).clone().css({height: $(gallery).height()}).show();
                     element.html(c);
                 }
 
@@ -191,10 +193,10 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
 
                 if(desc){
                     var description=$("<div>").addClass("imageDesc")
-                        .css({position:"absolute",left:element.position().left, width:elementWrapper.width(), display:"none"}).html(desc);
+                        .css({position:"absolute"}).html(desc).hide();
                     elementWrapper.append(description);
                     if(element.data("index")==1){
-                        description.fadeIn();
+                        setTimeout(function(){description.fadeIn();},100);
                     }
                 }
                 if(link){
@@ -301,14 +303,18 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
                     target.addClass("zoom");
                 allImages.css("z-index",0);
                 target.css("z-index",1);
-                if(anim)
-                    $(".imageDesc", $(this)).fadeOut();
+
             });
+            if(anim)
+                $(".imageDesc", $(this)).fadeOut();
 
             target.animate({opacity:1, scale: '1'},t/2,function(){
-                if(anim)
-                    $(".imageDesc", target).fadeIn();
-                $(".imageDesc", target).css({position:"absolute",left:$(".element",target).position().left, width:$(".element",target).width()});
+               setTimeout(function(){
+                   $(".imageDesc", target).css({position:"absolute",left:$(".element",target).position().left, width:$(".element",target).width()});
+                   if(anim)
+                       $(".imageDesc", target).fadeIn();
+               },100);
+
             });
 
             var thumbContainer=$(g.opt.thumbPlaceHolder);
