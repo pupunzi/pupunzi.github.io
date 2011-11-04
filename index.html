@@ -31,8 +31,7 @@
             text-align: right;
             color: rgba(255,255,255,0.6);
             margin: 0;
-            margin-top: 10px;
-            margin-left: 50px;
+            margin-left: 0;
             display: inline-block;
             letter-spacing: 1px;
             margin-top: 80px;
@@ -87,7 +86,7 @@
         $(function(){
             if (self.location.href == top.location.href){
                 var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
-                $("#wrapper").prepend(logo);
+                $("body").prepend(logo);
                 $("#logo").fadeIn();
             }
         });
