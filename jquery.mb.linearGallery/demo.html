@@ -1,0 +1,105 @@
+<!doctype html>
+
+<!--
+	~ jquery.mb.components
+	~ Copyright (c) 2001-2011. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+	~ email: mbicocchi@open-lab.com
+	~ site: http://pupunzi.com
+	~
+	~ Licences: MIT, GPL
+	~ http://www.opensource.org/licenses/mit-license.php
+	~ http://www.gnu.org/licenses/gpl.html
+	-->
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>mb.linearGallery 1.0</title>
+
+    <link href="css/mb.linearGallery.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+
+        body{
+            margin: 0;
+            padding: 0;
+            white-space: inherit;
+            background: #ffcc00;
+        }
+
+        #linearGallery{
+            position: relative;
+            width: 100%;
+            margin: auto;
+            -moz-box-sizing: border-box;
+            height: 400px;
+        }
+
+        #linearGallery .element{
+            display:none;
+        }
+
+        .galleryBox .box{
+            font:35px/40px 'Abel', sans-serif;
+            color:#000;
+            white-space: normal;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+
+        .controller{
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .controller span{
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px;
+            margin: 2px;
+            background:#333;
+            color:#fff;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="inc/jquery.mb.linearGallery.js"></script>
+
+    <script type="text/javascript">
+
+
+        $(function(){
+            $("#linearGallery").mbLinearGallery();
+        });
+
+    </script>
+
+</head>
+<body>
+
+<div id="wrapper">
+    <h1>jquery.mb.linearGallery demo</h1>
+
+    <div id="linearGallery">
+        <img src="elements/gallery1/HR/01.jpg" title="photo n°1" data-thumb="elements/gallery1/HR/01.jpg">
+        <img src="elements/gallery1/HR/02.jpg" title="photo n°2" data-thumb="elements/gallery1/HR/02.jpg">
+        <img src="elements/gallery1/HR/03.jpg" title="photo n°3" data-thumb="elements/gallery1/HR/03.jpg">
+
+        <div class="box" data-link="" data-nozoom=true data-thumb="elements/gallery1/HR/01.jpg" style="text-align: left">
+            <div style="position:absolute;top:0; width: 60%">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+            <img style="position:absolute; top:0; right:0; width: 35%" src="elements/gallery1/HR/01.jpg">
+        </div>
+
+        <img src="elements/gallery1/HR/04.jpg" data-thumb="elements/gallery1/HR/04.jpg">
+        <img src="elements/gallery1/HR/05.jpg" title="photo n°5" data-thumb="elements/gallery1/HR/05.jpg" data-link="http://pupunzi.com">
+    </div>
+    <div id="desc"></div>
+
+    <div id="thumbs" class="controller"></div>
+
+</div>
+
+</body>
+</html>
