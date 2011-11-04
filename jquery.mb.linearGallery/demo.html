@@ -26,14 +26,14 @@
             background: #ffcc00;
             font: 16px/19px 'Ubuntu Mono', sans-serif;
         }
-        #wrapper, #links{
+        #wrapper, #links, #header{
             position: relative;
             margin: auto;
             width:900px;
         }
         h1{
             margin-top: 80px;
-            padding: 50px;
+            padding:50px 0;
         }
         a{
             color: white;
@@ -60,12 +60,23 @@
         }
 
         .galleryBox .box{
+
+            -webkit-transition: all .5s ease-in-out;
+            -moz-transition: all .5s ease-in-out;
+            -o-transition: all .5s ease-in-out;
+            -ms-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+
             font:35px/40px 'Ubuntu Mono', sans-serif;
             color:#fff;
             white-space: normal;
             overflow: hidden;
-            background: #ffcc00;
+            background: #333333;
             box-sizing: border-box;
+        }
+
+        .sel .galleryBox .box{
+            background: #ffcc00;
         }
 
 
@@ -110,21 +121,20 @@
 </head>
 <body>
 <a href="https://github.com/pupunzi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
-
-<h1>jquery.mb.linearGallery demo</h1>
+<div id="header">
+    <h1>jquery.mb.linearGallery demo</h1>
+</div>
 <div id="wrapper">
 </div>
 
 <div id="linearGallery">
     <img src="elements/gallery1/HR/01.jpg" title="photo n°1 - click to zoom" data-thumb="elements/gallery1/HR/01.jpg">
-    <img src="elements/gallery1/HR/02.jpg" title="photo n°2 - click to zoom" data-thumb="elements/gallery1/HR/02.jpg">
-    <img src="elements/gallery1/HR/03.jpg" title="photo n°3 - click to zoom" data-thumb="elements/gallery1/HR/03.jpg">
-
-    <div class="box" data-link="" data-nozoom=true data-thumb="elements/gallery1/HR/01.jpg" style="text-align: left">
+    <div class="box" data-link="" data-nozoom=true data-thumb="elements/gallery1/HR/texBox.jpg" style="text-align: left">
         <div style="position:absolute;top:0; width: 60%; padding: 30px;">You can even insert generic HTML content and manage it into the gallery system.</div>
         <img style="position:absolute; top:0; right:-1px; width: 35%" src="elements/gallery1/HR/01.jpg">
     </div>
-    
+    <img src="elements/gallery1/HR/02.jpg" title="photo n°2 - click to zoom" data-thumb="elements/gallery1/HR/02.jpg">
+    <img src="elements/gallery1/HR/03.jpg" title="photo n°3 - click to zoom" data-thumb="elements/gallery1/HR/03.jpg">
     <img src="elements/gallery1/HR/04.jpg" data-thumb="elements/gallery1/HR/04.jpg">
     <img src="elements/gallery1/HR/05.jpg" title="photo n°5 - click to go to pupunzi' site" data-thumb="elements/gallery1/HR/05.jpg" data-link="http://pupunzi.com">
 </div>
