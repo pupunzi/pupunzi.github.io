@@ -311,7 +311,7 @@ $.fn.initPagination=function(b){var a=this.get(0);a.opt={elements:null,elsPerPag
                    $(".imageDesc", target).css({position:"absolute",left:$(".element",target).position().left, width:$(".element",target).width()});
                    if(anim)
                        $(".imageDesc", target).fadeIn();
-               },100);
+               },1000);
 
             });
 
