@@ -171,6 +171,6 @@
     left:0;
     width:100%;
     height:100%;
-    background: #000;/*rgba(255,204,0,1);*/
+    background: #666;/*rgba(255,204,0,1);*/
     z-index:999;
 }
