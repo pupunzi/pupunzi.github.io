@@ -27,9 +27,9 @@
 }
 
 .imageDesc{
-    background:rgba(255,204,0,.8);
+    background:#000;
     font:14px/16px Helvetica, sans-serif;
-    color:#000;
+    color:#fff;
     z-index:100;
     text-align:left;
     padding:10px;
@@ -89,7 +89,7 @@
     transition: all 1s ease-in-out;
     height:150%;
     cursor:pointer;
-    opacity:.3;
+    opacity:1;
 }
 
 .thumbWrapper.sel img{
@@ -98,7 +98,7 @@
     -o-transition: all .5s ease-in-out;
     -ms-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
-    opacity:1;
+    opacity:.3;
 }
 
 .thumbTitle{
