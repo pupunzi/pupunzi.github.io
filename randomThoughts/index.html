@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Thoughts</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+	<style>
+
+		body{
+			background: #ffcc00;
+			font: 16px/19px 'Ubuntu Mono', sans-serif;
+		}
+
+		#wrapper{
+			position: relative;
+			font: 16px/19px 'Ubuntu Mono', sans-serif;
+			width: 900px;
+			margin: auto;
+			min-height: 800px;
+		}
+
+		h1{
+			font-family: 'Ubuntu Mono', sans-serif;
+			font-weight: normal;
+			font-size:100px;
+			line-height: 80px;
+			text-align: right;
+			color: rgba(255,255,255,0.8);
+			margin: 0;
+			margin-left: 0;
+			display: inline-block;
+			letter-spacing: 1px;
+			margin-top:0px;
+
+			-webkit-transform:rotate(-5deg);
+			-webkit-transform-origin:50% 50%;
+			-moz-transform:rotate(-3deg);
+			-moz-transform-origin:50% 50%;
+		}
+
+		a{
+			display: inline-block;
+			font-family: 'Ubuntu Mono', sans-serif;
+			font-size:50px;
+			text-decoration: none;
+			color: #000;
+			margin-top: 30px;
+		}
+		a:hover{
+			color: #fff;
+			-webkit-transform:rotate(180deg);
+			-webkit-transform-origin:50% 50%;
+			-moz-transform:rotate(180deg);
+			-moz-transform-origin:50% 50%;
+		}
+
+		p{
+			margin-left: 125px;
+			font-family: 'Ubuntu Mono', sans-serif;
+		}
+
+		#thoughts section{
+			font-family: 'Ubuntu Mono',sans-serif;
+			margin: auto;
+			margin-top: 90px;
+			font-size: 40px;
+			line-height: 1em;
+		}
+
+		address#author{
+			display: none;
+			margin-top: 90px;
+			margin-bottom: 90px;
+			font-size: 40px;
+			font-style: normal;
+			color: white;
+		}
+		#reload{
+			position: fixed;
+			bottom:100px;
+			right: 20px;
+			color: #000000;
+			cursor: pointer;
+			font-size: 40px;
+		}
+
+
+	</style>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="inc/mbTextEffects.js"></script>
+	<script>
+
+		jQuery.fn.mb_setCookie = function(name,value,days) {
+			var id=$(this).attr("id");
+			if(!id) id="";
+			if (!days) days=7;
+			var date = new Date(), expires;
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			expires = "; expires="+date.toGMTString();
+			document.cookie = name+"_"+id+"="+value+expires+"; path=/";
+		};
+
+		jQuery.fn.mb_getCookie = function(name) {
+			var id=$(this).attr("id");
+			if(!id) id="";
+			var nameEQ = name+"_"+id + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1,c.length);
+				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+			}
+			return null;
+		};
+
+		jQuery.fn.mb_removeCookie = function(name) {
+			$(this).mb_setCookie(name,"",-1);
+		};
+
+
+		var thoughts=[
+			["Io vivere vorrei addormentato entro il dolce rumore della vita","Sandro Penna, poeta romano"]
+			,["Talvolta sole talvolta luna","Alighiero & Boetti"]
+			,["Sciogliersi come neve al sole","Alighiero & Boetti"]
+			,["Sragionare in lungo e in largo","Alighiero & Boetti"]
+			,["Mettere i verbi all'infinito","Alighiero & Boetti"]
+			,["Ciò che sempre parla in silenzio è il corpo","Alighiero & Boetti"]
+			,["Raddoppiare dimezzando","Alighiero & Boetti"]
+			,["I begin with an idea and then it becomes something else","Pablo Picasso"]
+			,["Every act of creation is first an act of destruction","Pablo Picasso"]
+			,["Everything you can imagine is real","Pablo Picasso"]
+			,["We all know that art is not truth. Art is a lie that makes us realize the truth","Pablo Picasso"]
+			,["Everything comes to us from others. To be is to belong to someone","Jean Paul Sartre"]
+			,["You live only once, but if you do it right, once is enough","Mae West"]
+			,["The meaning of life is that it stops","Franz Kafka"]
+			,["Alcohol is the anesthesia by which we endure the operation of life","George Bernard Shaw"]
+		];
+
+		$(function(){
+
+			var cookieIdx = $(document).mb_getCookie("index");
+
+			if (!cookieIdx){
+				$(document).mb_setCookie("index", Math.floor(Math.random()*thoughts.length),.1);
+				cookieIdx = $(document).mb_getCookie("index");
+			}
+			var idx= cookieIdx;
+			var thought = thoughts[idx][0];
+			var author = thoughts[idx][1];
+			$("#author").html(author);
+			$("#thoughts section").html(thought).css({fontSize:100+Math.random()*60});
+
+			$("#thoughts section").mbTEF_transform({
+				timer:[50,30], // or [40]
+				startStyle:{opacity:.0},
+				endStyle:{opacity:.9},
+				fadeTime: 2000, //Math.floor(Math.random()*1000)
+				split:"",
+				callback:function(){
+					$("#author").fadeIn();
+				}
+			});
+
+		})
+	</script>
+</head>
+<body>
+
+<div id="wrapper">
+	<h1>RANDOM THOUGHTS</h1>
+	<div id="reload" onclick="$(document).mb_removeCookie('index'); self.location.reload();">another one</div>
+	<article id="thoughts">
+		<section></section>
+		<address id="author"></address>
+	</article>
+
+</div>
+</body>
+</html>
