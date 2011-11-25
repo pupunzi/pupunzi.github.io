@@ -109,8 +109,11 @@
 			if(!id) id="";
 			if (!days) days=7;
 			var date = new Date(), expires;
-			date.setTime(date.getTime()+(days*24*60*60*1000));
+			var time = days<1000 ? date.getTime()+(24*60*60*1000*days) : days;
+
+			date.setTime(time);
 			expires = "; expires="+date.toGMTString();
+
 			document.cookie = name+"_"+id+"="+value+expires+"; path=/";
 		};
 
@@ -155,7 +158,7 @@
 			var cookieIdx = $(document).mb_getCookie("index");
 
 			if (!cookieIdx){
-				$(document).mb_setCookie("index", Math.floor(Math.random()*thoughts.length),.1);
+				$(document).mb_setCookie("index", Math.floor(Math.random()*thoughts.length),.166);
 				cookieIdx = $(document).mb_getCookie("index");
 			}
 			var idx= cookieIdx;
@@ -183,7 +186,7 @@
 <div id="wrapper">
 	<h1>RANDOM THOUGHTS</h1>
 	<!--<div id="reload" onclick="$(document).mb_removeCookie('index'); self.location.reload();">another one</div>-->
-	<aside>A random thought every 3 hour</aside>
+	<aside>A random thought every tree hours</aside>
 	<article id="thoughts">
 		<section></section>
 		<address id="author"></address>
