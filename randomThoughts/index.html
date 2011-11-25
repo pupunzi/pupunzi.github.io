@@ -109,8 +109,7 @@
 			if(!id) id="";
 			if (!days) days=7;
 			var date = new Date(), expires;
-			var time = days<1000 ? date.getTime()+(24*60*60*1000*days) : days;
-
+			var time = date.getTime()+(24*60*60*1000*days);
 			date.setTime(time);
 			expires = "; expires="+date.toGMTString();
 
