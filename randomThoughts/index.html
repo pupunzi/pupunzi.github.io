@@ -99,8 +99,10 @@
 
 		#qrCode{
 			position: absolute;
-			right: 0;
+			right: -190px;
+			top:0;
 			padding: 20px;
+			margin-bottom: 60px;
 			display: block;
 			width: 150px;
 			background: white;
@@ -114,34 +116,7 @@
 	<script type="text/javascript" src="inc/jquery.qrcode.min.js"></script>
 	<script>
 
-		jQuery.fn.mb_setCookie = function(name,value,days) {
-			var id=$(this).attr("id");
-			if(!id) id="";
-			if (!days) days=7;
-			var date = new Date(), expires;
-			var time = date.getTime()+(24*60*60*1000*days);
-			date.setTime(time);
-			expires = "; expires="+date.toGMTString();
 
-			document.cookie = name+"_"+id+"="+value+expires+"; path=/";
-		};
-
-		jQuery.fn.mb_getCookie = function(name) {
-			var id=$(this).attr("id");
-			if(!id) id="";
-			var nameEQ = name+"_"+id + "=";
-			var ca = document.cookie.split(';');
-			for(var i=0;i < ca.length;i++) {
-				var c = ca[i];
-				while (c.charAt(0)==' ') c = c.substring(1,c.length);
-				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-			}
-			return null;
-		};
-
-		jQuery.fn.mb_removeCookie = function(name) {
-			$(this).mb_setCookie(name,"",-1);
-		};
 
 
 		var thoughts=[
@@ -173,14 +148,59 @@
 			,["Nothing is particularly hard if you divide it into small jobs","Henry Ford"]
 		];
 
+
+		jQuery.fn.mb_setCookie = function(name,value,days) {
+			var id=$(this).attr("id");
+			if(!id) id="";
+			if (!days) days=7;
+			var date = new Date(), expires;
+			var time = date.getTime()+(24*60*60*1000*days);
+			date.setTime(time);
+			expires = "; expires="+date.toGMTString();
+			
+			console.debug(24*60*60*1000*days, expires);
+
+			document.cookie = name+"_"+id+"="+value+expires+"; path=/";
+		};
+
+		jQuery.fn.mb_getCookie = function(name) {
+			var id=$(this).attr("id");
+			if(!id) id="";
+			var nameEQ = name+"_"+id + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1,c.length);
+				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+			}
+			return null;
+		};
+
+		jQuery.fn.mb_removeCookie = function(name) {
+			$(this).mb_setCookie(name,"",-1);
+		};
+
 		$(function(){
 
 			var cookieIdx = $(document).mb_getCookie("index");
+			var oldCookieIdx = $(document).mb_getCookie("oldIndex");
+
+			function setRndIdx(){
+				var idx= Math.floor(Math.random()*thoughts.length);
+				if(idx==oldCookieIdx){
+					setRndIdx();
+				}else{
+					$(document).mb_setCookie("oldIndex", idx,1);
+					return idx;
+				}
+			}
 
 			if (!cookieIdx){
-				$(document).mb_setCookie("index", Math.floor(Math.random()*thoughts.length),.166);
+				var rndIdx = setRndIdx();
+				$(document).mb_setCookie("index", rndIdx,.008);
 				cookieIdx = $(document).mb_getCookie("index");
 			}
+			
 			var idx= cookieIdx;
 			var thought = thoughts[idx][0];
 			var author = thoughts[idx][1];
@@ -216,11 +236,11 @@
 <div id="wrapper">
 	<h1>RANDOM THOUGHTS</h1>
 	<!--<div id="reload" onclick="$(document).mb_removeCookie('index'); self.location.reload();">another one</div>-->
-	<aside>A random thought every three hours</aside>
+	<aside>Come back in ten minutes to get another thought</aside>
 	<article id="thoughts">
+		<span id="qrCode"></span>
 		<section></section>
 		<address id="author"></address>
-		<span id="qrCode"></span>
 	</article>
 </div>
 
