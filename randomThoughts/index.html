@@ -47,19 +47,12 @@
 		}
 
 		a{
-			display: inline-block;
-			font-family: 'Ubuntu Mono', sans-serif;
-			font-size:50px;
-			text-decoration: none;
-			color: #000;
-			margin-top: 30px;
+				color: white;
+				text-decoration: none;
 		}
 		a:hover{
-			color: #fff;
-			-webkit-transform:rotate(180deg);
-			-webkit-transform-origin:50% 50%;
-			-moz-transform:rotate(180deg);
-			-moz-transform-origin:50% 50%;
+				color: #000000;
+				text-decoration: none;
 		}
 
 		p{
@@ -119,6 +112,8 @@
 	<script type="text/javascript" src="inc/jquery.qrcode.min.js"></script>
 	<script>
 
+		console.debug(document.referrer);
+
 		var thoughts=[
 			["Io vivere vorrei addormentato entro il dolce rumore della vita","Sandro Penna, poeta romano"]
 			,["Talvolta sole talvolta luna","Alighiero & Boetti"]
@@ -149,16 +144,17 @@
 			,["I don't want to achieve immortality through my work.I want to achieve it through not dying.","Woody Allen"]
 		];
 
-		jQuery.fn.mb_setCookie = function(name,value,days) {
+		jQuery.fn.mb_setCookie = function(name,value,days,path) {
 			var id=$(this).attr("id");
 			if(!id) id="";
+			if(!path) path="/";
 			if (!days) days=7;
 			var date = new Date(), expires;
 			var time = date.getTime()+(24*60*60*1000*days);
 			date.setTime(time);
 			expires = "; expires="+date.toGMTString();
 			
-			document.cookie = name+"_"+id+"="+value+expires+"; path=/";
+			document.cookie = name+"_"+id+"="+value+expires+"; path="+path;
 		};
 
 		jQuery.fn.mb_getCookie = function(name) {
@@ -208,8 +204,8 @@
 			$("#thoughts section").mbTEF_transform({
 				timer:[50,30], // or [40]
 				startStyle:{opacity:.0},
-				endStyle:{opacity:.9},
-				fadeTime: 2000, //Math.floor(Math.random()*1000)
+				endStyle:{opacity:"random"}, //, fontSize: 20 + Math.floor(Math.random()*60)
+				fadeTime: Math.floor(Math.random()*3000), //Math.floor(Math.random()*1000)
 				split:"",
 				callback:function(){
 					$("#author").fadeIn(1000);
@@ -230,9 +226,9 @@
 	</script>
 </head>
 <body>
-
+<h1>RANDOM THOUGHTS</h1>
+<p>back to <a href="http://pupunzi.github.com">pupunzi experiments</a></p>
 <div id="wrapper">
-	<h1>RANDOM THOUGHTS</h1>
 	<!--<div id="reload" onclick="$(document).mb_removeCookie('index'); self.location.reload();">another one</div>-->
 	<aside>Come back in ten minutes to get another thought</aside>
 	<article id="thoughts">
@@ -240,6 +236,8 @@
 		<address id="author"></address>
 		<span id="qrCode"></span>
 	</article>
+
+
 </div>
 
 <script type="text/javascript">
