@@ -102,10 +102,11 @@
 		}
 
 		#qrCode{
+			/*display: block;*/
+			display: none;
 			position: absolute;
 			right: 0;
 			padding: 20px;
-			display: block;
 			width: 200px;
 			background: white;
 		}
@@ -145,6 +146,7 @@
 			,["Anyone who has never made a mistake has never tried anything new","Albert Einstein"]
 			,["Failure is simply the opportunity to begin again, this time more intelligently","Henry Ford"]
 			,["Nothing is particularly hard if you divide it into small jobs","Henry Ford"]
+			,["I don't want to achieve immortality through my work.I want to achieve it through not dying.","Woody Allen"]
 		];
 
 		jQuery.fn.mb_setCookie = function(name,value,days) {
@@ -220,7 +222,7 @@
 						render:"canvas",
 						typeNumber:-1,
 						correctLevel: 1
-					}).fadeIn(1000);
+					}).css({display:"block"}).fadeIn(1000);
 				}
 			});
 
