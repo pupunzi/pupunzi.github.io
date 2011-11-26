@@ -158,8 +158,6 @@
 			date.setTime(time);
 			expires = "; expires="+date.toGMTString();
 			
-			console.debug(24*60*60*1000*days, expires);
-
 			document.cookie = name+"_"+id+"="+value+expires+"; path=/";
 		};
 
