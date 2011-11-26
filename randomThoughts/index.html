@@ -97,11 +97,21 @@
 			font-size: 40px;
 		}
 
+		#qrCode{
+			position: absolute;
+			right: 0;
+			padding: 20px;
+			display: block;
+			width: 150px;
+			background: white;
+		}
+
 
 	</style>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script type="text/javascript" src="inc/mbTextEffects.js"></script>
+	<script type="text/javascript" src="inc/jquery.qrcode.min.js"></script>
 	<script>
 
 		jQuery.fn.mb_setCookie = function(name,value,days) {
@@ -185,8 +195,18 @@
 				split:"",
 				callback:function(){
 					$("#author").fadeIn();
+					$('#qrCode').qrcode({
+						text:thought +" ("+author+")",
+						width:150,
+						height:150,
+						render:"canvas",
+						typeNumber:-1,
+						correctLevel: 1
+					}).fadeIn();
 				}
 			});
+
+			$('#qrCode').hide();
 
 		})
 	</script>
@@ -200,20 +220,21 @@
 	<article id="thoughts">
 		<section></section>
 		<address id="author"></address>
+		<span id="qrCode"></span>
 	</article>
 </div>
 
 <script type="text/javascript">
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-10907260-1']);
-    _gaq.push(['_trackPageview']);
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-10907260-1']);
+	_gaq.push(['_trackPageview']);
 
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 
 </script>
 
