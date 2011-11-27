@@ -180,7 +180,7 @@
 		var oldCookieIdx = $(document).mb_getCookie("oldIndex");
 
 		function setRndIdx(){
-			var idx= Math.floor(Math.random()*thoughts.length-1);
+			var idx= Math.floor(Math.random()*(thoughts.length-1));
 			if(idx==oldCookieIdx){
 				setRndIdx();
 				return;
