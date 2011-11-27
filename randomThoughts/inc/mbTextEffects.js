@@ -98,7 +98,7 @@
               var o={opacity:.2+Math.random()*.8};
               $.extend(opt.endStyle,o);
             }
-            var ft=(opt.fadeTime=="random")?Math.floor(Math.random()*1000):opt.fadeTime;
+            var ft=(opt.fadeTime=="random")?Math.floor(Math.random()*1000): typeof opt.fadeTime == "function"? opt.fadeTime() : opt.fadeTime ;
             span.animate(opt.endStyle,ft,function(){
 							if (opt.endStyle.color) $(this).css(c);
 							if(i == el.find("span").length-1 && typeof opt.callback == "function")

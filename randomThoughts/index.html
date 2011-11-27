@@ -205,7 +205,7 @@
 			timer:[50,30], // or [40]
 			startStyle:{opacity:.0},
 			endStyle:{opacity:"random"}, //, fontSize: 20 + Math.floor(Math.random()*60)
-			fadeTime: Math.floor(Math.random()*3000), //Math.floor(Math.random()*1000)
+			fadeTime: function(){ return Math.floor(Math.random()*5000)}, //Math.floor(Math.random()*1000)
 			split:"",
 			callback:function(){
 				$("#author").fadeIn(1000);
