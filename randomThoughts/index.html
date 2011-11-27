@@ -1,229 +1,228 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Random Thoughts</title>
+<title>Random Thoughts</title>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta http-equiv="Pragma" content="no-cache">
-	<!--<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>-->
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<!--<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
-	<style>
+<style>
 
-		body{
-			background: #ffcc00;
-			font: 16px/19px 'Ubuntu Mono', sans-serif;
+	body{
+		background: #ffcc00;
+		font: 16px/19px 'Ubuntu Mono', sans-serif;
+	}
+
+	#wrapper{
+		position: relative;
+		font: 16px/19px 'Ubuntu Mono', sans-serif;
+		width: 900px;
+		margin: auto;
+		min-height: 800px;
+	}
+
+	h1{
+		font-family: 'Ubuntu Mono', sans-serif;
+		font-weight: normal;
+		font-size:100px;
+		line-height: 80px;
+		text-align: right;
+		color: rgba(255,255,255,0.8);
+		margin: 0;
+		margin-left: 0;
+		display: inline-block;
+		letter-spacing: 1px;
+		margin-top:0px;
+
+		-webkit-transform:rotate(-5deg);
+		-webkit-transform-origin:50% 50%;
+		-moz-transform:rotate(-3deg);
+		-moz-transform-origin:50% 50%;
+	}
+
+	a{
+		color: white;
+		text-decoration: none;
+	}
+	a:hover{
+		color: #000000;
+		text-decoration: none;
+	}
+
+	p{
+		margin-left: 125px;
+		font-family: 'Ubuntu Mono', sans-serif;
+	}
+
+	#thoughts section{
+		font-family: 'Ubuntu Mono',sans-serif;
+		margin: auto;
+		margin-top: 90px;
+		font-size: 80px;
+		line-height: 1em;
+	}
+
+	address#author{
+		display: none;
+		margin-top: 90px;
+		margin-bottom: 90px;
+		font-size: 40px;
+		font-style: normal;
+		color: white;
+	}
+
+	aside{
+		margin-top: 90px;
+		margin-bottom: 90px;
+		font-size: 28px;
+		font-style: normal;
+		color: white;
+	}
+
+	#reload{
+		position: fixed;
+		bottom:100px;
+		right: 20px;
+		color: #000000;
+		cursor: pointer;
+		font-size: 40px;
+	}
+
+	#qrCode{
+		/*display: block;*/
+		display: none;
+		position: absolute;
+		right: 0;
+		padding: 20px;
+		width: 200px;
+		background: white;
+	}
+
+
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="inc/mbTextEffects.js"></script>
+<script type="text/javascript" src="inc/jquery.qrcode.min.js"></script>
+<script>
+
+	console.debug(document.referrer);
+
+	var thoughts=[
+		["Io vivere vorrei addormentato entro il dolce rumore della vita","Sandro Penna, poeta romano"]
+		,["Talvolta sole talvolta luna","Alighiero & Boetti"]
+		,["Sciogliersi come neve al sole","Alighiero & Boetti"]
+		,["Sragionare in lungo e in largo","Alighiero & Boetti"]
+		,["Mettere i verbi all'infinito","Alighiero & Boetti"]
+		,["Ciò che sempre parla in silenzio è il corpo","Alighiero & Boetti"]
+		,["Raddoppiare dimezzando","Alighiero & Boetti"]
+		,["I begin with an idea and then it becomes something else","Pablo Picasso"]
+		,["Every act of creation is first an act of destruction","Pablo Picasso"]
+		,["Everything you can imagine is real","Pablo Picasso"]
+		,["We all know that art is not truth. Art is a lie that makes us realize the truth","Pablo Picasso"]
+		,["Everything comes to us from others. To be is to belong to someone","Jean Paul Sartre"]
+		,["You live only once, but if you do it right, once is enough","Mae West"]
+		,["The meaning of life is that it stops","Franz Kafka"]
+		,["Alcohol is the anesthesia by which we endure the operation of life","George Bernard Shaw"]
+		,["It is not the strongest of the species that survive, nor the most intelligent, but the one most responsive to change","Charles Darwin"]
+		,["We are what we think. All that we are arises with our thoughts. With our thoughts we make the world","Buddha"]
+		,["If the facts don`t fit the theory, change the facts","Albert Einstein"]
+		,["Logic will get you from A to B. Imagination will take you everywhere","Albert Einstein"]
+		,["Make things as simple as possible, but not simpler","Albert Einstein"]
+		,["The problems that exist in the world today cannot be solved by the level of thinking that created them","Albert Einstein"]
+		,["The difference between stupidity and genius is that genius has its limits","Albert Einstein"]
+		,["I never think of the future. It comes soon enough","Albert Einstein"]
+		,["Anyone who has never made a mistake has never tried anything new","Albert Einstein"]
+		,["Failure is simply the opportunity to begin again, this time more intelligently","Henry Ford"]
+		,["Nothing is particularly hard if you divide it into small jobs","Henry Ford"]
+		,["I don't want to achieve immortality through my work.I want to achieve it through not dying.","Woody Allen"]
+	];
+
+	jQuery.fn.mb_setCookie = function(name,value,days,path) {
+		var id=$(this).attr("id");
+		if(!id) id="";
+		if(!path) path="/";
+		if (!days) days=7;
+		var date = new Date(), expires;
+		var time = date.getTime()+(24*60*60*1000*days);
+		date.setTime(time);
+		expires = "; expires="+date.toGMTString();
+
+		document.cookie = name+"_"+id+"="+value+expires+"; path="+path;
+	};
+
+	jQuery.fn.mb_getCookie = function(name) {
+		var id=$(this).attr("id");
+		if(!id) id="";
+		var nameEQ = name+"_"+id + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
 		}
+		return null;
+	};
 
-		#wrapper{
-			position: relative;
-			font: 16px/19px 'Ubuntu Mono', sans-serif;
-			width: 900px;
-			margin: auto;
-			min-height: 800px;
-		}
+	jQuery.fn.mb_removeCookie = function(name) {
+		$(this).mb_setCookie(name,"",-1);
+	};
 
-		h1{
-			font-family: 'Ubuntu Mono', sans-serif;
-			font-weight: normal;
-			font-size:100px;
-			line-height: 80px;
-			text-align: right;
-			color: rgba(255,255,255,0.8);
-			margin: 0;
-			margin-left: 0;
-			display: inline-block;
-			letter-spacing: 1px;
-			margin-top:0px;
+	$(function(){
 
-			-webkit-transform:rotate(-5deg);
-			-webkit-transform-origin:50% 50%;
-			-moz-transform:rotate(-3deg);
-			-moz-transform-origin:50% 50%;
-		}
+		var cookieIdx = $(document).mb_getCookie("index");
+		var oldCookieIdx = $(document).mb_getCookie("oldIndex");
 
-		a{
-				color: white;
-				text-decoration: none;
-		}
-		a:hover{
-				color: #000000;
-				text-decoration: none;
-		}
-
-		p{
-			margin-left: 125px;
-			font-family: 'Ubuntu Mono', sans-serif;
-		}
-
-		#thoughts section{
-			font-family: 'Ubuntu Mono',sans-serif;
-			margin: auto;
-			margin-top: 90px;
-			font-size: 80px;
-			line-height: 1em;
-		}
-
-		address#author{
-			display: none;
-			margin-top: 90px;
-			margin-bottom: 90px;
-			font-size: 40px;
-			font-style: normal;
-			color: white;
-		}
-
-		aside{
-			margin-top: 90px;
-			margin-bottom: 90px;
-			font-size: 28px;
-			font-style: normal;
-			color: white;
-		}
-
-		#reload{
-			position: fixed;
-			bottom:100px;
-			right: 20px;
-			color: #000000;
-			cursor: pointer;
-			font-size: 40px;
-		}
-
-		#qrCode{
-			/*display: block;*/
-			display: none;
-			position: absolute;
-			right: 0;
-			padding: 20px;
-			width: 200px;
-			background: white;
-		}
-
-
-	</style>
-
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script type="text/javascript" src="inc/mbTextEffects.js"></script>
-	<script type="text/javascript" src="inc/jquery.qrcode.min.js"></script>
-	<script>
-
-		console.debug(document.referrer);
-
-		var thoughts=[
-			["Io vivere vorrei addormentato entro il dolce rumore della vita","Sandro Penna, poeta romano"]
-			,["Talvolta sole talvolta luna","Alighiero & Boetti"]
-			,["Sciogliersi come neve al sole","Alighiero & Boetti"]
-			,["Sragionare in lungo e in largo","Alighiero & Boetti"]
-			,["Mettere i verbi all'infinito","Alighiero & Boetti"]
-			,["Ciò che sempre parla in silenzio è il corpo","Alighiero & Boetti"]
-			,["Raddoppiare dimezzando","Alighiero & Boetti"]
-			,["I begin with an idea and then it becomes something else","Pablo Picasso"]
-			,["Every act of creation is first an act of destruction","Pablo Picasso"]
-			,["Everything you can imagine is real","Pablo Picasso"]
-			,["We all know that art is not truth. Art is a lie that makes us realize the truth","Pablo Picasso"]
-			,["Everything comes to us from others. To be is to belong to someone","Jean Paul Sartre"]
-			,["You live only once, but if you do it right, once is enough","Mae West"]
-			,["The meaning of life is that it stops","Franz Kafka"]
-			,["Alcohol is the anesthesia by which we endure the operation of life","George Bernard Shaw"]
-			,["It is not the strongest of the species that survive, nor the most intelligent, but the one most responsive to change","Charles Darwin"]
-			,["We are what we think. All that we are arises with our thoughts. With our thoughts we make the world","Buddha"]
-			,["If the facts don`t fit the theory, change the facts","Albert Einstein"]
-			,["Logic will get you from A to B. Imagination will take you everywhere","Albert Einstein"]
-			,["Make things as simple as possible, but not simpler","Albert Einstein"]
-			,["The problems that exist in the world today cannot be solved by the level of thinking that created them","Albert Einstein"]
-			,["The difference between stupidity and genius is that genius has its limits","Albert Einstein"]
-			,["I never think of the future. It comes soon enough","Albert Einstein"]
-			,["Anyone who has never made a mistake has never tried anything new","Albert Einstein"]
-			,["Failure is simply the opportunity to begin again, this time more intelligently","Henry Ford"]
-			,["Nothing is particularly hard if you divide it into small jobs","Henry Ford"]
-			,["I don't want to achieve immortality through my work.I want to achieve it through not dying.","Woody Allen"]
-		];
-
-		jQuery.fn.mb_setCookie = function(name,value,days,path) {
-			var id=$(this).attr("id");
-			if(!id) id="";
-			if(!path) path="/";
-			if (!days) days=7;
-			var date = new Date(), expires;
-			var time = date.getTime()+(24*60*60*1000*days);
-			date.setTime(time);
-			expires = "; expires="+date.toGMTString();
-			
-			document.cookie = name+"_"+id+"="+value+expires+"; path="+path;
-		};
-
-		jQuery.fn.mb_getCookie = function(name) {
-			var id=$(this).attr("id");
-			if(!id) id="";
-			var nameEQ = name+"_"+id + "=";
-			var ca = document.cookie.split(';');
-			for(var i=0;i < ca.length;i++) {
-				var c = ca[i];
-				while (c.charAt(0)==' ') c = c.substring(1,c.length);
-				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		function setRndIdx(){
+			var idx= Math.floor(Math.random()*thoughts.length-1);
+			if(idx==oldCookieIdx){
+				setRndIdx();
+				return;
 			}
-			return null;
-		};
+			$(document).mb_setCookie("oldIndex", idx,1);
+			$(document).mb_setCookie("index", idx,.008);
+			cookieIdx = $(document).mb_getCookie("index");
+		}
 
-		jQuery.fn.mb_removeCookie = function(name) {
-			$(this).mb_setCookie(name,"",-1);
-		};
+		if (!cookieIdx)
+			setRndIdx();
 
-		$(function(){
+		var idx= cookieIdx;
+		console.debug(idx)
+		var thought = thoughts[idx][0];
+		var author = thoughts[idx][1];
+		$("#author").html(author);
+		$("#thoughts section").html(thought); //.css({fontSize:50+Math.random()*80})
 
-			var cookieIdx = $(document).mb_getCookie("index");
-			var oldCookieIdx = $(document).mb_getCookie("oldIndex");
-
-			function setRndIdx(){
-				var idx= Math.floor(Math.random()*thoughts.length-1);
-				if(idx==oldCookieIdx){
-					setRndIdx();
-				}else{
-					$(document).mb_setCookie("oldIndex", idx,1);
-					return idx;
-				}
+		$("#thoughts section").mbTEF_transform({
+			timer:[50,30], // or [40]
+			startStyle:{opacity:.0},
+			endStyle:{opacity:"random"}, //, fontSize: 20 + Math.floor(Math.random()*60)
+			fadeTime: Math.floor(Math.random()*3000), //Math.floor(Math.random()*1000)
+			split:"",
+			callback:function(){
+				$("#author").fadeIn(1000);
+				$('#qrCode').qrcode({
+					text:thought +" ("+author+")",
+					width:200,
+					height:200,
+					render:"canvas",
+					typeNumber:-1,
+					correctLevel: 1
+				}).css({display:"block"}).hide().fadeIn(1000);
 			}
+		});
 
-			if (!cookieIdx){
-				var rndIdx = setRndIdx();
-				$(document).mb_setCookie("index", rndIdx,.008);
-				cookieIdx = $(document).mb_getCookie("index");
-			}
-			
-			var idx= cookieIdx;
-			var thought = thoughts[idx][0];
-			var author = thoughts[idx][1];
-			$("#author").html(author);
-			$("#thoughts section").html(thought); //.css({fontSize:50+Math.random()*80})
+		$('#qrCode').hide();
 
-			$("#thoughts section").mbTEF_transform({
-				timer:[50,30], // or [40]
-				startStyle:{opacity:.0},
-				endStyle:{opacity:"random"}, //, fontSize: 20 + Math.floor(Math.random()*60)
-				fadeTime: Math.floor(Math.random()*3000), //Math.floor(Math.random()*1000)
-				split:"",
-				callback:function(){
-					$("#author").fadeIn(1000);
-					$('#qrCode').qrcode({
-						text:thought +" ("+author+")",
-						width:200,
-						height:200,
-						render:"canvas",
-						typeNumber:-1,
-						correctLevel: 1
-					}).css({display:"block"}).hide().fadeIn(1000);
-				}
-			});
-
-			$('#qrCode').hide();
-
-		})
-	</script>
+	})
+</script>
 </head>
 <body>
 <h1>RANDOM THOUGHTS</h1>
