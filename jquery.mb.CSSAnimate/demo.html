@@ -81,14 +81,13 @@
 		return this.each(function() {
       var el = $(this);
 
-      var w = 30 * (Math.random() * 15);
-      var h = 30 * (Math.random() * 15);
+      var w = 30 * Math.floor((Math.random() * 15));
+      var h = 30 * Math.floor((Math.random() * 15));
 
       var t = Math.floor(Math.random() * (cH-h));
       var l = Math.floor(Math.random() * (cW-w));
       var r = Math.floor(Math.random() * 360);
-      var duration = 1000 + (Math.random() * 3000);
-//      var duration = "fast";
+      var duration = 1000 + Math.floor((Math.random() * 3000));
 
       //here is the CSSAnimate :-)
       el.CSSAnimate({
