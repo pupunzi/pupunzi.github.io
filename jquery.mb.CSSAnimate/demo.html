@@ -13,189 +13,222 @@
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>mb.CSSAnimate</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>mb.CSSAnimate</title>
 
-    <link href="css/mb.linearGallery.css" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
-    <style type="text/css">
+	<link href="css/mb.linearGallery.css" rel="stylesheet" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+	<style type="text/css">
 
-        body{
-            margin: 0;
-            white-space: inherit;
-            background: #ffcc00;
-            font: 16px/19px 'Ubuntu Mono', sans-serif;
-        }
-        #wrapper, #links{
-            position: relative;
-            margin: auto;
-            width:900px;
-        }
-        h1{
-            margin-top: 80px;
-            padding:50px 0;
-        }
-        a{
-            color: white;
-            text-decoration: none;
-        }
-        a:hover{
-            color: #000000;
-            text-decoration: none;
-        }
-
-
-        .test{
-            top:0;
-            left:0;
-            position:absolute;
-            width:10px;
-            height:10px;
-            background:#666;
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
-            border-radius:10px;
-        }
-        .two{background:white;}
-
-        .three{background:black;}
-
-    </style>
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="inc/jquery.mb.linearGallery.js"></script>
-
-    <script type="text/javascript">
-
-        /*******************************************************************************
-         jquery.mb.components
-         Copyright (c) 2001-2011. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
-         email: mbicocchi@open-lab.com
-         site: http://pupunzi.com
-         blog: http://pupunzi.open-lab.com
-
-         Licences: MIT, GPL
-         http://www.opensource.org/licenses/mit-license.php
-         http://www.gnu.org/licenses/gpl.html
-
-         params:
-
-         @opt        -> the CSS object (ex: {top:300, left:400, ...})
-         @duration   -> an int for the animation duration in milliseconds
-         @type       -> ease  ||  linear || ease-in || ease-out || ease-in-out  ||  cubic-bezier(<number>, <number>,  <number>,  <number>)
-         @properties -> properties to wich CSS3 transition should be applied.
-         @callback   -> a callback function called once the transition end
-
-         example:
-
-         $(this).CSSAnimate({top: t, left:l, width:w, height:h}, 2000, "ease-out", "all", function() {el.anim();})
-         ******************************************************************************/
-
-        $.fn.CSSAnimate = function(opt, duration, type, properties, callback) {
-            return this.each(function() {
-
-                var el = $(this);
-
-                if (el.length === 0 || !opt) {return;}
-
-                if (typeof duration == "function") {callback = duration;}
-                if (typeof type == "function") {callback = type;}
-                if (typeof properties == "function") {callback = properties;}
-
-                if (!duration) {duration = 1000;}
-                if (!type) {type = "cubic-bezier(0.65,0.03,0.36,0.72)";}
-                if (!properties) {properties = "all";}
-
-                //http://cssglue.com/cubic
-                //  ease  |  linear | ease-in | ease-out | ease-in-out  |  cubic-bezier(<number>, <number>,  <number>,  <number>)
-                if (!jQuery.support.transition) {
-                    el.animate(opt, duration, callback);
-                    return;
-                }
-
-                var sfx = "";
-                var transitionEnd = "TransitionEnd";
-                if ($.browser.webkit) {
-                    sfx = "-webkit-";
-                    transitionEnd = "webkitTransitionEnd";
-                } else if ($.browser.mozilla) {
-                    sfx = "-moz-";
-                    transitionEnd = "transitionend";
-                } else if ($.browser.opera) {
-                    sfx = "-o-";
-                    transitionEnd = "oTransitionEnd";
-                } else if ($.browser.msie) {
-                    sfx = "-ms-";
-                    transitionEnd = "msTransitionEnd";
-                }
-
-                el.css(sfx + "transition-property", properties);
-                el.css(sfx + "transition-duration", duration + "ms");
-                el.css(sfx + "transition-timing-function", type);
-
-                setTimeout(function() {
-                    el.css(opt)
-                }, 0);
-
-                var endTransition = function() {
-                    el.get(0).removeEventListener(transitionEnd, endTransition, false);
-                    el.css(sfx + "transition", "");
-                    if (typeof callback == "function") callback();
-                };
-                el.get(0).addEventListener(transitionEnd, endTransition, false);
-
-            })
-        };
-
-        // jQuery.support.transition
-        // to verify that CSS3 transition is supported (or any of its browser-specific implementations)
-        $.support.transition = (function() {
-            var thisBody = document.body || document.documentElement;
-            var thisStyle = thisBody.style;
-            return thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;;
-        })();
-
-        $.fn.test = function() {
-
-            var cH = $(window).height();
-            var cW = $(window).width();
-
-            return this.each(function() {
-                var el = $(this);
-
-                var scale =  (Math.random() * 5);
-                var w = 30 * (Math.random() * 5);
-                var h = 30 * (Math.random() * 5);
-
-                var t = Math.random() * (cH-h);
-                var l = Math.random() * (cW-w);
-                var duration = 1000 + (Math.random() * 3000);
-
-                //here is the CSSAnimate :-)
-                el.CSSAnimate({
-                    top: t,
-                    left: l,
-                    width: w,
-                    height: h
-                }, duration, "ease-out", "all", function() {
-                    el.test();
-                })
-            })
-        };
+		body{
+			margin: 0;
+			white-space: inherit;
+			background: #ffcc00;
+			font: 16px/19px 'Ubuntu Mono', sans-serif;
+			overflow: hidden;
+		}
+		#wrapper, #links{
+			position: relative;
+			margin: auto;
+			width:900px;
+		}
+		h1{
+			margin-top: 80px;
+			padding:50px 0;
+		}
+		a{
+			color: white;
+			text-decoration: none;
+		}
+		a:hover{
+			color: #000000;
+			text-decoration: none;
+		}
 
 
-        $(function(){
+		.test{
+			top:0;
+			left:0;
+			position:absolute;
+			width:10px;
+			height:10px;
+			background:#666;
+			box-shadow: 0 0 5px rgba(0,0,0,0.5);
+			border-radius:10px;
+			box-sizing: border-box;
+		}
+		.two{background:white;}
 
-            if (self.location.href == top.location.href){
-                var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
-                $("body").append(logo);
-                $("#logo").fadeIn();
-            }
+		.three{background:black;}
 
-            
-            $(".test").test();
-        });
+	</style>
 
-    </script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="inc/jquery.mb.linearGallery.js"></script>
+
+	<script type="text/javascript">
+
+		/*******************************************************************************
+		 jquery.mb.components
+		 Copyright (c) 2001-2011. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+		 email: mbicocchi@open-lab.com
+		 site: http://pupunzi.com
+		 blog: http://pupunzi.open-lab.com
+
+		 Licences: MIT, GPL
+		 http://www.opensource.org/licenses/mit-license.php
+		 http://www.gnu.org/licenses/gpl.html
+
+		 params:
+
+		 @opt        -> the CSS object (ex: {top:300, left:400, ...})
+		 @duration   -> an int for the animation duration in milliseconds
+		 @ease       -> ease  ||  linear || ease-in || ease-out || ease-in-out  ||  cubic-bezier(<number>, <number>,  <number>,  <number>)
+		 @properties -> properties to wich CSS3 transition should be applied.
+		 @callback   -> a callback function called once the transition end
+
+		 example:
+
+		 $(this).CSSAnimate({top: t, left:l, width:w, height:h}, 2000, "ease-out", "all", function() {el.anim();})
+		 ******************************************************************************/
+
+		$.fn.CSSAnimate = function(opt, duration, ease, properties, callback) {
+			return this.each(function() {
+
+				var el = $(this);
+
+				if (el.length === 0 || !opt) {return;}
+
+				if (typeof duration == "function") {callback = duration;}
+				if (typeof ease == "function") {callback = ease;}
+				if (typeof properties == "function") {callback = properties;}
+
+				if(typeof duration == "string"){
+					for(var d in $.fx.speeds){
+						if(duration==d){
+							duration= $.fx.speeds[d];
+							break;
+						}else{
+							duration=null;
+						}
+					}
+				}
+
+				if (!duration) {duration = $.fx.speeds["_default"];}
+
+				if (!ease) {ease = "cubic-bezier(0.65,0.03,0.36,0.72)";}
+				if (!properties) {properties = "all";}
+
+				//http://cssglue.com/cubic
+				//  ease  |  linear | ease-in | ease-out | ease-in-out  |  cubic-bezier(<number>, <number>,  <number>,  <number>)
+
+				if (!jQuery.support.transition) {
+					el.animate(opt, duration, callback);
+					return;
+				}
+
+				var sfx = "";
+				var transitionEnd = "TransitionEnd";
+				if ($.browser.webkit) {
+					sfx = "-webkit-";
+					transitionEnd = "webkitTransitionEnd";
+				} else if ($.browser.mozilla) {
+					sfx = "-moz-";
+					transitionEnd = "transitionend";
+				} else if ($.browser.opera) {
+					sfx = "-o-";
+					transitionEnd = "oTransitionEnd";
+				} else if ($.browser.msie) {
+					sfx = "-ms-";
+					transitionEnd = "msTransitionEnd";
+				}
+
+				for(var o in opt){
+					if (o==="transform"){
+						opt[sfx+"transform"]=opt[o];
+						delete opt[o];
+					}
+					if (o==="transform-origin"){
+						opt[sfx+"transform-origin"]=opt[o];
+						delete opt[o];
+					}
+				}
+				
+				el.css(sfx + "transition-property", properties);
+				el.css(sfx + "transition-duration", duration + "ms");
+				el.css(sfx + "transition-timing-function", ease);
+
+				setTimeout(function() {
+					el.css(opt);
+				}, 0);
+
+				var endTransition = function() {
+					el.get(0).removeEventListener(transitionEnd, endTransition, false);
+					el.css(sfx + "transition", "");
+					if (typeof callback == "function") callback();
+				};
+				el.get(0).addEventListener(transitionEnd, endTransition, false);
+
+			})
+		};
+
+		// jQuery.support.transition
+		// to verify that CSS3 transition is supported (or any of its browser-specific implementations)
+
+		$.support.transition = (function() {
+			var thisBody = document.body || document.documentElement;
+			var thisStyle = thisBody.style;
+			return thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
+		})();
+
+
+		$.fn.test = function() {
+
+			var cH = $(window).height();
+			var cW = $(window).width();
+
+			return this.each(function() {
+				var el = $(this);
+
+				var w = 30 * (Math.random() * 15);
+				var h = 30 * (Math.random() * 15);
+
+				var t = Math.floor(Math.random() * (cH-h));
+				var l = Math.floor(Math.random() * (cW-w));
+				var r = Math.floor(Math.random() * 360);
+				var duration = 1000 + (Math.random() * 3000);
+//				var duration = "fast";
+
+				//here is the CSSAnimate :-)
+				el.CSSAnimate({
+					top: t,
+					left: l,
+					width: w,
+					height: h,
+					"border-radius":Math.floor(Math.random() * 100),
+					"transform":"rotate("+r+"deg)",
+					"transform-origin":"50% 50%",
+					"background":"rgba("+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+(.6+Math.random()*.4)+")"
+				}, duration, "ease-out", "all", function() {
+					el.test();
+				})
+			})
+		};
+
+
+		$(function(){
+
+			if (self.location.href == top.location.href){
+				var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
+				$("body").append(logo);
+				$("#logo").fadeIn();
+			}
+
+
+			$(".test").test();
+		});
+
+	</script>
 
 </head>
 <body>
@@ -215,14 +248,14 @@
 
 
 <div id="wrapper">
-    <h1>jquery.mb.CSSAnimate demo</h1>
-    <div id="links">
-        <p>
-            Animate using CSS3 transition instead of the default jQuery.animate method.<br>
-            It provides a fallback to the default animate method if CSS3 is not supported by the browser.
-        </p>
-        <p>back to <a href="http://pupunzi.github.com">pupunzi experiments</a></p>
-    </div>
+	<h1>jquery.mb.CSSAnimate demo</h1>
+	<div id="links">
+		<p>
+			Animate using CSS3 transition instead of the default jQuery.animate method.<br>
+			It provides a fallback to the default animate method if CSS3 is not supported by the browser.
+		</p>
+		<p>back to <a href="http://pupunzi.github.com">pupunzi experiments</a></p>
+	</div>
 
 </div>
 
