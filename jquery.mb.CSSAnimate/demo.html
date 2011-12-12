@@ -164,50 +164,7 @@
       <br>
       <a href="inc/jquery.mb.CSSAnimate.js" target="_blank"> Get the code</a>
 		</p>
-		<p>here is the call for this example:
-		<pre>
-		<code>
-
-       <b>the "DIV" code:</b>
-      <div data-code=true>
-      <div class="test"></div>
-      </div>
-      <b>the function:</b>
-      
-      $.fn.test = function() {
-        var cH = $(window).height();
-        var cW = $(window).width();
-        return this.each(function() {
-            var el = $(this);
-            var w = 30 * (Math.random() * 15);
-            var h = 30 * (Math.random() * 15);
-            var t = Math.floor(Math.random() * (cH-h));
-            var l = Math.floor(Math.random() * (cW-w));
-            var r = Math.floor(Math.random() * 360);
-            var duration = 1000 + (Math.random() * 3000);
-
-            //here is the CSSAnimate :-)
-            el.CSSAnimate({
-            top: t,
-            left: l,
-            width: w,
-            height: h,
-            "border-radius":Math.floor(Math.random() * 100),
-            "transform":"rotate("+r+"deg)",
-            "transform-origin":"50% 50%",
-            "background":"rgba("+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+(.6+Math.random()*.4)+")"
-            }, duration, "ease-out", "all", function() {
-            el.test();
-            })
-        })
-      };
-
-      $(".test").test();
-
-
-		</code>
-		</pre>
-		</p>
+		
 		<p>back to <a href="http://pupunzi.github.com">pupunzi experiments</a></p>
 	</div>
 
