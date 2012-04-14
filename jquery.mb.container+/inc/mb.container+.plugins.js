@@ -97,9 +97,7 @@ $.containerize.addMethod("iconize",function(dockId){
       el.$.containerize("restoreView",true);
       el.$.mb_bringToFront();
       el.$.trigger("restored");
-})
+    })
   });
-
-
 
 });
