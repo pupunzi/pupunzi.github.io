@@ -25,7 +25,7 @@
       containment:"document",
       elementsPath:"elements/",
       dockedIconDim:35,
-      onCreate:function(o){},
+      onLoad:function(o){},
       onCollapse:function(o){},
       onBeforeIconize:function(o){},
       onIconize:function(o){},
@@ -34,9 +34,7 @@
       onResize: function(o,w,h){},
       onDrag: function(o,x,y){},
       onRestore:function(o){},
-      onMaximize:function(o){},
-      onLoad:function(o){},
-      onClick:function(o){},
+      onFullScreen:function(o){},
       mantainOnWindow:true,
       effectDuration:100,
       zIndexContext:"auto" // or your selector (ex: ".containerPlus")
@@ -131,6 +129,9 @@
 
         $(window).trigger("resize");
       },500);
+
+      if(typeof el.opt.onLoad === "function")
+        el.opt.onLoad(el);
     },
 
     applyMethods:function(el, data){
@@ -165,7 +166,12 @@
               ui.helper.addClass("dragging");
             },
             drag:function(){
+
+              if(typeof el.opt.onDrag === "function")
+                el.opt.onDrag(el);
+
               el.$.trigger("drag");
+
             },
             stop:function(e,ui){
               ui.helper.removeClass("dragging");
@@ -198,6 +204,9 @@
               ui.helper.mb_bringToFront();
             },
             resize:function(){
+              if(typeof el.opt.onResize === "function")
+                el.opt.onResize(el);
+
               el.$.trigger("resize");
             },
             stop:function(e,ui){
@@ -237,9 +246,21 @@
       close:function(animate){
         var el = this;
 
+        if(el.isClosed)
+          return;
+
         var time= animate ? animate : 0;
-        if(!el.isClosed)
-          el.$.fadeOut(time);
+
+        if(typeof el.opt.onBeforeClose === "function")
+          el.opt.onBeforeClose(el);
+
+        el.$.fadeOut(time,function(){
+
+            if(typeof el.opt.onClose === "function")
+              el.opt.onClose(el);
+
+          });
+
         el.isClosed=true;
         return el.$;
       },
@@ -274,6 +295,10 @@
             });
             el.$.resizable("disable");
             el.isCollapsed = true;
+
+            if(typeof el.opt.onCollapse === "function")
+              el.opt.onCollapse(el);
+
           }else{
             el.$.animate({height:el.h},el.opt.effectDuration,function(){
               el.$.css("min-height",el.minH);
@@ -282,6 +307,10 @@
               el.footer.show();
               el.$.resizable("enable");
               el.$.containerize("setContainment");
+
+              if(typeof el.opt.onRestore === "function")
+                el.opt.onRestore(el);
+
             });
             el.isCollapsed = false;
           }
@@ -389,8 +418,104 @@
             el.toolBar.append(button);
           }
         }
-      }
+      },
+      iconize:function(dockId){
+        var el = this;
+        if(el.fullscreen)
+          return;
+        el.$.containerize("storeView");
 
+        if(typeof el.opt.onBeforeIconize === "function")
+          el.opt.onBeforeIconize(el);
+
+        var t = dockId ? $("#"+dockId).offset().top : el.$.css("top");
+        var l = dockId ? $("#"+dockId).offset().left : 0;
+        el.content.css({overflow:"hidden"});
+        el.$.animate({top:t,left:l,width:0,height:0,opacity:0},el.opt.effectDuration, function(){
+          $(this).containerize("close");
+          if(!dockId){
+            el.iconElement = $("<div/>").addClass("containerIcon "+ el.$.data("skin")).css({position:"absolute", top:t, left:l});
+            var title = $("<span/>").addClass("mbc_title").html(el.containerTitle.html());
+            el.iconElement.append(title);
+            $("body").append(el.iconElement);
+          }else{
+            el.iconElement = $("<span/>").addClass("containerDocked").html(el.containerTitle.html());
+            $("#"+dockId).append(el.iconElement);
+      }
+          el.$.trigger("iconized");
+
+          if(typeof el.opt.onIconize === "function")
+            el.opt.onIconize(el);
+
+          el.iconElement.bind("click",function(){
+            $(this).remove();
+            el.$.containerize("restoreView",true);
+            el.$.mb_bringToFront();
+            el.$.trigger("restored");
+
+            if(typeof el.opt.onRestore === "function")
+              el.opt.onRestore(el);
+          })
+        });
+    },
+      fullScreen:function(){
+        var el = this;
+        if(!el.fullscreen){
+          if(el.$.data("resize"))
+            el.$.resizable("disable");
+          el.$.draggable("disable");
+          el.oWidth= el.$.outerWidth();
+          el.oHeight= el.$.outerHeight();
+          el.oTop= el.$.position().top;
+          el.oLeft= el.$.position().left;
+          el.oPos= el.$.css("position");
+          el.$.css({top:0,left:0, width:$(window).width(), height:$(window).height(), position:"fixed"});
+          el.$.containerize("adjust");
+          el.fullscreen=true;
+
+          if(typeof el.opt.onFullScreen === "function")
+            el.opt.onFullScreen(el);
+
+        }else{
+          if(el.$.data("resize"))
+            el.$.resizable("enable");
+          if(el.$.data("drag"))
+            el.$.draggable("enable");
+          el.$.css({top:el.oTop,left:el.oLeft, width:el.oWidth, height:el.oHeight, position: el.oPos});
+          el.$.containerize("adjust");
+          el.fullscreen=false;
+        }
+      },
+      rememberme:function(){
+        var el = this;
+        el.$.bind("resized",function(){
+          $.mbCookie.set(el.id+"_w", el.$.outerWidth(),7);
+          $.mbCookie.set(el.id+"_h", el.$.outerHeight(),7);
+        });
+        el.$.bind("dragged",function(){
+          $.mbCookie.set(el.id+"_t", el.$.css("top"),7);
+          $.mbCookie.set(el.id+"_l", el.$.css("left"),7);
+        });
+
+        el.$.bind("iconized",function(){
+          $.mbCookie.set(el.id+"_iconized", true,7);
+        });
+
+        el.$.bind("restored",function(){
+          $.mbCookie.remove(el.id+"_iconized");
+        });
+
+        var w = $.mbCookie.get(el.id+"_w") ? $.mbCookie.get(el.id+"_w") : el.$.css("width");
+        var h = $.mbCookie.get(el.id+"_h") ? $.mbCookie.get(el.id+"_h") : el.$.css("height");
+        var t = $.mbCookie.get(el.id+"_t") ? $.mbCookie.get(el.id+"_t") : el.$.css("top");
+        var l = $.mbCookie.get(el.id+"_l") ? $.mbCookie.get(el.id+"_l") : el.$.css("left");
+        el.$.css({width:w, height:h, left:l, top:t});
+
+        if($.mbCookie.get(el.id+"_iconized")){
+          el.$.containerize("close");
+          el.$.containerize("iconize");
+        }
+      }
     },
 
     addMethod:function(name, fn){
