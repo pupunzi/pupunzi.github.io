@@ -174,8 +174,16 @@
       height:320px;
       font: 18px/22px Arial, Helvetica, sans-serif;
     }
-    
+
     #pupunzi, #git{
+      display: none;
+    }
+    h2{
+      font-size: 16px;
+      white-space: normal;
+    }
+
+    #qr{
       display: none;
     }
   }
@@ -233,7 +241,7 @@
         <h1>mb.momentumSlide</h1>
         <p>Take a look at this page on your mobile or tablet.</p>
         <h2 style="text-align: center; font-size: 60px; line-height: 60px;">
-          <img style="width: 200px; height: 200px; border: 10px solid white" src="http://qbox.it/qrcodeImage.jpeg?o=image%2Fjpeg&d=http://pupunzi.github.com/jquery.mb.momentumSlide/demo.html&e=L&t=0&m=0&s=10"><br>
+          <img id="qr" style="width: 200px; height: 200px; border: 10px solid white" src="http://qbox.it/qrcodeImage.jpeg?o=image%2Fjpeg&d=http://pupunzi.github.com/jquery.mb.momentumSlide/demo.html&e=L&t=0&m=0&s=10"><br>
           Swipe this page horizontally</h2>
       </article>
     </div>
