@@ -1,0 +1,518 @@
+<!DOCTYPE HTML>
+<!--
+  ~ jquery.mb.components
+  ~ Copyright (c) 2001-2012. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+  ~ email: mbicocchi@open-lab.com
+  ~ site: http://pupunzi.com
+  ~
+  ~ Licences: MIT, GPL
+  ~ http://www.opensource.org/licenses/mit-license.php
+  ~ http://www.gnu.org/licenses/gpl.html
+  -->
+
+<html>
+<head>
+<title>mb.momentumSlide</title>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<!--Mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<link rel="apple-touch-icon" href="css/elements/icon.png"/>
+<link rel="apple-touch-startup-image" href="css/elements/startup.png"/>
+
+<!--JAVASCRIPT-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="inc/jquery.mb.CSSAnimate.js"></script>
+<script src="inc/jquery.mb.momentumSlide.js"></script>
+<script src="inc/iscroll.js"></script>
+
+<!--CSS-->
+<!--<link href="css/appsFuel.css" rel="stylesheet" type="text/css">-->
+
+<style>
+
+  body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ccc;
+  }
+
+  h2 {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  p, img {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px;
+    white-space: normal;
+  }
+
+  .page img {
+    width: 150px;
+    height: auto;
+  }
+
+  #wrapper {
+    position: relative;
+    background: #ccc;
+    margin: auto;
+    overflow: hidden;
+    width: 800px;
+    height: 100%;
+    font: 24px/28px Arial, Helvetica, sans-serif;
+  }
+
+  .slider {
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+  }
+
+  .page {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #fff;
+  }
+
+  .page .pageContent {
+    width: 100%;
+    height: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    position: absolute;
+    z-index: 3;
+    font-size: 1.5em;
+    top: 0
+  }
+
+  .page .pageContent article {
+    padding: 30px;
+  }
+
+  .page .pageContent article.col {
+    min-height: 100%;
+    -moz-column-width: 250px;
+    -moz-column-gap: 20px;
+    -webkit-column-width: 250px;
+    -webkit-column-gap: 20px;
+    column-width: 250px;
+    column-gap: 20px;
+  }
+
+  .page .pageContent .scroll {
+    position: absolute;
+
+  }
+
+  .page .pageContent h2 {
+    position: relative;
+
+    /*
+        -webkit-column-span:all;
+        column-span:all;
+    */
+    font-size: 30px;
+    line-height: 100%;
+    white-space: normal;
+    margin: 5px;
+
+  }
+
+  .page #slider2 .pageContent {
+
+    background: rgb(122, 188, 255);
+
+    /*box-shadow:0px 0px 6px rgba(0,0,0,0.4);*/
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+  }
+
+  #slideIndex {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    z-index: 100;
+  }
+
+  #slideIndex .idxContainer {
+    display: inline-block;
+    padding: 2px;
+    height: 13px;
+    -webkit-border-radius: 10px;
+  }
+
+  #slideIndex .idxPage {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 10px;
+    background: rgba(191, 191, 191, .5);
+    border: 1px solid rgba(0, 0, 0, .5);
+    margin: 2px;
+  }
+
+  #slideIndex .idxPage.sel {
+    background: #000;
+  }
+
+  .cursorGrab {
+    cursor: url("css/elements/grab.cur"), -moz-zoom-in;
+  }
+
+  .cursorGrabbing {
+    cursor: url("css/elements/grabbing.cur"), -moz-zoom-in;
+  }
+
+  @media only screen and (max-width : 480px) {
+    #wrapper {
+      position: absolute;
+      background: #cccccc;
+      overflow: hidden;
+      width: 100%;
+      height: 320px;
+      font: 18px/22px Arial, Helvetica, sans-serif;
+    }
+  }
+
+  @media only screen and (max-width : 340px) {
+    #wrapper {
+      position: absolute;
+      background: #cccccc;
+      overflow: hidden;
+      width: 100%;
+      height: 420px;
+      font: 18px/22px Arial, Helvetica, sans-serif;
+    }
+  }
+</style>
+
+<script>
+  $(function () {
+    setTimeout(function () {
+      window.scrollTo(0, 1);
+    }, 0);
+
+    function makePageScrollable(el) {
+
+      if (!$(el.content).children("article").length || $(el.content).children(".scroll").length){
+        if($(el.content).children(".scroll").length)
+          el.scroll.refresh();
+        return;
+      }
+
+
+      var scroll = $("<div/>").addClass("scroll");
+      $(el.content).find("article").wrap(scroll);
+      el.scroll = new iScroll(el.content, {hScroll:false, hScrollbar:false, vScrollbar:true})
+
+    }
+
+    $("#slider1").momentumSlide({
+      direction:"h",
+      waitBefore:0,
+      anchor:150,
+      duration:500,
+      propagate:false,
+      onInit:function (el) {
+        $("article", $(el)).hide();
+        $("article:first", $(el)).fadeIn();
+      },
+      onGoTo:function (el) {
+      },
+      onDrag:function (el, dir) {
+
+        switch (dir) {
+          case "right":
+            var nextPage = $.mbMomentumSlide.getNextPage(el).get(0);
+            $(nextPage).find("article:first").not(":visible").fadeIn(1000);
+            break;
+
+          case "left":
+            var prevPage = $.mbMomentumSlide.getPrevPage(el).get(0);
+            $(prevPage).find("article:first").not(":visible").fadeIn(1000);
+        }
+      },
+      onBeforeEnd:function (el) {
+        if (el.oldPage>=0 && el.oldPage != el.page){
+          $(el.pages.eq(el.oldPage)).find("article:first").fadeOut();
+        }
+        $(el.actualPage).find("article:first").fadeIn();
+        makePageScrollable(el.actualPage)
+      }
+    });
+
+    $("#slider2").momentumSlide({
+      direction:"h",
+      waitBefore:0,
+      anchor:300,
+      duration:500,
+      onInit:function (el) {
+        $("article", $(el)).hide();
+        $("article:first", $(el)).fadeIn();
+      },
+      onBounceStart:function (el) {
+        $(el).momentumSlide('end');
+      },
+      onBounceEnd:function (el) {
+        $(el).momentumSlide('end');
+      },
+
+      onDrag:function (el, dir) {
+
+        switch (dir) {
+          case "right":
+            var nextPage = $.mbMomentumSlide.getNextPage(el).get(0);
+            $(nextPage).find("article:first").not(":visible").fadeIn(1000);
+            break;
+
+          case "left":
+            var prevPage = $.mbMomentumSlide.getPrevPage(el).get(0);
+            $(prevPage).find("article:first").not(":visible").fadeIn(1000);
+        }
+      },
+      onBeforeEnd:function (el) {
+        if (el.oldPage>=0 && el.oldPage != el.page){
+          $(el.pages.eq(el.oldPage)).find("article:first").fadeOut();
+        }
+        $(el.actualPage).find("article:first").fadeIn();
+        makePageScrollable(el.actualPage)
+      }
+    });
+  })
+</script>
+
+</head>
+<body>
+<div id="wrapper">
+
+<div id="slider1" class="slider">
+
+  <div class="page">
+
+    <article class="col">
+      <h1>Section 1</h1>
+
+      <h2>mb momentum Slide</h2>
+
+      <p>Take a look at this page on your mobile or tablet</p>
+      <img style="width: 200px; height: 200px;"
+           src="http://qbox.it/qrcodeImage.jpeg?o=image%2Fjpeg&d=http://dl.dropbox.com/u/1976976/jquery.mb.momentumSlide/demo.html&e=L&t=0&m=0&s=10">
+
+      <p>drag this page right to left...</p>
+
+      <p>
+        Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+        consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel
+        augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit
+        aliquet.
+        Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient
+        montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio,
+        dapibus ac facilisis in, egestas eget quam.
+        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Donec sed
+        odio dui. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus
+        posuere velit aliquet.
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis ornare
+        vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus ac facilisis
+        in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac
+        consectetur ac, vestibulum at eros.
+        Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+        consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel
+        augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit
+        aliquet.
+        Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient
+        montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio,
+        dapibus ac facilisis in, egestas eget quam.
+        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Donec sed
+        odio dui. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus
+        posuere velit aliquet.
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis ornare
+        vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus ac facilisis
+        in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac
+        consectetur ac, vestibulum at eros.
+        Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+        consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel
+        augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit
+        aliquet.
+        Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient
+        montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio,
+        dapibus ac facilisis in, egestas eget quam.
+        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Donec sed
+        odio dui. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus
+        posuere velit aliquet.
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis ornare
+        vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus ac facilisis
+        in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac
+        consectetur ac, vestibulum at eros.
+        Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+        consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel
+        augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit
+        aliquet.
+        Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient
+        montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio,
+        dapibus ac facilisis in, egestas eget quam.
+        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Donec sed
+        odio dui. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus
+        posuere velit aliquet.
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis ornare
+        vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus ac facilisis
+        in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac
+        consectetur ac, vestibulum at eros.
+      </p>
+    </article>
+
+  </div>
+
+  <div class="page">
+    <h1>Section 2</h1>
+
+    <div id="slider2" class="slider">
+      <div class="page">
+        <article class="col">
+          <h2>Article 1</h2>
+
+          <p>Take a look at this page on your mobile or tablet</p>
+          <img style="width: 200px; height: 200px;"
+               src="http://qbox.it/qrcodeImage.jpeg?o=image%2Fjpeg&d=http://dl.dropbox.com/u/1976976/jquery.mb.momentumSlide/demo.html&e=L&t=0&m=0&s=10">
+
+          <p>drag this page right to left...</p>
+
+          <p>
+            Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+            consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel
+            augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit
+            aliquet.
+            Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Donec
+            sed odio dui. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis
+            dapibus posuere velit aliquet.
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis
+            ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus
+            ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+            ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo
+            risus, porta ac consectetur ac, vestibulum at eros.
+            Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+            consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel
+            augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit
+            aliquet.
+            Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Donec
+            sed odio dui. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis
+            dapibus posuere velit aliquet.
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis
+            ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus
+            ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+            ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo
+            risus, porta ac consectetur ac, vestibulum at eros.
+            Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+            consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel
+            augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit
+            aliquet.
+            Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Donec
+            sed odio dui. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis
+            dapibus posuere velit aliquet.
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis
+            ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus
+            ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+            ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo
+            risus, porta ac consectetur ac, vestibulum at eros.
+            Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+            consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel
+            augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit
+            aliquet.
+            Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. Donec
+            sed odio dui. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis
+            dapibus posuere velit aliquet.
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis
+            ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus
+            ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+            ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo
+            risus, porta ac consectetur ac, vestibulum at eros.
+          </p>
+        </article>
+      </div>
+
+      <div class="page">
+        <article><h2>Article 2</h2></article>
+      </div>
+      <div class="page">
+        <article><h2>Article 3</h2></article>
+      </div>
+      <div class="page">
+        <article><h2>Article 4</h2></article>
+      </div>
+    </div>
+
+
+    <div style="position: absolute; top:10px; right:10px;">
+      <button onclick="$('#slider2').momentumSlide('goto',4)"> go to page 4</button>
+      <button onclick="$('#slider2').momentumSlide('prev')"> prev</button>
+      <button onclick="$('#slider2').momentumSlide('next')"> next</button>
+    </div>
+
+  </div>
+
+  <div class="page">
+    <article>
+      <h1>Section 3</h1>
+    </article>
+  </div>
+  <div class="page">
+    <article>
+      <h1>Section 4</h1>
+    </article>
+  </div>
+  <div class="page">
+    <article>
+      <h1>Section 5</h1>
+    </article>
+  </div>
+  <div class="page">
+    <article>
+      <h1>Section 6</h1>
+    </article>
+  </div>
+</div>
+
+<div id="commands" style="position: absolute; bottom:10px; left:10px;">
+  <button onclick="$('#slider1').momentumSlide('goto',2)">go to page 2</button>
+  <button onclick="$('#slider1').momentumSlide('prev')">prev</button>
+  <button onclick="$('#slider1').momentumSlide('next')">next</button>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<!--
+  ~ jquery.mb.components
+  ~ Copyright (c) 2001-2012. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+  ~ email: mbicocchi@open-lab.com
+  ~ site: http://pupunzi.com
+  ~
+  ~ Licences: MIT, GPL
+  ~ http://www.opensource.org/licenses/mit-license.php
+  ~ http://www.gnu.org/licenses/gpl.html
+  -->
+
+<html>
+<head>
+<title>mb.momentumSlide</title>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!--Mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="css/elements/icon.png"/>
+<link rel="apple-touch-startup-image" href="css/elements/startup.png" />
+
+<!--JAVASCRIPT-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="inc/jquery.mb.CSSAnimate.js"></script>
+<script src="inc/jquery.mb.momentumSlide.js"></script>
+
+<!--CSS-->
+<!--<link href="css/appsFuel.css" rel="stylesheet" type="text/css">-->
+
+<style>
+
+  body{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin:0;
+    padding:0;
+  }
+
+  h2{
+    font-size: 20px;
+    padding: 10px;
+  }
+  p, img{
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px;
+    white-space: normal;
+  }
+  .page img{
+    width: 150px;
+    height: auto;
+  }
+  #wrapper{
+    position:absolute;
+    background: #cccccc;
+    overflow:hidden;
+    width:100%;
+    height:100%;
+    font: 24px/28px Arial, Helvetica, sans-serif;
+  }
+
+  #slider1{
+    position:absolute;
+    white-space:nowrap;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+  }
+
+  #slider2{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .page{
+    position:relative;
+    display:inline-block;
+    vertical-align:top;
+    width:100%;
+    height:100%;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:5px;
+    background: transparent;
+  }
+  .page > .pageContent{
+    width:100%;
+    height:100%;
+    background: rgb(255,255,255);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2U1ZTVlNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+    background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1)));
+    background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+    background: -o-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+    background: -ms-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+    background: linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 );
+
+    box-shadow:0px 0px 6px rgba(0,0,0,0.4);
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+
+  }
+
+  .page > .pageContent > article{
+    padding: 30px;
+  }
+
+  .page #slider2 .page{
+    padding:7px;
+  }
+  .page #slider2 .pageContent{
+    width:100%;
+    height:100%;
+
+    background: rgb(122,188,255);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjN2FiY2ZmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNDQlIiBzdG9wLWNvbG9yPSIjNjBhYmY4IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzQwOTZlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+    background: -moz-linear-gradient(-45deg,  rgba(122,188,255,1) 0%, rgba(96,171,248,1) 44%, rgba(64,150,238,1) 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(122,188,255,1)), color-stop(44%,rgba(96,171,248,1)), color-stop(100%,rgba(64,150,238,1)));
+    background: -webkit-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
+    background: -o-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
+    background: -ms-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
+    background: linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=1 );
+
+    box-shadow:0px 0px 6px rgba(0,0,0,0.4);
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+
+  }
+
+  #slideIndex{
+    position: absolute;
+    width: 100%;
+    bottom:0;
+    text-align: center;
+    z-index: 100;
+  }
+  #slideIndex .idxContainer{
+    display: inline-block;
+    padding: 2px;
+    height: 13px;
+    -webkit-border-radius: 10px;
+  }
+
+  #slideIndex .idxPage{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 10px;
+    background: rgba(191,191,191,.5);
+    border: 1px solid rgba(0,0,0,.5);
+    margin: 2px;
+  }
+
+  #slideIndex .idxPage.sel{
+    background: #000;
+  }
+
+  .cursorGrab{
+    cursor: url("css/elements/grab.cur"),-moz-zoom-in;
+  }
+  .cursorGrabbing{
+    cursor: url("css/elements/grabbing.cur"),-moz-zoom-in;
+  }
+
+
+  @media only screen and (max-width : 480px) {
+    #wrapper{
+      position:absolute;
+      background: #cccccc;
+      overflow:hidden;
+      width:100%;
+      height:320px;
+      font: 18px/22px Arial, Helvetica, sans-serif;
+    }
+  }
+
+  @media only screen and (max-width : 340px) {
+    #wrapper{
+      position:absolute;
+      background: #cccccc;
+      overflow:hidden;
+      width:100%;
+      height:420px;
+      font: 18px/22px Arial, Helvetica, sans-serif;
+    }
+  }
+</style>
+
+<script>
+  $(function(){
+
+    if (self.location.href == top.location.href){
+      var logo=$("<a id='pupunzi' href='http://pupunzi.com' style='position:fixed;bottom:40px;right:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
+      $("body").prepend(logo);
+      $("#logo").fadeIn();
+    }
+
+
+    setTimeout(function(){window.scrollTo(0, 1);}, 0);
+
+    $("#slider1").momentumSlide({
+      direction:"h",
+      waitBefore:10,
+      anchor:150,
+      duration:600
+    });
+
+    $("#slider2").momentumSlide({
+      direction:"v",
+      waitBefore:10,
+      anchor:150,
+      duration:600
+    });
+
+  })
+</script>
+
+
+</head>
+<body>
+<div id="wrapper">
+
+  <div id="slider1">
+    <div class="page">
+      <article>
+        <h2>mb.momentumSlide</h2>
+        <p>Take a look at this page on your mobile or tablet</p>
+        <img src="http://qbox.it/qrcodeImage.jpeg?o=image%2Fjpeg&d=http://dl.dropbox.com/u/1976976/jquery.mb.momentumSlide/demo.html&e=L&t=0&m=0&s=10">
+        <p>drag this page right to left...</p>
+      </article>
+    </div>
+
+    <div class="page" >
+      <div id="slider2" style="padding: 0">
+        <div class="page">
+          <article>
+            <h2>Sub page 1</h2>
+            <p>drag this page bottom to top...</p>
+          </article>
+        </div>
+        <div class="page"><article>Sub page 2</article></div>
+        <div class="page"><article>Sub page 3</article></div>
+        <div class="page"><article>Sub page 4</article></div>
+      </div>
+
+      <div style="position: absolute; top:10px; right:10px;">
+        <button onclick="$('#slider2').momentumSlide('goto',4)" >goto page 4</button>
+        <button onclick="$('#slider2').momentumSlide('prev')" >prev</button>
+        <button onclick="$('#slider2').momentumSlide('next')" >next</button>
+      </div>
+
+    </div>
+
+    <div class="page"><article>page 3</article></div>
+    <div class="page"><article>page 4</article></div>
+    <div class="page"><article>page 5</article></div>
+    <div class="page"><article>page 6</article></div>
+  </div>
+
+  <div id="commands" style="position: absolute; bottom:10px; left:10px;">
+    <button onclick="$('#slider1').momentumSlide('goto',2)" >go to page 2</button>
+    <button onclick="$('#slider1').momentumSlide('prev')" >prev</button>
+    <button onclick="$('#slider1').momentumSlide('next')" >next</button>
+  </div>
+
+</div>
+<div style="height: 420px;"></div>
+
+</body>
+</html>
