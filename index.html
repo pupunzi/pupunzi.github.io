@@ -1,145 +1,145 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pupunzi - jQuery tests</title>
+  <title>Pupunzi - jQuery tests</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <style>
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <style>
 
-        body{
-            background: #ffcc00;
-            font: 16px/19px 'Ubuntu Mono', sans-serif;
-        }
+    body{
+      background: #ffcc00;
+      font: 16px/19px 'Ubuntu Mono', sans-serif;
+    }
 
-        #wrapper{
-            position: relative;
-            font: 16px/19px 'Ubuntu Mono', sans-serif;
-            width: 900px;
-            margin: auto;
-        }
+    #wrapper{
+      position: relative;
+      font: 16px/19px 'Ubuntu Mono', sans-serif;
+      width: 900px;
+      margin: auto;
+    }
 
-        #links{
-            margin-top: 100px;
-        }
+    #links{
+      margin-top: 100px;
+    }
 
-        h1{
-            font-family: 'Ubuntu Mono', sans-serif;
-            font-weight: normal;
-            font-size:100px;
-            line-height: 80px;
-            text-align: right;
-            color: rgba(255,255,255,0.6);
-            margin: 0;
-            margin-left: 0;
-            display: inline-block;
-            letter-spacing: 1px;
-            margin-top: 80px;
+    h1{
+      font-family: 'Ubuntu Mono', sans-serif;
+      font-weight: normal;
+      font-size:100px;
+      line-height: 80px;
+      text-align: right;
+      color: rgba(255,255,255,0.6);
+      margin: 0;
+      margin-left: 0;
+      display: inline-block;
+      letter-spacing: 1px;
+      margin-top: 80px;
 
-            -webkit-transform:rotate(180deg);
-            -webkit-transform-origin:50% 50%;
-            -moz-transform:rotate(180deg);
-            -moz-transform-origin:50% 50%;
-        }
+      -webkit-transform:rotate(180deg);
+      -webkit-transform-origin:50% 50%;
+      -moz-transform:rotate(180deg);
+      -moz-transform-origin:50% 50%;
+    }
 
-        a{
-            display: inline-block;
-            font-family: 'Ubuntu Mono', sans-serif;
-            font-size:50px;
-            text-decoration: none;
-            color: #000;
-            margin-top: 30px;
-        }
-        a:hover{
-            color: #fff;
-            -webkit-transform:rotate(180deg);
-            -webkit-transform-origin:50% 50%;
-            -moz-transform:rotate(180deg);
-            -moz-transform-origin:50% 50%;
-        }
+    a{
+      display: inline-block;
+      font-family: 'Ubuntu Mono', sans-serif;
+      font-size:50px;
+      text-decoration: none;
+      color: #000;
+      margin-top: 30px;
+    }
+    a:hover{
+      color: #fff;
+      -webkit-transform:rotate(180deg);
+      -webkit-transform-origin:50% 50%;
+      -moz-transform:rotate(180deg);
+      -moz-transform-origin:50% 50%;
+    }
 
-        p{
-            margin-left: 125px;
-            font-family: 'Ubuntu Mono', sans-serif;
-        }
+    p{
+      margin-left: 125px;
+      font-family: 'Ubuntu Mono', sans-serif;
+    }
 
-        #gitHub{
-            position: absolute;
-            right: 20px;
-            top:20px;
-        }
+    #gitHub{
+      position: absolute;
+      right: 20px;
+      top:20px;
+    }
 
-        #ADs{
-					
-					margin-top: 120px;
-/*
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-*/
-        }
-        #ADs h2{
-            font-weight: normal;
-            color: white;
-        }
+    #ADs{
 
-        #ADsContent{
-            width: 900px;
-            margin: auto;
-        }
+      margin-top: 120px;
+      /*
+                  position: absolute;
+                  bottom: 20px;
+                  width: 100%;
+      */
+    }
+    #ADs h2{
+      font-weight: normal;
+      color: white;
+    }
 
-    </style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script>
-        $(function(){
-            if (self.location.href == top.location.href){
-                var logo=$("<a href='http://pupunzi.com/#mb.components/components.html' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
-                $("body").prepend(logo);
-                $("#logo").fadeIn();
-            }
-        });
-    </script>
+    #ADsContent{
+      width: 900px;
+      margin: auto;
+    }
+
+  </style>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      if (self.location.href == top.location.href){
+        var logo=$("<a href='http://pupunzi.com/#mb.components/components.html' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
+        $("body").prepend(logo);
+        $("#logo").fadeIn();
+      }
+    });
+  </script>
 </head>
 <body>
 <img onclick="self.location.href='https://github.com/pupunzi'" style="width:200px; position: absolute; top: 0; right: 0; border: 0;" src="http://upload.wikimedia.org/wikipedia/commons/b/b3/GitHub.svg" alt="Fork me on GitHub">
 <div id="wrapper">
-    <h1>pupunzi experiments</h1>
-    <div id="links">
-        <a href="jquery.mb.zoomPan/demo.html">-> mb.zoomPan</a>
-        <p>A zoom and pan images experiment: it animate an image getting a random zoom level and panning to a random xy point of the image with a random timer.</p>
-        <a href="jquery.mb.linearGallery/demo.html">-> mb.linearGallery</a>
-        <p>A photoGallery system that slides and distribute images in a specific space.</p>
-        <a href="jquery.mb.CSSAnimate/demo.html">-> mb.CSSAnimate</a>
-        <p>Animate using CSS3 transition instead of the default jQuery.animate method.<br>
-            It provides a fallback to the default animate method if CSS3 is not supported by the browser.</p>
-        <a href="randomThoughts/index.html">-> random thoughts</a>
-        <p>Get a random thought every tree Hours.</p>
-        <a href="jquery.mb.containerPlus/demo.html">-> jQuery.mb.container+</a>
-        <p>Get a random thought every tree Hours.</p>
-        <a href="jquery.mb.momentumSlide/demo.html">-> jQuery.mb.momentumSlide</a>
-        <p>Navigate your site swiping between pages!</p>
-    </div>
+  <h1>pupunzi experiments</h1>
+  <div id="links">
+    <a href="jquery.mb.momentumSlide/demo.html">-> jQuery.mb.momentumSlide</a>
+    <p>Navigate your site swiping between pages!</p>
+    <a href="jquery.mb.zoomPan/demo.html">-> mb.zoomPan</a>
+    <p>A zoom and pan images experiment: it animate an image getting a random zoom level and panning to a random xy point of the image with a random timer.</p>
+    <a href="jquery.mb.linearGallery/demo.html">-> mb.linearGallery</a>
+    <p>A photoGallery system that slides and distribute images in a specific space.</p>
+    <a href="jquery.mb.CSSAnimate/demo.html">-> mb.CSSAnimate</a>
+    <p>Animate using CSS3 transition instead of the default jQuery.animate method.<br>
+      It provides a fallback to the default animate method if CSS3 is not supported by the browser.</p>
+    <a href="randomThoughts/index.html">-> random thoughts</a>
+    <p>Get a random thought every tree Hours.</p>
+    <a href="jquery.mb.containerPlus/demo.html">-> jQuery.mb.container+</a>
+    <p>Get a random thought every tree Hours.</p>
+  </div>
 </div>
 <div id="ADs">
-    <div id="ADsContent">
-        <h2>Want to see some good stuff I'm working on?</h2>
-        <a href="http://licorize.com" target="_blank"><img border="0" alt="Licorize" src="http://patapage.com/images/lcBanner.jpg"></a>
-        <a href="http://twproject.com" target="_blank"><img border="0" alt="Teamwork 4" src="http://patapage.com/images/twBanner.jpg"></a>
-        <a href="http://yourchangemanifesto.com" target="_blank"><img border="0" alt="Your ChangeManifesto" src="http://s3.amazonaws.com/OLRepository/ycmBanner.jpg"></a>
-    </div>
+  <div id="ADsContent">
+    <h2>Want to see some good stuff I'm working on?</h2>
+    <a href="http://licorize.com" target="_blank"><img border="0" alt="Licorize" src="http://patapage.com/images/lcBanner.jpg"></a>
+    <a href="http://twproject.com" target="_blank"><img border="0" alt="Teamwork 4" src="http://patapage.com/images/twBanner.jpg"></a>
+    <a href="http://yourchangemanifesto.com" target="_blank"><img border="0" alt="Your ChangeManifesto" src="http://s3.amazonaws.com/OLRepository/ycmBanner.jpg"></a>
+  </div>
 </div>
 
 <script type="text/javascript">
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-10907260-1']);
-    _gaq.push(['_trackPageview']);
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10907260-1']);
+  _gaq.push(['_trackPageview']);
 
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 </script>
 </body>
