@@ -83,11 +83,10 @@
 
       var w = 30 * Math.floor((Math.random() * 15));
       var h = 30 * Math.floor((Math.random() * 15));
-
       var t = Math.floor(Math.random() * (cH-h));
       var l = Math.floor(Math.random() * (cW-w));
       var r = Math.floor(Math.random() * 360);
-      var duration = 1000 + Math.floor((Math.random() * 3000));
+      var duration = 1000 + Math.floor((Math.random() * 10000));
 
       //here is the CSSAnimate :-)
       el.CSSAnimate({
@@ -99,7 +98,7 @@
       "transform":"rotate("+r+"deg)",
       "transform-origin":"50% 50%",
       "background":"rgba("+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+(.6+Math.random()*.4)+")"
-      }, duration, "ease-out", "all", function() {
+      }, duration,0, "ease-out", "all", function() {
       el.test();
       })
 		})
@@ -107,27 +106,22 @@
 
 	$.fn.printHTML=function(){
 		return this.each(function(){
-      var content=$(this).html();
+      var $el = $(this);
+      var content=$el.html();
       content=content.replace(/</g,"&lt;");
       content=content.replace(/>/g,"&gt;");
-      $(this).html(content);
+      $el.html(content);
 		})
 	};
 
-
 	$(function(){
-
 		if (self.location.href == top.location.href){
       var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
       $("body").append(logo);
       $("#logo").fadeIn();
 		}
 
-
 		$(".elements .test").test();
-
-
-
 		$("[data-code=true]").printHTML();
 	});
 
@@ -135,7 +129,7 @@
 
 </head>
 <body>
-<a href="https://github.com/pupunzi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
+<a href="https://github.com/pupunzi"><img style="width:200px; position: absolute; top: 0; right: 0; border: 0;" src="http://upload.wikimedia.org/wikipedia/commons/b/b3/GitHub.svg" alt="Fork me on GitHub"></a>
 
 <div class="elements">
 	<div class="test one"></div>
@@ -162,9 +156,51 @@
       Animate using CSS3 transition instead of the default jQuery.animate method.<br>
       It provides a fallback to the default animate method if CSS3 is not supported by the browser.
       <br>
-      <a href="https://github.com/downloads/pupunzi/jquery.mb.CSSAnimate/jquery.mb.CSSAnimate.1.0.zip"> Get the code</a>
+      <a href="inc/jquery.mb.CSSAnimate.js" target="_blank"> Get the code</a>
 		</p>
-		
+		<p>here is the call for this example:
+		<pre>
+		<code>
+
+       <b>the "DIV" code:</b>
+      <div data-code=true>
+      <div class="test"></div>
+      </div>
+      <b>the function:</b>
+      
+      $.fn.test = function() {
+        var cH = $(window).height();
+        var cW = $(window).width();
+        return this.each(function() {
+            var el = $(this);
+            var w = 30 * (Math.random() * 15);
+            var h = 30 * (Math.random() * 15);
+            var t = Math.floor(Math.random() * (cH-h));
+            var l = Math.floor(Math.random() * (cW-w));
+            var r = Math.floor(Math.random() * 360);
+            var duration = 1000 + (Math.random() * 3000);
+
+            //here is the CSSAnimate :-)
+            el.CSSAnimate({
+            top: t,
+            left: l,
+            width: w,
+            height: h,
+            "border-radius":Math.floor(Math.random() * 100),
+            "transform":"rotate("+r+"deg)",
+            "transform-origin":"50% 50%",
+            "background":"rgba("+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+(.6+Math.random()*.4)+")"
+            }, duration, "ease-out", "all", function() {
+            el.test();
+            })
+        })
+      };
+
+      $(".test").test();
+
+		</code>
+		</pre>
+		</p>
 		<p>back to <a href="http://pupunzi.github.com">pupunzi experiments</a></p>
 	</div>
 
