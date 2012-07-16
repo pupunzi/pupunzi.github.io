@@ -1,0 +1,340 @@
+<!doctype html>
+
+<!--
+  ~ jquery.mb.components
+  ~ Copyright (c) 2001-2012. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+  ~ email: mbicocchi@open-lab.com
+  ~ site: http://pupunzi.com
+  ~
+  ~ Licences: MIT, GPL
+  ~ http://www.opensource.org/licenses/mit-license.php
+  ~ http://www.gnu.org/licenses/gpl.html
+  -->
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>mb.disclose 1.0</title>
+
+  <link href="css/mb.disclose.css" rel="stylesheet" type="text/css">
+
+  <link href='http://fonts.googleapis.com/css?family=Fanwood+Text:400,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=IM+Fell+English+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Supermercado+One' rel='stylesheet' type='text/css'>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script type="text/javascript" src="inc/jquery.mb.disclose.js"></script>
+
+  <style>
+
+    body{
+      margin: 0;
+      padding: 0;
+      white-space: inherit;
+      font-family: Arial, Helvetica, sans-serif;
+
+      background: #ffc33b;
+    }
+    h1{
+      margin: 30px;
+      color: white;
+    }
+
+    #wrapper{
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background: #ffc33b;
+    }
+
+    #mbCarousel{
+      position: relative;
+      width: 100%;
+      margin: auto;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      height: 600px;
+      background: #575757;
+}
+
+    #mbCarousel:before {
+      content: "";
+      height: 15px;
+      left: 0;
+      position: absolute;
+      top: -15px;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    }
+    #mbCarousel:after {
+      content: "";
+      height: 15px;
+      left: 0;
+      position: absolute;
+      bottom: -15px;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    }
+
+    #mbCarousel .banner{
+      position: relative;
+      padding: 20px;
+    }
+
+    #mbCarousel .banner h2{
+      position: absolute;
+      margin: 25px;
+      top:10px;
+      left:50px;
+      white-space: nowrap;
+      font-family: 'Supermercado One', cursive;
+      color:white;
+      font-weight: normal;
+      font-size: 60px;
+      z-index: 1;
+    }
+
+    #mbCarousel .banner .bannerText{
+      position: absolute;
+      bottom:30px;
+      left:550px;
+      width:445px;
+      font-size: 28px;
+      padding:10px;
+
+      font-family: 'Fanwood Text', serif;
+      font-style: italic;
+      color:black;
+      font-weight: normal;
+    }
+
+    #mbCarousel .banner img{
+      position: absolute;
+      bottom:0;
+      right:0;
+      height:100%;
+      width: auto;
+      z-index: 0;
+    }
+
+    #buttonBar{
+      padding: 20px;
+    }
+
+    #buttonBar button{
+      border:1px solid #454144;
+      padding: 0 8px;
+      margin: -5px 5px;
+      font-size: 16px;
+      line-height: 22px;
+      height: 32px;
+      color: white;
+      box-shadow: 0 0 2px rgba(0,0,0,0.7);
+      border-radius: 7px;
+      cursor: pointer;
+
+      background: #7d7e7d; /* Old browsers */
+      background: -moz-linear-gradient(top,  #7d7e7d 0%, #333333 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#333333)); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top,  #7d7e7d 0%,#333333 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top,  #7d7e7d 0%,#333333 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top,  #7d7e7d 0%,#333333 100%); /* IE10+ */
+      background: linear-gradient(top,  #7d7e7d 0%,#333333 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
+
+    }
+
+    #buttonBar button:hover{
+      background: #45484d;
+      background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000));
+      background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%);
+      background: -o-linear-gradient(top,  #45484d 0%,#000000 100%);
+      background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%);
+      background: linear-gradient(top,  #45484d 0%,#000000 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 );
+
+    }
+
+    #banner1{
+      background: #a4b357; /* Old browsers */
+      background: -moz-radial-gradient(center, ellipse cover,  #a4b357 0%, #75890c 100%); /* FF3.6+ */
+      background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#a4b357), color-stop(100%,#75890c)); /* Chrome,Safari4+ */
+      background: -webkit-radial-gradient(center, ellipse cover,  #a4b357 0%,#75890c 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-radial-gradient(center, ellipse cover,  #a4b357 0%,#75890c 100%); /* Opera 12+ */
+      background: -ms-radial-gradient(center, ellipse cover,  #a4b357 0%,#75890c 100%); /* IE10+ */
+      background: radial-gradient(center, ellipse cover,  #a4b357 0%,#75890c 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+
+    #banner2{
+      background: #a90329; /* Old browsers */
+      background: -moz-radial-gradient(center, ellipse cover,  #a90329 0%, #8f0222 44%, #6d0019 100%); /* FF3.6+ */
+      background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#a90329), color-stop(44%,#8f0222), color-stop(100%,#6d0019)); /* Chrome,Safari4+ */
+      background: -webkit-radial-gradient(center, ellipse cover,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-radial-gradient(center, ellipse cover,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* Opera 12+ */
+      background: -ms-radial-gradient(center, ellipse cover,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* IE10+ */
+      background: radial-gradient(center, ellipse cover,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+
+    #banner3{
+      background: #93cede; /* Old browsers */
+      background: -moz-radial-gradient(center, ellipse cover,  #93cede 0%, #75bdd1 41%, #49a5bf 100%); /* FF3.6+ */
+      background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#93cede), color-stop(41%,#75bdd1), color-stop(100%,#49a5bf)); /* Chrome,Safari4+ */
+      background: -webkit-radial-gradient(center, ellipse cover,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-radial-gradient(center, ellipse cover,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* Opera 12+ */
+      background: -ms-radial-gradient(center, ellipse cover,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* IE10+ */
+      background: radial-gradient(center, ellipse cover,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+    #banner4{
+      background: #ffd65e; /* Old browsers */
+      background: -moz-radial-gradient(center, ellipse cover,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+      background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+      background: -webkit-radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%); /* Opera 12+ */
+      background: -ms-radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+      background: radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+    #banner5{
+      background: #fff;
+    }
+
+
+    #slideIndex{
+      position: absolute;
+      z-index: 1000;
+      right: 0;
+      top: 20px;
+      text-align: right;
+      margin: 20px;
+    }
+
+  </style>
+
+  <script type="text/javascript">
+
+    $(function(){
+      $("#mbCarousel").disclose();
+    });
+
+  </script>
+
+</head>
+<body>
+
+<div id="wrapper">
+  <h1>jquery.mb.disclose demo</h1>
+  <div id="slideIndex"></div>
+  <div id="mbCarousel">
+
+    <div id="banner1" class="banner"
+         data-animationin='{"top":"-100%", "opacity":0}'
+         data-animationout='{"top":"-100%", "opacity":1}'
+         data-time="10000">
+
+      <h2 data-animate=true
+          data-animationstart='{"font-size":"60px", "top":-100, "opacity":0, "color":"black"}'
+          data-animationend='{"font-size":"120px", "top":0, "opacity":1, "color":"black"}'
+          data-animationtime=500
+          data-animationdelay='500'>... What is this?</h2>
+
+      <div class="bannerText"
+           data-animate=true
+           data-animationstart='{"margin-bottom":-600, "opacity":0, "color":"black"}'
+           data-animationend='{"margin-bottom":-30, "opacity":1, "color":"white"}'
+           data-animationtime=3000>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. </p>
+      </div>
+    </div>
+
+    <div id="banner2" class="banner"
+         data-animationin='{"left":"-100%", "opacity":0}'
+         data-animationout='{"left":"100%", "opacity":0}'>
+
+      <h2 data-animate=true
+          data-animationstart='{"margin-left":-200, "opacity":0}'
+          data-animationend='{"margin-left":0, "opacity":1}'
+          data-animationdelay='500'>Banner 2 Title</h2>
+
+      <img src="elements/COLOUR10.png"
+           data-animate=true
+           data-animationdelay='800'>
+
+      <div class="bannerText"
+           data-animate=true
+           data-animationstart='{"margin-right":-600, "opacity":0}'
+           data-animationend='{"margin-right":0, "opacity":1}'
+           data-animationdelay='1000'>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. </p>
+      </div>
+    </div>
+
+    <div id="banner3" class="banner"
+         data-animationin='{"top":"-500", "opacity":0}'
+         data-animationout='{"top":"0", "opacity":0}'>
+
+      <h2 data-animate=true
+          data-animationstart='{"top":-200, "opacity":0}'
+          data-animationend='{"top":20, "opacity":1}'
+          data-animationdelay='800'>Banner 3 Title</h2>
+
+      <img src="elements/COLOUR9.png"
+           data-animate=true
+           data-animationstart='{"left":-500, "opacity":0}'
+           data-animationend='{"left":0, "opacity":1}'
+           data-animationdelay='800'>
+
+      <div class="bannerText"
+           data-animate=true
+           data-animationstart='{"margin-bottom":-600, "opacity":0, "color":"black"}'
+           data-animationend='{"margin-bottom":0, "opacity":1, "color":"white"}'
+           data-animationdelay='400'>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. </p>
+      </div>
+    </div>
+
+    <div id="banner4" class="banner"
+         data-animationin='{"transform":"rotate(80deg) scale(.2)", "opacity":0}'
+         data-animationout='{"transform":"rotate(-180deg) scale(.2)", "opacity":0}'>
+      <h2>Banner 4 Title</h2>
+      <div class="bannerText">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. </p>
+      </div>
+    </div>
+
+    <div id="banner5" class="banner"
+         data-stop=true>
+      <h2 data-animate=true
+          data-animationstart='{"font-size":"60px", "left":-500, "opacity":0, "color":"black"}'
+          data-animationend='{"font-size":"180px", "left":150, "top":50, "opacity":1, "color":"black"}'
+          data-animationtime=500
+          data-animationdelay='500'>The end</h2>
+
+      <img src="elements/COLOUR9.png"
+           data-animate=true
+           data-animationstart='{"left":-500, "opacity":0}'
+           data-animationend='{"left":0, "opacity":1}'
+           data-animationdelay='1300'>
+
+    </div>
+
+  </div>
+
+  <div id="buttonBar">
+    <button onclick="$('#mbCarousel').disclose('prev',true)">prev</button><button onclick="$('#mbCarousel').disclose('next',true)">next</button><button onclick="$('#mbCarousel').disclose('play')">play/stop</button>
+    <br>
+    <a href="https://github.com/pupunzi"><img style="width:150px; position: absolute; bottom: 10px; right: 10px; border: 0;" src="http://upload.wikimedia.org/wikipedia/commons/b/b3/GitHub.svg" alt="Fork me on GitHub"></a>
+  </div>
+
+</div>
+
+</body>
+</html>

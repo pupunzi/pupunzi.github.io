@@ -1,0 +1,466 @@
+<!doctype html>
+
+<!--
+  ~ jquery.mb.components
+  ~ Copyright (c) 2001-2012. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+  ~ email: mbicocchi@open-lab.com
+  ~ site: http://pupunzi.com
+  ~
+  ~ Licences: MIT, GPL
+  ~ http://www.opensource.org/licenses/mit-license.php
+  ~ http://www.gnu.org/licenses/gpl.html
+  -->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>mb.disclose 1.0</title>
+
+<link href="css/mb.disclose.css" rel="stylesheet" type="text/css">
+
+<link href='http://fonts.googleapis.com/css?family=Fanwood+Text:400,400italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=IM+Fell+English+SC' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Supermercado+One' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="inc/jquery.mb.disclose.js"></script>
+
+<style>
+
+  body{
+    margin: 0;
+    padding: 0;
+    white-space: inherit;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #45484d; /* Old browsers */
+  }
+  h1{
+    margin: 30px;
+    color: white;
+  }
+
+  #wrapper{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 0%, #45484d 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#45484d));
+    background: -webkit-linear-gradient(top,  #000000 0%,#45484d 100%);
+    background: -o-linear-gradient(top,  #000000 0%,#45484d 100%);
+    background: -ms-linear-gradient(top,  #000000 0%,#45484d 100%);
+    background: linear-gradient(top,  #000000 0%,#45484d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#45484d',GradientType=0 );
+
+  }
+
+  #disclose{
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #eeeeee;
+  }
+
+  #disclose:before {
+    content: "";
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: -17px;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  }
+  #disclose:after {
+    content: "";
+    height: 15px;
+    left: 0;
+    position: absolute;
+    bottom: -15px;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  }
+
+  .mbDiscloseWrapper{
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  }
+
+  #disclose .banner{
+    display: none;
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    margin: auto;
+    border: 50px solid white;
+    background: #eeeeee;
+    background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc));
+    background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%);
+    background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%);
+    background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%);
+    background: linear-gradient(top,  #eeeeee 0%,#cccccc 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 );
+
+  }
+
+  #disclose .banner h2{
+    margin: 25px;
+    font-family: 'Supermercado One', cursive;
+    font-weight: normal;
+    font-size: 80px;
+    z-index: 1;
+
+    text-shadow: 0 0 3px rgba(0,0,0,0.4);
+  }
+
+  #disclose .banner .bannerText{
+    margin-right: 50px;
+    font-size: 28px;
+    padding:10px;
+
+    font-family: 'Fanwood Text', serif;
+    font-style: italic;
+    color:black;
+    font-weight: normal;
+    text-shadow: 0 0 3px rgba(0,0,0,0.4);
+  }
+
+  #disclose .banner img{
+    position: absolute;
+    bottom:0;
+    right:0;
+    height:100%;
+    width: auto;
+    z-index: 0;
+  }
+
+  #buttonBar{
+    position: absolute;
+    bottom: 0;
+    right:10px;
+    z-index: 100;
+    padding: 20px;
+
+  }
+
+  button{
+    border:1px solid #454144;
+    padding:8px;
+    margin: 5px;
+    font-size: 18px;
+    line-height: 22px;
+    color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.7);
+    border-radius: 7px;
+    cursor: pointer;
+
+    background: #7d7e7d; /* Old browsers */
+    background: -moz-linear-gradient(top,  #7d7e7d 0%, #333333 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#333333)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #7d7e7d 0%,#333333 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #7d7e7d 0%,#333333 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #7d7e7d 0%,#333333 100%); /* IE10+ */
+    background: linear-gradient(top,  #7d7e7d 0%,#333333 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
+
+  }
+
+  button:hover{
+    background: #45484d;
+    background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000));
+    background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%);
+    background: -o-linear-gradient(top,  #45484d 0%,#000000 100%);
+    background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%);
+    background: linear-gradient(top,  #45484d 0%,#000000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 );
+
+  }
+
+  #slideIndex{
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    top: 0;
+    text-align: right;
+    margin: 20px;
+  }
+
+  #slideProgress{
+    position: absolute;
+    top: 0px;
+    right:0;
+    width: 100%;
+    height: 5px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .progressBar{
+    position: absolute;
+    height: 100%;
+    background: #fff;
+  }
+
+    /*
+      #goOn:hover{
+        color:#fff!important;
+      }
+
+    */
+</style>
+
+<script type="text/javascript">
+
+  $(function(){
+    $("#disclose").disclose({autoPlay:false});
+  });
+
+</script>
+
+</head>
+<body>
+
+<div id="wrapper">
+  <h1>jquery.mb.disclose demo</h1>
+
+  <div id="slideIndex"></div>
+  <div id="slideProgress"></div>
+
+
+
+  <div id="disclose">
+
+    <!--1 SLIDE-->
+    <div id="banner1" class="banner"
+         data-animationin='{"transform":"scale(.001)", "opacity":0}'
+         data-animationout='{"transform":"scale(.001)", "opacity":1}'
+         data-onenter="function(){$('#buttonBar, #slideIndex').hide()}"
+         data-time=10000
+         data-stop=true>
+
+      <h2 data-animate="true">Welcome,</h2>
+
+      <div data-animate="true" class="bannerText"
+           style="margin-top:40px; margin-left:200px; font-size:40px">
+        If you land to this page it's probably because you are looking for a different way to present contents on your web pages...
+
+        <div class="bannerText"
+             style="margin-top:20px; color:#B2230A; font-size:40px">
+          ...And maybe this is the right place<span style="color: #141414"> :-)</span>
+          <br>
+          <br>
+          <span style="text-align: right; display:block;"><button onclick="$('#disclose').disclose('next',true)">next</button></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!--2 SLIDE-->
+
+    <div id="banner2" class="banner"
+         data-stop=true
+         data-animationin='{"transform":"scale(.001)", "opacity":0}'
+         data-animationout='{"transform":"scale(.001)", "opacity":1}'
+         data-onenter="function(){$('#buttonBar').hide()}">
+      <!--http://www.desktop-wallpaper.org/wp-content/uploads/Free-Abstract-Sports-Ad-HD-Wallpaper_12C46/Abstract-HD-Wallpaper-11.jpg-->
+      <div style="position: absolute;top:0; left:0; width: 100%; height: 100%; background: url(elements/02.JPG); background-size: cover"
+           data-animate=true
+           data-animationtime=5000
+           data-animationdelay='2500'></div>
+
+      <h2 data-animate=true
+          data-animationtime=2000
+          data-animationdelay='500'
+
+          style="top:20px; font-size: 40px; width: auto; position:relative; text-align: center; text-shadow: none"
+              >Let me introduce you to</h2>
+
+      <h2 data-animate=true
+          data-animationstart='{"opacity":0 ,"transform": "scale(.1)", "letter-spacing": -20}'
+          data-animationend='{"opacity":1, "transform": "scale(1)", "letter-spacing": 0}'
+
+          data-animationtime=3000
+          data-animationdelay='1500'
+
+          style="top:50px; font-size: 100px; width: auto; position:relative; text-align: center;"
+              ><span style="color:#333; font-size: 180px">Disclose</span></h2>
+
+      <h2 data-animate=true id="goOn"
+          data-animationstart='{"top":420, "opacity":0,  "font-size":300, "transform": "scale(300)"}'
+          data-animationend='{"top":460, "opacity":1, "font-size":60, "color":"#B2230A", "transform": "scale(1)"}'
+          data-animationdelay=5000
+          data-animationtime=500
+          onclick="$('#disclose').disclose('play')"
+          style="cursor: pointer; text-align:center; margin-top: 40px">go On ></h2>
+    </div>
+
+    <!--3 SLIDE-->
+
+
+    <div id="banner3" class="banner"
+         data-animationin='{"left":"100%", "opacity":1}'
+         data-animationout='{"left":"-100%", "opacity":1}'
+         data-time="1500">
+
+      <style>
+        .banner#banner3{
+          background: #93cede; /* Old browsers */
+          background: -moz-radial-gradient(center, ellipse cover,  #93cede 0%, #75bdd1 41%, #49a5bf 100%); /* FF3.6+ */
+          background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#93cede), color-stop(41%,#75bdd1), color-stop(100%,#49a5bf)); /* Chrome,Safari4+ */
+          background: -webkit-radial-gradient(center, ellipse cover,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-radial-gradient(center, ellipse cover,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* Opera 12+ */
+          background: -ms-radial-gradient(center, ellipse cover,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* IE10+ */
+          background: radial-gradient(center, ellipse cover,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        }
+      </style>
+
+      <h2 data-animate=true style="text-align: center; "><span style="color:#333; position:relative; font-size: 180px; top: 130px;">Disclose</span></h2>
+    </div>
+
+    <!--4 SLIDE-->
+
+    <div id="banner4" class="banner"
+         data-animationin='{"top":"100%", "opacity":1}'
+         data-animationout='{"left":"-100%", "opacity":1}'
+         data-time="2500">
+      <div style="position: absolute;top:0; left:0; width: 100%; height: 100%; background: url(http://www.desktop-wallpaper.org/wp-content/uploads/Free-Abstract-Sports-Ad-HD-Wallpaper_12C46/Abstract-HD-Wallpaper-11.jpg); background-size: cover"
+           data-animate=true
+           data-animationtime=1000
+           data-animationdelay='200'></div>
+
+
+      <h2 data-animate=true style="text-align: center; "><span style="color:#ab3434; position:relative; text-align: center; font-size: 140px; top: 130px;">is a tool</span></h2>
+    </div>
+
+    <!--5 SLIDE-->
+
+    <div id="banner5" class="banner"
+         data-animationin='{"left":"100%", "opacity":1}'
+         data-animationout='{"left":"-100%", "opacity":1}'
+         data-time="2500"
+         data-stop="false">
+
+      <style>
+        .banner#banner5{
+          background: #ffd65e; /* Old browsers */
+          background: -moz-radial-gradient(center, ellipse cover,  #ffd65e 0%, #febf04 100%);
+          background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); 
+          background: -webkit-radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%);
+          background: -o-radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%);
+          background: -ms-radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%);
+          background: radial-gradient(center, ellipse cover,  #ffd65e 0%,#febf04 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=1 );
+        }
+      </style>
+
+      <h2 data-animate=true style="text-align: center; "><span style="color:#fff; position:relative; text-align: center; font-size: 140px; top: 80px;">that helps you create</span></h2>
+    </div>
+
+    <!--6 SLIDE-->
+
+    <div id="banner6" class="banner"
+         data-animationin='{"left":"-100%", "opacity":1}'
+         data-animationout='{"left":"-100%", "opacity":1}'
+         data-time="2000"
+         data-stop="false">
+
+      <h2 data-animate=true style="text-align: center; "
+          data-animationstart='{"opacity":0 ,"transform": "scale(.1)"}'
+          data-animationend='{"opacity":1, "transform": "scale(1)"}'
+              ><span style="color:#333; position:relative; text-align: center; font-size: 120px; top: 80px;">amazing presentations</span></h2>
+    </div>
+
+    <!--7 SLIDE-->
+
+    <div id="banner7" class="banner"
+         data-animationin='{"top":"100%", "opacity":1}'
+         data-animationout='{"opacity":0}'
+         data-time="3500"
+         data-stop="false">
+
+      <style>
+        .banner#banner7{
+          background: #a90329; /* Old browsers */
+          background: -moz-radial-gradient(center, ellipse cover,  #a90329 0%, #8f0222 44%, #6d0019 100%); /* FF3.6+ */
+          background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#a90329), color-stop(44%,#8f0222), color-stop(100%,#6d0019)); /* Chrome,Safari4+ */
+          background: -webkit-radial-gradient(center, ellipse cover,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-radial-gradient(center, ellipse cover,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* Opera 12+ */
+          background: -ms-radial-gradient(center, ellipse cover,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* IE10+ */
+          background: radial-gradient(center, ellipse cover,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        }
+      </style>
+
+
+      <h2 data-animate=true style="position: relative; text-align: center; "
+          data-animationstart='{"opacity":0 , margin-left:-100%}'
+          data-animationend='{"opacity":1, margin-left:0}'
+              ><span style="color:#fff; position:relative; text-align: center; font-size: 100px; top: 140px;">just using<br>html and javascript</span></h2>
+    </div>
+
+    <!--8 SLIDE-->
+
+    <div id="banner8" class="banner"
+         data-animationin='{"opacity":0}'
+         data-animationout='{"opacity":0}'
+         data-time="6000"
+         data-stop="false">
+
+      <style>
+        .banner#banner8{}
+      </style>
+
+
+      <h2 data-animate=true style="text-align: center; "
+          data-animationstart='{"opacity":0 ,"transform": "scale(10)"}'
+          data-animationend='{"opacity":1, "transform": "scale(1)"}'
+              ><span style="color:#000; position:relative; text-align: center; font-size: 100px; top: 140px;">Let see how ...</span></h2>
+    </div>
+
+    <!--9 SLIDE-->
+
+    <div id="banner9" class="banner"
+         data-animationin='{"opacity":0}'
+         data-animationout='{"opacity":0}'
+         data-time="5000"
+         data-stop="true">
+
+      <style>
+        .banner#banner8{
+
+        }
+      </style>
+
+
+      <h2 data-animate=true style="text-align: center; "
+          data-animationstart='{"opacity":0 ,"transform": "scale(.1)"}'
+          data-animationend='{"opacity":1, "transform": "scale(1)"}'
+              ><span style="color:#000; position:relative; text-align: center; font-size: 100px; top: 240px;">...</span></h2>
+    </div>
+
+
+  </div>
+
+
+  <div id="buttonBar">
+    <button onclick="$('#disclose').disclose('prev',true)">prev</button><button onclick="$('#disclose').disclose('next',true)">next</button><button onclick="$('#disclose').disclose('play')">play/stop</button>
+  </div>
+
+</div>
+
+</body>
+</html>
