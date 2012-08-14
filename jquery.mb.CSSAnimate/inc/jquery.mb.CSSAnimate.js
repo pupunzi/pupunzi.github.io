@@ -37,7 +37,18 @@
  $(this).CSSAnimate({top: t, left:l, width:w, height:h}, 2000, "ease-out", "all", function() {el.anim();})
  */
 
+<<<<<<< HEAD
 $.fn.CSSAnimate = function(opt, duration, delay, ease, properties, callback) {
+=======
+/*Browser detection patch*/
+$.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase());
+$.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+$.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+$.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+
+
+$.fn.CSSAnimate = function(opt, duration, ease, properties, callback) {
+>>>>>>> Browser detection patch
   return this.each(function() {
 
     var el = $(this);
