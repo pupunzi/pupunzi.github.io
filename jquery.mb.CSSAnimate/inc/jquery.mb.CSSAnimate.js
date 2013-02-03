@@ -14,7 +14,7 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 16/01/13 22.59
+ *  last modified: 03/02/13 19.05
  *  *****************************************************************************
  */
 
@@ -151,6 +151,7 @@ jQuery.fn.CSSAnimate = function (opt, duration, delay, ease, callback) {
 			return false;
 		};
 
+/*
 		//if there's no transition than call the callback anyway
 		setTimeout(function () {
 			if (el.called || !callback) {
@@ -159,6 +160,7 @@ jQuery.fn.CSSAnimate = function (opt, duration, delay, ease, callback) {
 			}
 			callback();
 		}, duration + 20);
+*/
 
 		el.on(transitionEnd, endTransition);
 	})
