@@ -16,7 +16,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 04/02/13 22.59
+  ~  last modified: 04/02/13 23.27
   ~  ******************************************************************************/
   -->
 
@@ -71,7 +71,7 @@
             width:10px;
             height:10px;
             background:#fff;
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            /*box-shadow: 0 0 5px rgba(0,0,0,0.5);*/
             border-radius:10px;
             box-sizing: border-box;
         }
@@ -107,7 +107,11 @@
                 var t = 10 + (Math.floor(Math.random() * (cH-h)));
                 var l = 10 + (Math.floor(Math.random() * (cW-w)));
                 var r = Math.floor(Math.random() * 360);
-                var duration = 2000 + Math.floor((Math.random() * 5000));
+                var s = Math.random()*1;
+//                var s = 1;
+                var duration = 2000 + Math.floor((Math.random() * 20000));
+//                var delay = 10 + Math.floor((Math.random() * 300));
+                var delay = 0;
 
                 //here is the CSSAnimate :-)
                 el.CSSAnimate({
@@ -116,10 +120,11 @@
                     width: w,
                     height: h,
                     "border-radius":Math.floor(Math.random() * 100),
-                    "transform":"rotate("+r+"deg)",
-                    "transform-origin":"50% 50%",
+                    "transform":"rotate("+r+"deg) scale("+s+") skew("+Math.floor(Math.random() *r)+"deg,"+Math.floor(Math.random() *r)+"deg)",
+//                    "transform":"translate("+l+"px,"+t+"px) rotate("+r+"deg)",
+                    "transform-origin":(Math.random() *100)+"%"+(Math.random() *100)+"%",
                     "background":"rgba("+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+(.6+Math.random()*.4)+")"
-                }, duration,0, "ease-out",function() {
+                }, duration,delay, "ease-out",function() {
                     el.test();
                 })
             })
