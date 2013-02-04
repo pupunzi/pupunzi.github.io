@@ -16,7 +16,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 03/02/13 20.16
+  ~  last modified: 04/02/13 22.59
   ~  ******************************************************************************/
   -->
 
@@ -96,29 +96,31 @@
 
         $.fn.test = function() {
 
+            var cH = $(window).height();
+            var cW = $(window).width();
+
             return this.each(function() {
                 var el = $(this);
 
-                this.w = 30 * Math.floor((Math.random() * 15));
-                this.h = 30 * Math.floor((Math.random() * 15));
-                this.t = Math.floor(Math.random() * (cH-this.h));
-                this.l = Math.floor(Math.random() * (cW-this.w));
-                this.r = Math.floor(Math.random() * 360);
-                this.duration = 1000 + Math.floor((Math.random() * 10000));
+                var w = 10 + (50 * Math.floor((Math.random() * 15)));
+                var h = 10 + (50 * Math.floor((Math.random() * 15)));
+                var t = 10 + (Math.floor(Math.random() * (cH-h)));
+                var l = 10 + (Math.floor(Math.random() * (cW-w)));
+                var r = Math.floor(Math.random() * 360);
+                var duration = 2000 + Math.floor((Math.random() * 5000));
 
                 //here is the CSSAnimate :-)
                 el.CSSAnimate({
-                    top: this.t,
-                    left: this.l,
-                    width: this.w,
-                    height: this.h,
+                    top: t,
+                    left: l,
+                    width: w,
+                    height: h,
                     "border-radius":Math.floor(Math.random() * 100),
-                    "transform":"rotate("+this.r+"deg)",
+                    "transform":"rotate("+r+"deg)",
                     "transform-origin":"50% 50%",
                     "background":"rgba("+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+Math.floor(Math.random() * 255)+","+(.6+Math.random()*.4)+")"
-                }, this.duration,20,null,function() {
-                   el.test();
-//                    alert("done")
+                }, duration,0, "ease-out",function() {
+                    el.test();
                 })
             })
         };
