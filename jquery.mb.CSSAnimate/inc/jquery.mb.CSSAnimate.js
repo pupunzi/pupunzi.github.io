@@ -14,22 +14,23 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 03/02/13 21.51
+ *  last modified: 04/02/13 22.57
  *  *****************************************************************************
  */
 
 /*
- * version: 1.5
+ * version: 1.6
  *  params:
 
  @opt        -> the CSS object (ex: {top:300, left:400, ...})
  @duration   -> an int for the animation duration in milliseconds
+ @delay      -> an int for the animation delay in milliseconds
  @ease       -> ease  ||  linear || ease-in || ease-out || ease-in-out  ||  cubic-bezier(<number>, <number>,  <number>,  <number>)
  @callback   -> a callback function called once the transition end
 
  example:
 
- jQuery(this).CSSAnimate({top: t, left:l, width:w, height:h}, 2000, "ease-out", callback;})
+ jQuery(this).CSSAnimate({top:t, left:l, width:w, height:h, transform: 'rotate(50deg) scale(.8)'}, 2000, 100, "ease-out", callback;})
  */
 
 
