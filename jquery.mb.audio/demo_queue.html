@@ -106,7 +106,7 @@
             document.write("<p>This button will also initialize the effects sprite and will play the background sprite (only iOS).</p>")
         }
     </script>
-    <button style="cursor:pointer" onclick="if(!isDevice){$.mbAudio.init(true); $('#start').hide(); $('#buttons').fadeIn()}" ontouchstart ="$.mbAudio.init(true); $('#start').hide(); $('#buttons').fadeIn(); $.mbAudio.pause('effectSprite')">Lets start</button>
+    <button style="cursor:pointer" onclick="$.mbAudio.init(true); $('#start').hide(); $('#buttons').fadeIn()" ontouchstart =" $.mbAudio.pause('effectSprite')">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
