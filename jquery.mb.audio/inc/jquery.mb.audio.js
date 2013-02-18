@@ -14,7 +14,7 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 18/02/13 22.48
+ *  last modified: 18/02/13 23.14
  *  *****************************************************************************
  */
 /*
@@ -547,12 +547,10 @@ function supportType(audioType) {
 
 				var soundEl = typeof soundID == "string" ? $.mbAudio.sounds[soundID] : soundID;
 
-/*
 				if(!soundEl.started){
 					$.mbAudio.play(soundID);
 					soundEl.started=true;
 				}
-*/
 
 				sprite = typeof sprite == "string" ? soundEl.sprite[sprite] : sprite;
 
