@@ -12,7 +12,8 @@
 
 <html>
 <head>
-  <title>simple container</title>
+	<meta charset="utf-8" />
+	<title>simple container</title>
   <link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
   <link href='css/mb.container+.css' rel='stylesheet' type='text/css'>
 
@@ -85,7 +86,6 @@
 
 <div id="wrapper">
 
-
   <div id="cont1" class="container" style=" top:130px; left: 300px; height: auto" data-drag=true data-resize=true  data-dock="dock" data-collapse=true data-containment="document">
     <h2>Container Title 1</h2>
     <button onclick="$('#cont1').containerize('showdata');$(this).hide();">show properties</button>
@@ -94,7 +94,7 @@
     <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
   </div>
 
-  <div id="cont2" class="container" style=" top:180px; left: 400px; height: 350px" data-drag=true data-resize=true  data-dock="dock" data-collapse=true data-containment="document"  data-resizegrid="100,100" data-showdata=true>
+  <div id="cont2" class="container" style=" top:180px; left: 400px; height: 350px" data-drag=false data-resize=true  data-dock="dock" data-collapse=true data-containment="document"  data-resizegrid="100,100" data-showdata=true>
     <h2>Container Title 2</h2>
     <p>Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
     <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue. </p>
