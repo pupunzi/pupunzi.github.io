@@ -94,24 +94,27 @@
 
 </head>
 <body>
+<a href="https://github.com/pupunzi/jquery.mb.audio"><img style="width:100px; position: absolute; top: 20px; right: 20px; border: 0; z-index: 1000" src="http://upload.wikimedia.org/wikipedia/commons/b/b3/GitHub.svg" alt="Fork me on GitHub"></a>
 <h2>jquery.mb.audio API: Using the Queue and the sprite features.</h2>
 <p>To "add" a soud to the queue:<br>
     <b>$.mbAudio.queue.add(audio, sprite)</b></p>
 
 <div id="start">
-    <p>This button is needed to initialize the audio, expecially for Android.</p>
+    <p>This button is needed to initialize audio (see the table in the documentation) [todo: wiki].</p>
     <script>
         if(isiOs || !isDevice){
-            document.write("<p>this button will also initialize the effects sprite and will play the background sprite.</p>")
+            document.write("<p>This button will also initialize the effects sprite and will play the background sprite (only iOS).</p>")
         }
     </script>
     <button style="cursor:pointer" onclick="$.mbAudio.init(true);  $('#start').hide(); $('#buttons').fadeIn()">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
-    <p>The tree buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
-    <button id="playSound1" style="cursor:pointer" onclick="$.mbAudio.queue.add('effectSprite', 'streak')">play sound 1</button>
+    <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
+    <button id="playSound1" style="cursor:pointer" onclick="$.mbAudio.queue.add('effectSprite', 'streak')">play effect 1</button> (it loops 3 times)
     <button style="cursor:pointer" onclick="$.mbAudio.queue.add('effectSprite', 'wow')">play sound 2</button>
     <button style="cursor:pointer" onclick="$.mbAudio.queue.add('effectSprite', 'great')">play sound 3</button>
 </div>
+
+<a href="demo.html">See also the "direct play" demo</a>
 </body>
 </html>
