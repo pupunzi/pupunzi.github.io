@@ -15,7 +15,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 18/02/13 23.30
+  ~  last modified: 18/02/13 23.35
   ~  ******************************************************************************/
   -->
 
@@ -89,6 +89,7 @@
 
             $('#start').hide();
         });
+
         $(document).on("event1", function () {$.mbAudio.queue.add('effectSprite', 'great')});
         $(document).on("event2", function () {$.mbAudio.queue.add('effectSprite', 'wow')});
         $(document).on("event3", function () {$.mbAudio.queue.add('effectSprite', 'streak')});
@@ -119,7 +120,7 @@
 <div id="start">
     <p>This button is needed to initialize audio (see the table in the documentation) [todo: wiki].</p>
     <script>
-        if(isiOs || !isDevice){
+        if((isiOs && isStandAlone) || !isDevice){
             document.write("<p>This button will also initialize the effects sprite and will play the background sprite (only iOS).</p>")
         }
     </script>
