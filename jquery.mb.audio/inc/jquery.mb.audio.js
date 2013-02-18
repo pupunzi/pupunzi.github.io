@@ -339,6 +339,9 @@ function supportType(audioType) {
 		},
 
 		pause: function (sound) {
+
+			alert("1 pausing");
+
 			var soundEl = typeof sound == "string" ? $.mbAudio.sounds[sound] : sound;
 			var sID = soundEl.id ? soundEl.id : (typeof sound == "string" ? sound : sound.mp3.split(".")[0].asId());
 
@@ -348,6 +351,8 @@ function supportType(audioType) {
 
 			var player = $.mbAudio.getPlayer(sID); //document.getElementById("mbAudio_" + sID);
 			player.pause();
+
+			alert("2 pausing");
 
 
 			$(player).off('ended.' + sID);
@@ -361,8 +366,7 @@ function supportType(audioType) {
 
 			clearTimeout(player.timeOut);
 
-			alert("pausing");
-
+			alert("3 pausing");
 
 		},
 
