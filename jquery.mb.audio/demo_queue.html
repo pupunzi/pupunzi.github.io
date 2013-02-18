@@ -81,6 +81,13 @@
 
             });
 
+        $(function(){
+            $(document).on("event1",function(){$.mbAudio.queue.add('effectSprite', 'great')})
+            $(document).on("event2",function(){$.mbAudio.queue.add('effectSprite', 'wow')})
+            $(document).on("event3",function(){$.mbAudio.queue.add('effectSprite', 'streak')})
+        });
+
+
     </script>
 
     <style>
@@ -114,9 +121,9 @@
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
-    <button style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'great')">play sound 1</button>
-    <button style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'wow')">play sound 2</button>
-    <button id="playSound1" style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'streak')">play effect 3</button> (it loops 3 times)
+    <button style="cursor:pointer" ontouchstart="$(document).trigger('event1')">play sound 1</button>
+    <button style="cursor:pointer" ontouchstart="$(document).trigger('event2')">play sound 2</button>
+    <button id="playSound1" style="cursor:pointer" ontouchstart="$(document).trigger('event3')">play effect 3</button> (it loops 3 times)
 </div>
 
 <a href="demo.html">See also the "direct play" demo</a>
