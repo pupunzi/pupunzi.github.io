@@ -82,9 +82,30 @@
             });
 
         $(function(){
-            $(document).on("event1",function(){$.mbAudio.queue.add('effectSprite', 'great')})
-            $(document).on("event2",function(){$.mbAudio.queue.add('effectSprite', 'wow')})
-            $(document).on("event3",function(){$.mbAudio.queue.add('effectSprite', 'streak')})
+            $(document).on("event1",function(){$.mbAudio.queue.add('effectSprite', 'great')});
+            $(document).on("event2",function(){$.mbAudio.queue.add('effectSprite', 'wow')});
+            $(document).on("event3",function(){$.mbAudio.queue.add('effectSprite', 'streak')});
+
+
+            function audioIsReady(){
+
+
+                var audioReady = function(){
+                    if ($.mbAudio.getPlayer("effectSprite").attr('readyState')) {
+                        $('#start').hide();
+                        $.mbAudio.init(true);
+                        alert("it's ready!");
+                    } else {
+                        setTimeout(audioReady, 250);
+                    }
+                }
+                audioReady();
+
+
+            }
+
+
+
         });
 
 
@@ -117,7 +138,7 @@
         }
     </script>
 
-    <button style="cursor:pointer"  ontouchstart ="$.mbAudio.pause('effectSprite'); $('#start').hide(); $('#loader').show(); $.mbAudio.init(true); ">Lets start</button>
+    <button style="cursor:pointer"  ontouchstart ="$.mbAudio.pause('effectSprite'); ">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
