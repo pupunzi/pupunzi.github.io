@@ -2,7 +2,7 @@
 <!--
   ~ /*******************************************************************************
   ~  jquery.mb.components
-  ~  file: demo_queue.html
+  ~  file: demo.html
   ~
   ~  Copyright (c) 2001-2013. Matteo Bicocchi (Pupunzi);
   ~  Open lab srl, Firenze - Italy
@@ -15,7 +15,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 14/02/13 18.23
+  ~  last modified: 18/02/13 22.04
   ~  ******************************************************************************/
   -->
 
@@ -74,11 +74,8 @@
 
         $(function () {
                 $(document).one("soundsLoaded",function(){
-
                     if(!isAndroid)
                         $.mbAudio.play('backgroundSprite',"level2");
-
-
                 });
         })
 
@@ -110,7 +107,7 @@
             document.write("<p>This button will also initialize the effects sprite and will play the background sprite (only iOS).</p>")
         }
     </script>
-    <button style="cursor:pointer"  ontouchstart ="$.mbAudio.init(true); $('#start').hide(); $('#buttons').fadeIn(); $.mbAudio.pause('effectSprite');">Lets start</button>
+    <button style="cursor:pointer"  ontouchstart ="$.mbAudio.preload(); $('#start').hide(); $('#buttons').fadeIn(); $.mbAudio.pause('effectSprite');">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
