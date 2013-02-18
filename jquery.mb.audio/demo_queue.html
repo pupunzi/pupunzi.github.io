@@ -15,7 +15,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 18/02/13 22.57
+  ~  last modified: 18/02/13 23.03
   ~  ******************************************************************************/
   -->
 
@@ -75,26 +75,31 @@
         $(document).one("soundsLoaded",function(){
             $.mbAudio.queue.add('backgroundSprite',"level2");
 
-/*
-            if(!isAndroid){
-                $.mbAudio.pause('backgroundSprite',function(){
-                });
-            }
-*/
+            /*
+             if(!isAndroid){
+             $.mbAudio.pause('backgroundSprite',function(){
+             });
+             }
+             */
         });
 
         function audioIsReady(){
 
             setTimeout(function(){
                 $('#buttons').fadeIn();
-                
+
             },3000);
 
         }
 
-        $(document).on("event1",function(){$.mbAudio.queue.add('effectSprite', 'great')});
-        $(document).on("event2",function(){$.mbAudio.queue.add('effectSprite', 'wow')});
-        $(document).on("event3",function(){$.mbAudio.queue.add('effectSprite', 'streak')});
+        $(document).on("initAudio", function () {
+            $.mbAudio.preload();
+            $.mbAudio.pause('effectSprite', audioIsReady);
+            $('#start').hide();
+        });
+        $(document).on("event1", function () {$.mbAudio.queue.add('effectSprite', 'great')});
+        $(document).on("event2", function () {$.mbAudio.queue.add('effectSprite', 'wow')});
+        $(document).on("event3", function () {$.mbAudio.queue.add('effectSprite', 'streak')});
 
 
     </script>
@@ -118,7 +123,6 @@
 <p>To "add" a soud to the queue:<br>
     <b>$.mbAudio.queue.add(audio, sprite)</b></p>
 
-<a href="demo.html">See also the "direct play" demo</a>
 
 <div id="start">
     <p>This button is needed to initialize audio (see the table in the documentation) [todo: wiki].</p>
@@ -127,13 +131,15 @@
             document.write("<p>This button will also initialize the effects sprite and will play the background sprite (only iOS).</p>")
         }
     </script>
-    <button style="cursor:pointer"  onclick="$.mbAudio.preload(); $.mbAudio.pause('effectSprite',audioIsReady); $('#start').hide();">Lets start</button>
+    <button style="cursor:pointer"  onmousedown="$(document).trigger('initAudio')">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
-    <button style="cursor:pointer" onclick="$(document).trigger('event1')">play sound 1</button>
-    <button style="cursor:pointer" onclick="$(document).trigger('event2')">play sound 2</button>
-    <button id="playSound1" style="cursor:pointer" onclick="$(document).trigger('event3')">play effect 3</button> (it loops 3 times)
+    <button style="cursor:pointer" onmousedown="$(document).trigger('event1')">play sound 1</button>
+    <button style="cursor:pointer" onmousedown="$(document).trigger('event2')">play sound 2</button>
+    <button id="playSound1" style="cursor:pointer" onmousedown="$(document).trigger('event3')">play effect 3</button> (it loops 3 times)
+    <br>
+    <a href="demo.html">See also the "direct play" demo</a>
 </div>
 
 </body>
