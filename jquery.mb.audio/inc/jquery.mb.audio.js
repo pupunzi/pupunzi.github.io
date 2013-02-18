@@ -132,7 +132,7 @@ function supportType(audioType) {
 			}
 		},
 
-		init: function(direct){
+		init: function(direct, callback){
 			if(isDevice && !isStandAlone && !direct)
 				$(document).one("touchstart",function(){
 					for(var snds in $.mbAudio.sounds){
