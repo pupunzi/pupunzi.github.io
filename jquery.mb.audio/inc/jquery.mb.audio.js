@@ -107,7 +107,13 @@ function supportType(audioType) {
 		},
 
 		getPlayer: function (ID) {
-			return document.getElementById("mbAudio_" + ID);
+			var el = document.getElementById("mbAudio_" + ID);
+			if($(el).length==0){
+				var soundEl = typeof ID == "string" ? $.mbAudio.sounds[ID] : ID;
+				var sID = soundEl.id ? soundEl.id : (typeof sound == "string" ? sound : sound.mp3.split(".")[0].asId());
+				el = document.getElementById("mbAudio_" + sID)
+			}
+			return el;
 //			return $.mbAudio.players[ID];
 		},
 
@@ -134,22 +140,12 @@ function supportType(audioType) {
 
 		init: function(){
 
-			if(isDevice && !isStandAlone){
-				var c = 1;
+			if(isDevice && !isStandAlone)
 				for(var snds in $.mbAudio.sounds){
-					setTimeout(function(){
-						$.mbAudio.build(snds);
-
-						if(c == $.mbAudio.sounds.length)
-							$(document).trigger("soundsLoaded");
-
-					},c*100);
-					c++;
+					$.mbAudio.build(snds);
 				}
 
-			}
-
-
+			$(document).trigger("soundsLoaded");
 		},
 
 		play: function (sound, sprite, callback) {
