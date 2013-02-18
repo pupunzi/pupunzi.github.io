@@ -361,6 +361,9 @@ function supportType(audioType) {
 
 			clearTimeout(player.timeOut);
 
+			alert("pausing");
+
+
 		},
 
 		destroy: function (sound) {
