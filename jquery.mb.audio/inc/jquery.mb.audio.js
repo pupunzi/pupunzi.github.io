@@ -133,10 +133,12 @@ function supportType(audioType) {
 		},
 
 		init: function(){
+/*
 			if(isDevice && !isStandAlone)
 				for(var snds in $.mbAudio.sounds){
 					$.mbAudio.build(snds);
 				}
+*/
 
 			$(document).trigger("soundsLoaded");
 		},
