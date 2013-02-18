@@ -92,7 +92,7 @@
 
 
             var audioReady = function(){
-                if ($.mbAudio.getPlayer("effectSprite").attr('readyState')) {
+                if ($.mbAudio.getPlayer("effectSprite").readyState) {
                     $('#start').hide();
                     $.mbAudio.init(true);
                     alert("it's ready!");
