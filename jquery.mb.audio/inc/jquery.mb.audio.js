@@ -361,7 +361,7 @@ function supportType(audioType) {
 
 			clearTimeout(player.timeOut);
 
-			if(typeof callback)
+			if(typeof callback == "function")
 				callback();
 
 
