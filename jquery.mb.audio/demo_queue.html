@@ -82,20 +82,16 @@
 
             });
 
-        $(function(){
-            $(document).on("event1",function(){$.mbAudio.queue.add('effectSprite', 'great')});
-            $(document).on("event2",function(){$.mbAudio.queue.add('effectSprite', 'wow')});
-            $(document).on("event3",function(){$.mbAudio.queue.add('effectSprite', 'streak')});
-
-        });
-
         function audioIsReady(){
 
             setTimeout(function(){
                 $('#start').hide();
-
                 $('#buttons').fadeIn();
-                console.log("Can Play!!");
+
+                $(document).on("event1",function(){$.mbAudio.queue.add('effectSprite', 'great')});
+                $(document).on("event2",function(){$.mbAudio.queue.add('effectSprite', 'wow')});
+                $(document).on("event3",function(){$.mbAudio.queue.add('effectSprite', 'streak')});
+
             },3000);
 
         }

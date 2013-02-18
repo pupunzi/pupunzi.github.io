@@ -114,6 +114,7 @@ function supportType(audioType) {
 				el = document.getElementById("mbAudio_" + sID)
 			}
 			return el;
+
 //			return $.mbAudio.players[ID];
 		},
 
