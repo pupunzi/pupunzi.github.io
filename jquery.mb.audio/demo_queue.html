@@ -74,8 +74,11 @@
         /*Background sound*/
             $(document).one("soundsLoaded",function(){
 
-                if(!isAndroid)
+                if(!isAndroid){
+                    $.mbAudio.pause('backgroundSprite');
                     $.mbAudio.queue.add('backgroundSprite',"level2");
+
+                }
 
             });
 

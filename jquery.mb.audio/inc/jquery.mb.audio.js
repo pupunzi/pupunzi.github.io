@@ -143,7 +143,6 @@ function supportType(audioType) {
 			if(isDevice && !isStandAlone)
 				for(var snds in $.mbAudio.sounds){
 					$.mbAudio.build(snds);
-					$.mbAudio.pause(snds);
 				}
 
 			$(document).trigger("soundsLoaded");
