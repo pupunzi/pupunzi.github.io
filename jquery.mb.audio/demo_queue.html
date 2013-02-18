@@ -15,7 +15,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 18/02/13 22.08
+  ~  last modified: 18/02/13 22.12
   ~  ******************************************************************************/
   -->
 
@@ -76,7 +76,7 @@
                 if(!isAndroid){
                     $.mbAudio.pause('backgroundSprite');
                     $.mbAudio.queue.add('backgroundSprite',"level2");
-                    alert("soundsLoaded");
+                    console.debug("soundsLoaded");
                 }
 
             });
