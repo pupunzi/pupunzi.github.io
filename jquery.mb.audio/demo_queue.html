@@ -78,7 +78,7 @@
                     $.mbAudio.queue.add('backgroundSprite',"level2");
 
                 $('#buttons').fadeIn();
-                $.mbAudio.play('effectSprite');
+
             });
 
     </script>
@@ -110,7 +110,7 @@
         }
     </script>
 
-    <button style="cursor:pointer"  ontouchstart =" $('#start').hide(); $('#loader').show(); $.mbAudio.init(true);">Lets start</button>
+    <button style="cursor:pointer"  ontouchstart ="$.mbAudio.pause('effectSprite'); $('#start').hide(); $('#loader').show(); $.mbAudio.init(true); ">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
