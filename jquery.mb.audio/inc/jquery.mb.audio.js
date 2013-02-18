@@ -95,12 +95,12 @@ function supportType(audioType) {
 				$.mbAudio.players[sID].load();
 				$.mbAudio.players[sID].pause();
 
-/*
-				//preload must be none for iOs concurrency problem.
-				var audio = $("<audio/>").attr({id: "mbAudio_" + sID, preload: "none", src: url});
-				$("body").append(audio);
-				audio.get(0).load();
-*/
+				/*
+				 //preload must be none for iOs concurrency problem.
+				 var audio = $("<audio/>").attr({id: "mbAudio_" + sID, preload: "none", src: url});
+				 $("body").append(audio);
+				 audio.get(0).load();
+				 */
 
 				$.mbAudio.loaded[sID] = 1;
 			}
@@ -132,16 +132,13 @@ function supportType(audioType) {
 			}
 		},
 
-		init: function(direct, callback){
-			if(isDevice && !isStandAlone && !direct)
-				$(document).one("touchstart",function(){
-					for(var snds in $.mbAudio.sounds){
-						$.mbAudio.build(snds);
-					}
-					$(document).trigger("soundsLoaded");
-				})
-			else
-				$(document).trigger("soundsLoaded");
+		init: function(direct){
+			if(isDevice && !isStandAlone)
+				for(var snds in $.mbAudio.sounds){
+					$.mbAudio.build(snds);
+				}
+
+			$(document).trigger("soundsLoaded");
 		},
 
 		play: function (sound, sprite, callback) {
@@ -157,7 +154,7 @@ function supportType(audioType) {
 			volume = volume > 10 ? 10 : volume;
 
 			//if ($.mbAudio.loaded[sID] != 1)
-				$.mbAudio.build(sound);
+			$.mbAudio.build(sound);
 
 			var player = $.mbAudio.getPlayer(sID) //document.getElementById("mbAudio_" + sID);
 			player.vol = volume;

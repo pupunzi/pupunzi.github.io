@@ -109,13 +109,14 @@
             document.write("<p>This button will also initialize the effects sprite and will play the background sprite (only iOS).</p>")
         }
     </script>
-    <button style="cursor:pointer"  ontouchstart =" $('#start').hide(); $.mbAudio.init(true);">Lets start</button>
+
+    <button style="cursor:pointer"  ontouchstart =" $('#start').hide(); $('#loader').show(); $.mbAudio.init(true);">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
-    <button id="playSound1" style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'streak')">play effect 1</button> (it loops 3 times)
+    <button style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'great')">play sound 1</button>
     <button style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'wow')">play sound 2</button>
-    <button style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'great')">play sound 3</button>
+    <button id="playSound1" style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'streak')">play effect 3</button> (it loops 3 times)
 </div>
 
 <a href="demo.html">See also the "direct play" demo</a>
