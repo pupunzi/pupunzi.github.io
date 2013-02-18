@@ -545,10 +545,12 @@ function supportType(audioType) {
 
 				var soundEl = typeof soundID == "string" ? $.mbAudio.sounds[soundID] : soundID;
 
+/*
 				if(!soundEl.started){
 					$.mbAudio.play(soundID);
 					soundEl.started=true;
 				}
+*/
 
 				sprite = typeof sprite == "string" ? soundEl.sprite[sprite] : sprite;
 
