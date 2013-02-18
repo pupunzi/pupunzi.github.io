@@ -88,24 +88,21 @@
 
         });
 
-/*
         function audioIsReady(){
 
 
             var audioReady = function(){
+                console.log($.mbAudio.getPlayer("effectSprite").readyState);
                 if ($.mbAudio.getPlayer("effectSprite").readyState) {
                     $('#start').hide();
                     $.mbAudio.init(true);
                     alert("it's ready!");
                 } else {
                     setTimeout(audioReady, 250);
-
-                    console.log("notLoaded");
                 }
             }
             audioReady();
         }
-*/
 
 
     </script>
