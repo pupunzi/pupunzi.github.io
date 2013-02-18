@@ -133,14 +133,23 @@ function supportType(audioType) {
 		},
 
 		init: function(){
-/*
-			if(isDevice && !isStandAlone)
-				for(var snds in $.mbAudio.sounds){
-					$.mbAudio.build(snds);
-				}
-*/
 
-			$(document).trigger("soundsLoaded");
+			if(isDevice && !isStandAlone){
+				var c = 1;
+				for(var snds in $.mbAudio.sounds){
+					setTimeout(function(){
+						$.mbAudio.build(snds);
+
+						if(c == $.mbAudio.sounds.length)
+							$(document).trigger("soundsLoaded");
+
+					},c*100);
+					c++;
+				}
+
+			}
+
+
 		},
 
 		play: function (sound, sprite, callback) {
