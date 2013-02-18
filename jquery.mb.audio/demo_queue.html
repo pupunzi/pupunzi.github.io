@@ -15,7 +15,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 18/02/13 23.10
+  ~  last modified: 18/02/13 23.12
   ~  ******************************************************************************/
   -->
 
@@ -76,6 +76,10 @@
 
             setTimeout(function(){
                 $('#buttons').fadeIn();
+                if(!isAndroid){
+                    $.mbAudio.pause('backgroundSprite');
+                    $.mbAudio.queue.add('backgroundSprite',"level2");
+                }
 
             },3000);
 
@@ -84,11 +88,6 @@
         $(document).on("initAudio", function () {
            // $.mbAudio.preload();
             $.mbAudio.pause('effectSprite', audioIsReady);
-            if(!isAndroid){
-                $.mbAudio.pause('backgroundSprite');
-                $.mbAudio.queue.add('backgroundSprite',"level2");
-            }
-
             $('#start').hide();
         });
         $(document).on("event1", function () {$.mbAudio.queue.add('effectSprite', 'great')});
