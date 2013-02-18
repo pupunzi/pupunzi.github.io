@@ -102,6 +102,8 @@ function supportType(audioType) {
 				 $("body").append(audio);
 				 audio.get(0).load();
 
+				console.debug(audio)
+
 				$.mbAudio.loaded[sID] = 1;
 			}
 		},

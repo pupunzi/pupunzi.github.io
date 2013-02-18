@@ -38,7 +38,7 @@
         $.mbAudio.sounds = {
 
             backgroundSprite: {
-                id: "backgrounds",
+                id: "backgroundSprite",
                 ogg: "sounds/bgndsSprite.ogg",
                 mp3: "sounds/bgndsSprite.mp3",
                 //example of sprite
@@ -53,7 +53,7 @@
             },
 
             effectSprite: {
-                id: "effects",
+                id: "effectSprite",
                 ogg: "sounds/effectsSprite.ogg",
                 mp3: "sounds/effectsSprite.mp3",
                 //example of sprite
@@ -88,6 +88,7 @@
 
         });
 
+/*
         function audioIsReady(){
 
 
@@ -104,6 +105,7 @@
             }
             audioReady();
         }
+*/
 
 
     </script>
@@ -135,7 +137,7 @@
         }
     </script>
 
-    <button style="cursor:pointer"  ontouchstart ="$.mbAudio.pause('effectSprite', audioIsReady); ">Lets start</button>
+    <button style="cursor:pointer"  ontouchstart ="$.mbAudio.pause('effectSprite');  $('#start').hide(); $.mbAudio.init(true);">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
