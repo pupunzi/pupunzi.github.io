@@ -88,19 +88,13 @@
 
         function audioIsReady(){
 
+            setTimeout(function(){
+                $('#start').hide();
+                $.mbAudio.init(true);
+                $('#buttons').fadeIn();
+                console.log("Can Play!!");
+            },3000);
 
-            var audioReady = function(){
-                if ($.mbAudio.getPlayer("effectSprite").readyState != null) {
-                    $('#start').hide();
-                    $.mbAudio.init(true);
-                    $('#buttons').fadeIn();
-
-                } else {
-                    console.log($.mbAudio.getPlayer("effectSprite").readyState);
-                    setTimeout(audioReady, 250);
-                }
-            }
-            audioReady();
         }
 
 
@@ -133,7 +127,7 @@
         }
     </script>
 
-    <button style="cursor:pointer"  ontouchstart ="$.mbAudio.pause('effectSprite',audioIsReady);  $('#start').hide(); $.mbAudio.init(true);">Lets start</button>
+    <button style="cursor:pointer"  onclick="$.mbAudio.pause('effectSprite',audioIsReady);  $('#start').hide(); $.mbAudio.init(true);">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
