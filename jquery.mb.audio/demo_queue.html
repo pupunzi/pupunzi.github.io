@@ -92,12 +92,12 @@
 
 
             var audioReady = function(){
-                console.log($.mbAudio.getPlayer("effectSprite").readyState);
-                if ($.mbAudio.getPlayer("effectSprite").readyState) {
+                if ($.mbAudio.getPlayer("effectSprite").readyState != null) {
                     $('#start').hide();
                     $.mbAudio.init(true);
                     alert("it's ready!");
                 } else {
+                    console.log($.mbAudio.getPlayer("effectSprite").readyState);
                     setTimeout(audioReady, 250);
                 }
             }
