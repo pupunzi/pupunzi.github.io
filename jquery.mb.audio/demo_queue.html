@@ -15,7 +15,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 18/02/13 23.29
+  ~  last modified: 18/02/13 23.30
   ~  ******************************************************************************/
   -->
 
@@ -84,7 +84,7 @@
            // $.mbAudio.preload();
             $.mbAudio.pause('effectSprite', audioIsReady);
 
-            if(!isStandAlone)
+            if(isStandAlone)
                $.mbAudio.queue.add('backgroundSprite',"level2");
 
             $('#start').hide();
