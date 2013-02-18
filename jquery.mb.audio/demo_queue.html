@@ -15,7 +15,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 18/02/13 23.14
+  ~  last modified: 18/02/13 23.17
   ~  ******************************************************************************/
   -->
 
@@ -89,7 +89,7 @@
             }
             $('#start').hide();
         });
-        $(document).on("event1", function () {$.mbAudio.queue.add('effectSprite', 'great')});
+        $(document).on("event1", function () {alert("event1"); $.mbAudio.queue.add('effectSprite', 'great')});
         $(document).on("event2", function () {$.mbAudio.queue.add('effectSprite', 'wow')});
         $(document).on("event3", function () {$.mbAudio.queue.add('effectSprite', 'streak')});
 
