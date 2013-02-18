@@ -77,8 +77,6 @@
                 if(!isAndroid)
                     $.mbAudio.queue.add('backgroundSprite',"level2");
 
-                $('#buttons').fadeIn();
-
             });
 
         $(function(){
@@ -95,7 +93,8 @@
                 if ($.mbAudio.getPlayer("effectSprite").readyState != null) {
                     $('#start').hide();
                     $.mbAudio.init(true);
-                    alert("it's ready!");
+                    $('#buttons').fadeIn();
+
                 } else {
                     console.log($.mbAudio.getPlayer("effectSprite").readyState);
                     setTimeout(audioReady, 250);
