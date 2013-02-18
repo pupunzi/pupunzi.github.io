@@ -71,7 +71,6 @@
             }
         };
 
-
         /*Background sound*/
         if(!isAndroid)
             $(document).one("soundsLoaded",function(){
@@ -106,13 +105,13 @@
             document.write("<p>This button will also initialize the effects sprite and will play the background sprite (only iOS).</p>")
         }
     </script>
-    <button style="cursor:pointer" onclick="$.mbAudio.init(true); $('#start').hide(); $('#buttons').fadeIn()" ontouchstart =" $.mbAudio.pause('effectSprite')">Lets start</button>
+    <button style="cursor:pointer" onclick="$('#start').hide(); $('#buttons').fadeIn()" ontouchstart =" $.mbAudio.init(true); $.mbAudio.pause('effectSprite')">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
-    <button id="playSound1" style="cursor:pointer" onclick="if(!isDevice){$.mbAudio.queue.add('effectSprite', 'streak')}" ontouchstart="$.mbAudio.queue.add('effectSprite', 'streak')">play effect 1</button> (it loops 3 times)
-    <button style="cursor:pointer" onclick="if(!isDevice){$.mbAudio.queue.add('effectSprite', 'wow')}" ontouchstart="$.mbAudio.queue.add('effectSprite', 'wow')">play sound 2</button>
-    <button style="cursor:pointer" onclick="if(!isDevice){$.mbAudio.queue.add('effectSprite', 'great')}" ontouchstart="$.mbAudio.queue.add('effectSprite', 'great')">play sound 3</button>
+    <button id="playSound1" style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'streak')">play effect 1</button> (it loops 3 times)
+    <button style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'wow')">play sound 2</button>
+    <button style="cursor:pointer" ontouchstart="$.mbAudio.queue.add('effectSprite', 'great')">play sound 3</button>
 </div>
 
 <a href="demo.html">See also the "direct play" demo</a>
