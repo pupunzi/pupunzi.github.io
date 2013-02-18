@@ -72,9 +72,13 @@
         };
 
         /*Background sound*/
-        if(!isAndroid)
             $(document).one("soundsLoaded",function(){
-                $.mbAudio.queue.add('backgroundSprite',"level2");
+
+                if(!isAndroid)
+                    $.mbAudio.queue.add('backgroundSprite',"level2");
+
+                $('#buttons').fadeIn();
+                $.mbAudio.play('effectSprite');
             });
 
     </script>
@@ -105,7 +109,7 @@
             document.write("<p>This button will also initialize the effects sprite and will play the background sprite (only iOS).</p>")
         }
     </script>
-    <button style="cursor:pointer"  ontouchstart =" $('#start').hide(); $('#buttons').fadeIn(); $.mbAudio.init(true); $.mbAudio.play('effectSprite')">Lets start</button>
+    <button style="cursor:pointer"  ontouchstart =" $('#start').hide(); $.mbAudio.init(true);">Lets start</button>
 </div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
