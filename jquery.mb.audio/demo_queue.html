@@ -76,6 +76,8 @@
 
             setTimeout(function(){
                 $('#buttons').fadeIn();
+                $("#loading").hide();
+
             },3000);
 
         }
@@ -88,11 +90,17 @@
                $.mbAudio.queue.add('backgroundSprite',"level2");
 
             $('#start').hide();
+            $("#loading").show();
         });
 
-        $(document).on("event1", function () {$.mbAudio.queue.add('effectSprite', 'great')});
-        $(document).on("event2", function () {$.mbAudio.queue.add('effectSprite', 'wow')});
-        $(document).on("event3", function () {$.mbAudio.queue.add('effectSprite', 'streak')});
+        $(document).on("event1", function () {toggleButtons(); $.mbAudio.queue.add('effectSprite', 'great',toggleButtons)});
+        $(document).on("event2", function () {toggleButtons(); $.mbAudio.queue.add('effectSprite', 'wow',toggleButtons)});
+        $(document).on("event3", function () {toggleButtons(); $.mbAudio.queue.add('effectSprite', 'streak',toggleButtons)});
+
+        function toggleButtons(){
+            $("button").toggleClass("disabled");
+
+        }
 
 
     </script>
@@ -104,7 +112,11 @@
         button{
             display: block;
             margin: 30px 10px;
-            padding: 10px;;
+            padding: 10px;
+
+        }
+        button.disabled{
+            opacity:.3;
 
         }
     </style>
@@ -126,6 +138,7 @@
     </script>
     <button style="cursor:pointer"  onclick="$(document).trigger('initAudio')">Lets start</button>
 </div>
+<div id="loading" style="display: none;">... loading</div>
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
     <button style="cursor:pointer" onmousedown="$(document).trigger('event1')">play sound 1</button>
