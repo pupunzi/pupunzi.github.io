@@ -72,15 +72,6 @@
         };
 
 
-        $(function () {
-            $(document).one("soundsLoaded",function(){
-                if(!isAndroid)
-                    $.mbAudio.play('backgroundSprite',"level2");
-            });
-        })
-
-
-
         function audioIsReady(){
 
             setTimeout(function(){
@@ -121,12 +112,12 @@
 
         }
 
-/*
-        button.disabled{
-            opacity:.3;
+            /*
+                    button.disabled{
+                        opacity:.3;
 
-        }
-*/
+                    }
+            */
 
     </style>
 
@@ -156,7 +147,8 @@
 
     <button style="cursor:pointer" onclick="$.mbAudio.pause('backgroundSprite')">stop background sound</button>
     <button style="cursor:pointer" onclick="$.mbAudio.play('backgroundSprite','level2')">start background sound</button>
+    <br>
+    <a href="demo_queue.html">See also the "Queue" demo</a>
 </div>
-<a href="demo_queue.html">See also the "Queue" demo</a>
 </body>
 </html>
