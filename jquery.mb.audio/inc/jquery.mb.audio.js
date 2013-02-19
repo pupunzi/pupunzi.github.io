@@ -263,8 +263,8 @@ function supportType(audioType) {
 			else
 				player.currentTime = sprite.start;
 
-			conole.log(player.currentTime)
-			conole.log(sprite.start)
+			console.log(player.currentTime)
+			console.log(sprite.start)
 
 
 			player.isPlaying = true;
