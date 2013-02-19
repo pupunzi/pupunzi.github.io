@@ -276,6 +276,10 @@ function supportType(audioType) {
 					checkStart(player, sID, sound, sprite, callback);
 
 				}else{
+
+					console.log(player.currentTime)
+					console.log(sprite.start)
+
 					playerPlay(player, sID, sound, sprite, callback);
 				}
 			}
