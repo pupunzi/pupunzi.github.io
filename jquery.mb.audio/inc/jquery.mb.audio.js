@@ -256,58 +256,62 @@ function supportType(audioType) {
 
 			/*Chrome bugfix*/
 
-			if(isChrome)
-				setTimeout(function () {
-					player.currentTime = sprite.start;
-				}, 40);
-			else
+			/*
+			 if(isChrome)
+			 setTimeout(function () {
+			 player.currentTime = sprite.start;
+			 }, 40);
+			 else
+			 player.currentTime = sprite.start;
+			 */
+
+			function checkStart(player, sID, sound, sprite, callback){
 				player.currentTime = sprite.start;
 
+				if (player.currentTime != sprite.start){
 
-			player.isPlaying = true;
+					checkStart(player, sID, sound, sprite, callback);
 
-			var delay = ((sprite.end - sprite.start) * 1000) + 100;
+				}else{
+					playerPlay(player, sID, sound, sprite, callback);
+				}
+			}
+			checkStart(player, sID, sound, sprite, callback);
 
-			var canFireCallback = true;
+			function playerPlay(player, sID, sound, sprite, callback) {
+				var delay = ((sprite.end - sprite.start) * 1000) + 100;
+				var canFireCallback = true;
+				player.play();
+				player.isPlaying = true;
 
-			player.play();
-
-			player.timeOut = setTimeout(function () {
-
-				if (sprite.loop) {
-
-					canFireCallback = false;
-					sprite.loop = sprite.loop == true ? 9999 : sprite.loop;
-
-					if (!player.counter)
-						player.counter = 1;
-
-					if (player.counter != sprite.loop && player.isPlaying) {
-						player.counter++;
-						player.currentTime = sprite.start || 0;
-						$.mbAudio.play(sound, sprite, callback);
+				player.timeOut = setTimeout(function () {
+					if (sprite.loop) {
+						canFireCallback = false;
+						sprite.loop = sprite.loop == true ? 9999 : sprite.loop;
+						if (!player.counter)
+							player.counter = 1;
+						if (player.counter != sprite.loop && player.isPlaying) {
+							player.counter++;
+							player.currentTime = sprite.start || 0;
+							$.mbAudio.play(sound, sprite, callback);
+						} else {
+							player.counter = 0;
+							canFireCallback = true;
+							player.pause();
+							delete player.isPlaying;
+						}
 					} else {
-						player.counter = 0;
-						canFireCallback = true;
 						player.pause();
 						delete player.isPlaying;
-
 					}
-				} else {
-					player.pause();
-					delete player.isPlaying;
-				}
-
-				if (canFireCallback && typeof callback == "function")
-					callback(player);
-
-				var idx = jQuery.inArray(sID, $.mbAudio.playing);
-				$.mbAudio.playing.splice(idx, 1);
-
-			}, delay);
-
-			$.mbAudio.playing.push(sID);
-			player.isPlaying = true;
+					if (canFireCallback && typeof callback == "function")
+						callback(player);
+					var idx = jQuery.inArray(sID, $.mbAudio.playing);
+					$.mbAudio.playing.splice(idx, 1);
+				}, delay);
+				$.mbAudio.playing.push(sID);
+				player.isPlaying = true;
+			}
 		},
 
 		stop: function (sound, callback) {
