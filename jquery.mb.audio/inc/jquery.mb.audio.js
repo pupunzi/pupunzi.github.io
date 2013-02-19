@@ -264,7 +264,6 @@ function supportType(audioType) {
 			else
 				player.currentTime = sprite.start;
 */
-			checkStart(player, sID, sound, sprite, callback);
 
 			function checkStart(player, sID, sound, sprite, callback){
 				player.currentTime = sprite.start;
@@ -280,12 +279,14 @@ function supportType(audioType) {
 					playerPlay(player, sID, sound, sprite, callback);
 				}
 			}
+			checkStart(player, sID, sound, sprite, callback);
 
 			function playerPlay(player, sID, sound, sprite, callback) {
-				player.isPlaying = true;
 				var delay = ((sprite.end - sprite.start) * 1000) + 100;
 				var canFireCallback = true;
 				player.play();
+				player.isPlaying = true;
+
 				player.timeOut = setTimeout(function () {
 					if (sprite.loop) {
 						canFireCallback = false;
@@ -314,7 +315,6 @@ function supportType(audioType) {
 				$.mbAudio.playing.push(sID);
 				player.isPlaying = true;
 			}
-			playerPlay();
 		},
 
 		stop: function (sound, callback) {
