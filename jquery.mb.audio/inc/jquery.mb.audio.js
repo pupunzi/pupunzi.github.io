@@ -270,15 +270,15 @@ function supportType(audioType) {
 
 				if (player.currentTime != sprite.start){
 
-					console.log(player.currentTime)
-					console.log(sprite.start)
+					console.log("1   "+player.currentTime)
+					console.log("1   "+sprite.start)
 
 					checkStart(player, sID, sound, sprite, callback);
 
 				}else{
 
-					console.log(player.currentTime)
-					console.log(sprite.start)
+					console.log("2   "+player.currentTime)
+					console.log("2   "+sprite.start)
 
 					playerPlay(player, sID, sound, sprite, callback);
 				}
@@ -288,6 +288,7 @@ function supportType(audioType) {
 			function playerPlay(player, sID, sound, sprite, callback) {
 				var delay = ((sprite.end - sprite.start) * 1000) + 100;
 				var canFireCallback = true;
+				console.log("3   "+player.currentTime)
 				player.play();
 				player.isPlaying = true;
 
