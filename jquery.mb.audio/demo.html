@@ -83,10 +83,11 @@
         }
 
         $(document).on("initAudio", function () {
-            // $.mbAudio.pause('effectSprite', audioIsReady);
+             //$.mbAudio.pause('effectSprite', audioIsReady);
 
             if(isStandAlone || !isDevice)
                 $.mbAudio.play('backgroundSprite',"level2");
+
             $('#start').hide();
             $("#loading").show();
             audioIsReady();
@@ -142,9 +143,10 @@
         <button style="cursor:pointer" onclick="$.mbAudio.pause('backgroundSprite')">stop background sound</button>
         <button style="cursor:pointer" onclick="$.mbAudio.play('backgroundSprite','level2')">start background sound</button>
     </div>
+
     <script>
         if(isStandAlone || !isDevice)
-            $("#bgndControls").show()
+            $("#bgndControls").show();
     </script>
     <br>
     <a href="demo_queue.html">See also the "Queue" demo</a>
