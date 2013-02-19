@@ -73,20 +73,15 @@
 
 
         function audioIsReady(){
-
             setTimeout(function(){
                 $('#buttons').fadeIn();
                 $("#loading").hide();
-
             },3000);
-
         }
 
         $(document).on("initAudio", function () {
             $.mbAudio.pause('effectSprite', audioIsReady);
 
-            if(isStandAlone || !isDevice)
-                $.mbAudio.play('backgroundSprite',"level2");
             $('#start').hide();
             $("#loading").show();
         });
