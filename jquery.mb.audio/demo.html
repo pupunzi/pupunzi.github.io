@@ -83,7 +83,9 @@
         }
 
         $(document).on("initAudio", function () {
-             //$.mbAudio.pause('effectSprite', audioIsReady);
+
+            //otherwise sound is initialized on the first tap loosing time and UX
+             $.mbAudio.pause('effectSprite', audioIsReady);
 
             if(isStandAlone || !isDevice)
                 $.mbAudio.play('backgroundSprite',"level2");
