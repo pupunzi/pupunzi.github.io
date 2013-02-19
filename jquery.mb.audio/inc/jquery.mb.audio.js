@@ -255,9 +255,14 @@ function supportType(audioType) {
 			player.pause();
 
 			/*Chrome bugfix*/
-			setTimeout(function () {
+
+			if(isChrome)
+				setTimeout(function () {
+					player.currentTime = sprite.start;
+				}, 40);
+			else
 				player.currentTime = sprite.start;
-			}, 40)
+
 
 			player.isPlaying = true;
 
