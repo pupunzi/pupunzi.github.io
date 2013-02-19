@@ -82,22 +82,14 @@
 
         }
 
-
-
         $(document).on("initAudio", function () {
             $.mbAudio.pause('effectSprite', audioIsReady);
 
             if(isStandAlone || !isDevice)
                 $.mbAudio.play('backgroundSprite',"level2");
-
             $('#start').hide();
             $("#loading").show();
         });
-
-        function toggleButtons(){
-            $("button").toggleClass("disabled");
-        }
-
 
     </script>
 
@@ -141,9 +133,9 @@
 
 <div id="buttons" style="display: none;">
     <p>The three buttons below play sounds from the same audio file (sounds/bgndsSprite .mp3 or .ogg)</b></p>
-    <button style="cursor:pointer"  onmousedown="toggleButtons();$.mbAudio.play('effectSprite', 'great',toggleButtons)">play effect 1</button>
-    <button style="cursor:pointer"  onmousedown="toggleButtons();$.mbAudio.play('effectSprite', 'wow',toggleButtons)">play effect 2</button>
-    <button id="playSound1" style="cursor:pointer" onmousedown="toggleButtons();$.mbAudio.play('effectSprite', 'streak',toggleButtons)">play effect 3 (it loops 3 times)</button>
+    <button style="cursor:pointer"  onmousedown="$.mbAudio.play('effectSprite', 'great')">play effect 1</button>
+    <button style="cursor:pointer"  onmousedown="$.mbAudio.play('effectSprite', 'wow')">play effect 2</button>
+    <button id="playSound1" style="cursor:pointer" onmousedown="$.mbAudio.play('effectSprite', 'streak')">play effect 3 (it loops 3 times)</button>
 
     <div id="bgndControls" style="display: none">
         <button style="cursor:pointer" onclick="$.mbAudio.pause('backgroundSprite')">stop background sound</button>
