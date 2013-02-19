@@ -290,6 +290,7 @@ function supportType(audioType) {
 				var canFireCallback = true;
 				console.log("3   "+player.currentTime)
 				player.play();
+
 				player.isPlaying = true;
 
 				player.timeOut = setTimeout(function () {
