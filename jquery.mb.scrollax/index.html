@@ -1,0 +1,280 @@
+<!doctype html>
+
+<!--
+  ~ /*******************************************************************************
+  ~  jquery.mb.components
+  ~  file: index.html
+  ~
+  ~  Copyright (c) 2001-2013. Matteo Bicocchi (Pupunzi);
+  ~  Open lab srl, Firenze - Italy
+  ~  email: matteo@open-lab.com
+  ~  site: 	http://pupunzi.com
+  ~  blog:	http://pupunzi.open-lab.com
+  ~ 	http://open-lab.com
+  ~
+  ~  Licences: MIT, GPL
+  ~  http://www.opensource.org/licenses/mit-license.php
+  ~  http://www.gnu.org/licenses/gpl.html
+  ~
+  ~  last modified: 16/01/13 23.32
+  ~  ******************************************************************************/
+  -->
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<title>mb.scrollax 1.0</title>
+	<link href="css/mb.scrollax.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="inc/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="inc/jquery.mb.CSSAnimate.min.js"></script>
+	<script type="text/javascript" src="inc/jquery.mb.scrollax.js"></script>
+
+  <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+
+  <style>
+
+    body{
+      background: #777777;
+      backface-visibility:hidden;
+      -webkit-backface-visibility:hidden; /* Chrome and Safari */
+      -moz-backface-visibility:hidden; /* Firefox */
+      backface-visibility:hidden;
+    }
+
+    *{
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+
+    }
+
+    #console{
+      position: fixed;
+      font-size: 20px;
+      background: white;
+      width: 200px;
+      padding: 20px;
+      z-index: 1000;
+      max-height: 100%;
+      overflow: auto;
+    }
+
+    #wrapper{
+      backface-visibility:hidden;
+      -webkit-backface-visibility:hidden; /* Chrome and Safari */
+      -moz-backface-visibility:hidden; /* Firefox */
+      backface-visibility:hidden;
+
+      position: relative;
+      background: rgba(255,255,255,1);
+      overflow: hidden;
+      width: 100%;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      min-height: 100%;
+    }
+
+    h1{
+      text-align: left;
+      font-size: 45px;
+      line-height: 50px;
+    }
+
+
+    #el1 h1, #theEnd h1{
+      text-align: center;
+      font-family: 'Rochester', cursive;
+      font-size: 85px;
+    }
+
+    h2{
+      text-align: center;
+      font-family: 'Rochester', cursive;
+      font-size: 35px;
+      line-height: 55px;
+    }
+
+    .block{
+      /*width: 100%;*/
+    }
+  </style>
+	<script>
+		$(function(){
+			$.scrollax.init({
+				showSteps:false
+			});
+
+			$.timeline.addEvent(100,function(){
+				if($.timeline.dir == "forward"){
+					$("#startScrolling").fadeOut();
+				}else{
+					$("#startScrolling").fadeIn();
+				}
+			});
+
+			$("#el1").addScrollax({
+				id:"first",
+				start:400,
+				duration:600,
+				startanimation:{'margin-top':0},
+				endanimation:{'margin-top':-1000}
+			});
+
+			$("#el1Bgnd").addScrollax({
+				id:"first",
+				start:600,
+				duration:600,
+				startanimation:{'backgroundX':0, 'backgroundY':0},
+				endanimation:{'backgroundX':-2000, 'backgroundY':0}
+			});
+
+			$.timeline.addEvent(900,function(){
+				if($.timeline.dir == "forward"){
+					$("#scene2_img").attr({src:"img/scene_2.gif"});
+				}else{
+					$("#scene2_img").attr({src:"img/scene_2.jpg"});
+				}
+			});
+
+			$("#text1").addScrollax({
+				id:"first",
+				start:1350,
+				duration:600,
+				startanimation:{'margin-top':0},
+				endanimation:{'margin-top':-1000}
+			});
+
+			$("#scene2_img").addScrollax({
+				id:"rotate",
+				start:900,
+				duration:600,
+				startanimation:{'rotate':0, 'scale':1, 'opacity':1},
+				endanimation:{'rotate':360, 'scale':0, 'opacity':0}
+			});
+
+			$("#text2").addScrollax({
+				id:"first",
+				start:1800,
+				duration:300,
+				startanimation:{'backgroundY':0},
+				endanimation:{'backgroundY':700}
+			});
+
+			$("#text2").addScrollax({
+				id:"second",
+				start:2200,
+				duration:600,
+				startanimation:{'backgroundY':700},
+				endanimation:{'backgroundY':-700}
+			});
+
+			$("#text2").addScrollax({
+				id:"third",
+				start:2800,
+				duration:600,
+				startanimation:{'bottom':0},
+				endanimation:{'bottom':2000}
+			});
+
+			$.timeline.addEvent(1800,function(){
+				if($.timeline.dir == "forward"){
+					$("#text2").CSSAnimate({color:"#000"},3000,0,null);
+				}else{
+					$("#text2").CSSAnimate({color:"#ccc"},3000,0,null);
+				}
+			});
+
+			/*
+			 $.timeline.addEvent(1000,function(){
+			 $.timeline.direction = $.timeline.dir =="forward" ? "horizontal" : "vertical";
+			 });
+			 */
+		});
+
+	</script>
+
+</head>
+<body>
+
+<!--<div id="console"></div>-->
+<div id="wrapper">
+  <button onclick="$.scrollax.play(5)" style="position: absolute;z-index: 1000;top:10px; left:10px;">auto play</button>
+
+  <div id="el1Bgnd" style="opacity:.3; background: url(img/bg_1.jpg) no-repeat 0 0; position: absolute; top:0 ;left: 0; width: 100%; height: 100%" data-start="0" data-duration="200" data-startanimation="{'backgroundX':0, 'backgroundY':-2000}" data-endanimation="{'backgroundX':0, 'backgroundY':0}"></div>
+	<div  id="el1" class="block" style="position:absolute; width:100%; height: 100%" data-start="300" data-duration="1000" data-startanimation="{'top':250}" data-endanimation="{'top':-1400}">
+		<div style="position: relative" >
+			<h1>
+				<img src="img/blogLogoBig.png"><br>
+				The web worker
+			</h1>
+			<br><br>
+			<div id="startScrolling">
+				<h2>start scrolling</h2>
+				<h2>▼</h2>
+			</div>
+		</div>
+	</div>
+
+	<div id="text1" style="position:absolute; top:100%; width:100%; height: 100%"  data-start="450" data-duration="400"  data-endanimation="{'top':0}">
+		<img id="scene2_img" width="50%" src="img/scene_2.jpg" >
+		<div style="position: absolute; width: 50%; right: 0; padding: 20px" data-start="800" data-duration="800" data-startanimation="{'top':100}" data-endanimation="{'top':-1800}">
+			<h1>Anthropological study of the web worker tribe – consuming Licorize</h1>
+			Today we’ll explore the life of this curious creature: the web worker. Its home is the entire web, this polluted ocean of information, a true wilderness.
+			An international team of expert naturalist has been studying this species; after an expedition working closely with the natives, they defined a typical day of this species.
+			A day
+			This species is incredibly efficient in finding new sources of information, and consume it quickly. Millions of nanoseconds of innatural selection has produced this extraordinary creature.
+			See how they wake up in the morning, checking immediately their Twitter stream. Then they get to work, while sending and receiving tweets and listening to podcasts. The older specimens still use email, and can still write paragraphs longer than 140 characters. They are anyway deemed to extinction. As other naturalists pointed out, a likely evolution is towards 26 character messages.
+			At work, they keep getting and sharing information. Links are exchanged, pages visited, new ideas come and go, and most of this simply gets lost.
+			Getting home, the stream of information continues: using their mobiles, short and long messages are exchanged, podcast are heard. Again a stream of new ideas and things to be done and explored, potentially – but we’ll see that the destiny of these memes is simply to get lost.
+			In the evening information consumption of the web worker continues. On the couch with the iPad and its main course, Flipboard. Here too, ideas come, links are explored, feedback is given.
+			This kind of mammal seems so taken with information ingestion, that they do not eat concrete food very often.
+			Shh: now: look, they are falling asleep, recovering energy for another day of information madness.
+			Danger
+			The web worker has only one fear: internet connection outage, which leaves them stunned and confused. But as soon as any connection is available, they get back to their information consumption.
+			This species, while growing in numbers every day, is under threat. The danger of extinction does not come from the environment, but entirely from internal causes: it comes from psychic pressure. The amount of information coming in and unmanaged, the spectrum of different stimuli is too strong and uncontrolled: they begin losing their sense of self. Information consumption in large doses adds to psychic pressure.
+			Quoting a recent research from MIT:  “By plotting the current trends, in just two years the amount of information will lead most of the web workers to extinction.”
+			A new plant
+			But recently a limited subset of individuals seems to be recovering. After detailed enquiries, the cause seems to be a change in diet, in particular intense consumption of a new plant, Licorize.
+			This plant species was born in Tuscany, but has been spreading quickly from California’s valleys, because of some foreign seeds grown by mistake. Let’s see a typical day of an individual from this privileged group.
+			[Map with moving arrows]
+			A day with Licorize
+		</div>
+	</div>
+
+	<div id="text2" style="position:absolute; bottom:-2000px; padding: 140px; background-image: url('img/bg_2.jpg'); background-position: 0; background-repeat: no-repeat; color:#ccc" data-start="1400" data-duration="700"  data-endanimation="{'bottom':0}">  Browsing
+		The location from which most plant consumption is done is while browsing: instead of jumping frantically from one page to the next, and then to taking notes, changing and loosing focus all the time, these somewhat calmer specimens have a little tool integrated in the browser that allows them to write down the context of inspiration while not leaving the current work. Look what happens when they are on a page and click their magic tool: a temporary window opens above the page, where they can collect information.
+		Notice that specific information gets recorded here: instead of a list of uniform bookmarks, with no logic nor team, here they collect structured information directly from the source.
+		There are many other ways in which information gets collected, all seeded inside the typical behavior of the web worker: as she tweets, as she sends e-mail, as she browses from devices. Even when they take pictures, a compulsory repetitive activity of this species, both in male and female specimens, they can leave a trace in Licorize, effortlessly.
+		Requiring a minimal effort is very important, as this species is hyperactively searching for information, but terribly lazy when it comes time to organize it – just like 3-years old homo sapiens.
+		Chronology
+		When the web worker gets back to its Licorize’ nest, she finds a complete linear timeline of the randomly and incoherently collected information. And there further psychic pressure from the information coming in can finally be discharged, transforming bookmarks in to-do’s, ideas, goals, and more.
+		The ritual of the weekly review is performed by many, and those that don’t do it are considered “sinners”: social contact is to be avoided.
+		Projects
+		In a field study a group of social anthropologists has found that small groups of web workers, usually at most of seven individuals (there are strong taboos in these tribes against larger groups) suddenly started sharing their information meal and distributing weight among them; it seems that is a casual discovery a bit like the first capuchin monkey washing fruit.
+		These groups, that web workers call “teams”, transform information in action very efficiently.
+		Inside a team there seems to be no hierarchy, which some researchers say is a far consequence of IT being created by flower people of the 60’s.
+		Booklets
+		There are even occasional attempts of socialization with individuals of other species, using so-called “booklets”, where the collective work is presented a bit like in a performance art event.
+		Links / API
+		The Licorize plant is spreading among web workers, but also in web workers applications: you can integrate it in web applications [RSS], blogs, and even in clients. Up to now no negative side-effects of Licorize consumption have been found.
+
+		<h1 onclick="$.timeline.moveTo(0)">Back to top</h1>
+	</div>
+
+	<div id="theEnd" style="position:relative; top:1000px; opacity:0; padding: 140px; color:#000" data-start="2800" data-duration="300"  data-endanimation="{'top':200, 'opacity':1}">
+
+		<h1>The end</h1>
+
+	</div>
+
+
+
+</div>
+</body>
+</html>
