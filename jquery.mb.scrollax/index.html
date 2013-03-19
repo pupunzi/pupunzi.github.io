@@ -106,6 +106,13 @@
   </style>
 	<script>
 		$(function(){
+
+            if (self.location.href == top.location.href){
+                var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
+                $("body").append(logo);
+                $("#logo").fadeIn();
+            }
+
 			$.scrollax.init({
 				showSteps:true
 			});
@@ -206,7 +213,7 @@
 
 <!--<div id="console"></div>-->
 <div id="wrapper">
-  <button onclick="$.scrollax.play(5)" style="position: absolute;z-index: 1000;top:10px; left:10px;">auto play</button>
+  <button onclick="$.scrollax.play(5)" style="position: absolute;z-index: 1000;top:70px; left:10px;">auto play</button>
 
   <div id="el1Bgnd" style="opacity:.3; background: url(img/bg_1.jpg) no-repeat 0 0; position: absolute; top:0 ;left: 0; width: 100%; height: 100%" data-start="0" data-duration="200" data-startanimation="{'backgroundX':0, 'backgroundY':-2000}" data-endanimation="{'backgroundX':0, 'backgroundY':0}"></div>
 	<div  id="el1" class="block" style="position:absolute; width:100%; height: 100%" data-start="300" data-duration="1000" data-startanimation="{'top':250}" data-endanimation="{'top':-1400}">
