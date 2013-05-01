@@ -16,7 +16,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 16/03/13 23.12
+  ~  last modified: 01/05/13 0.06
   ~  ******************************************************************************/
   -->
 
@@ -39,7 +39,6 @@
   <style>
 
     body{
-
       background: #777777;
       backface-visibility:hidden;
       -webkit-backface-visibility:hidden; /* Chrome and Safari */
@@ -101,33 +100,16 @@
       line-height: 55px;
     }
 
-    h3{
-      text-align: left;
-      font-family: 'Rochester', cursive;
-      font-size: 45px;
-      line-height: 35px;
-    }
-
-    h3 a{
-        color: #444;
-        text-decoration: none;
-    }
-
     .block{
       /*width: 100%;*/
     }
   </style>
 	<script>
 		$(function(){
-
-            if (self.location.href == top.location.href){
-                var logo=$("<a href='http://pupunzi.com' style='position:absolute;top:10px;left:10px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");
-                $("body").append(logo);
-                $("#logo").fadeIn();
-            }
-
 			$.scrollax.init({
-				showSteps:true
+                wheelSpeed:10,
+                scrollStep: 1,
+                showSteps:true
 			});
 
 			$.timeline.addEvent(100,function(){
@@ -222,11 +204,9 @@
 </head>
 <body>
 
-<a id="git" href="https://github.com/pupunzi/jquery.mb.scrollax"><img style="width:100px; position: absolute; z-index: 10; top: 30px; right: 30px; border: 0;" src="http://upload.wikimedia.org/wikipedia/commons/b/b3/GitHub.svg" alt="Fork me on GitHub"></a>
-
 <!--<div id="console"></div>-->
 <div id="wrapper">
-  <button onclick="$.scrollax.play(5)" style="position: absolute;z-index: 1000;top:70px; left:10px;">auto play</button>
+  <button onclick="$.scrollax.play(5)" style="position: absolute;z-index: 1000;top:10px; left:10px;">auto play</button>
 
   <div id="el1Bgnd" style="opacity:.3; background: url(img/bg_1.jpg) no-repeat 0 0; position: absolute; top:0 ;left: 0; width: 100%; height: 100%" data-start="0" data-duration="200" data-startanimation="{'backgroundX':0, 'backgroundY':-2000}" data-endanimation="{'backgroundX':0, 'backgroundY':0}"></div>
 	<div  id="el1" class="block" style="position:absolute; width:100%; height: 100%" data-start="300" data-duration="1000" data-startanimation="{'top':250}" data-endanimation="{'top':-1400}">
@@ -293,44 +273,10 @@
 
 		<h1>The end</h1>
 
-        <!-- Begin MailChimp Signup Form -->
-        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-        <style type="text/css">
-            #mc_embed_signup{background:transparent; clear:left; font:14px Helvetica,Arial,sans-serif; margin-top: 50px; width: 250px;}
-                /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-                   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-        </style>
-        <div id="mc_embed_signup" style="">
-            <form action="http://pupunzi.us6.list-manage2.com/subscribe/post?u=4346dc9633&amp;id=91a005172f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                <label for="mce-EMAIL">Subscribe to my mailing list<br>to stay in touch.</label>
-                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-            </form>
-        </div>
-        <!--End mc_embed_signup-->
-
-        <div style="margin-top: 40px;">
-            Or visit my blog:<br>
-            <h3><a href="http://pupunzi.open-lab.com">Pupunzi's blog</a></h3>
-        </div>
-
 	</div>
 
+
+
 </div>
-
-<script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-10907260-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-</script>
-
 </body>
 </html>

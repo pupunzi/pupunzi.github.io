@@ -16,7 +16,7 @@
   ~  http://www.opensource.org/licenses/mit-license.php
   ~  http://www.gnu.org/licenses/gpl.html
   ~
-  ~  last modified: 17/03/13 14.19
+  ~  last modified: 01/05/13 0.06
   ~  ******************************************************************************/
   -->
 
@@ -31,7 +31,6 @@
     <link href="css/mb.scrollax.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="inc/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="inc/jquery.mb.CSSAnimate.min.js"></script>
     <script type="text/javascript" src="inc/prefixfree.min.js"></script>
     <script type="text/javascript" src="inc/jquery.mb.scrollax.js"></script>
 
@@ -91,54 +90,93 @@
             line-height: 55px;
         }
 
-        #el2 p{
-            -moz-column-count:2; /* Firefox */
-            -webkit-column-count:2; /* Safari and Chrome */
-            column-count:2;
 
-            padding: 50px;
+        #parallaxIndex{
+            position: absolute;
+            right: 50px;
+            top:20px;
         }
 
-        .block {
-            /*width: 100%;*/
+        #parallaxIndex div{
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            background: rgba(0,0,0,0.5) ;
+            display: inline-block;
+            position: relative;
+            border-radius: 15px;
+            z-index: 1000;
+            cursor: pointer;
         }
+        #parallaxIndex div.sel{
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            background: rgb(255, 192, 0);
+            display: inline-block;
+            position: relative;
+            border-radius: 15px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
     </style>
     <script>
         $(function () {
 
             $.scrollax.init({
-                showSteps: true
+                showSteps: true,
+                wheelSpeed:10,
+                scrollStep:1,
+                preloadImages:true,
+                onBeforePreloading:function(){
+                    $("body").css({opacity:0});
+                    $("#preloadBox").show();
+                },
+                onPreloading:function(counter, tot){
+                    $("#preloadBox .number").html(counter+"/"+tot);
+                },
+                onEndPreloading:function(){
+                    $("body").css({opacity:1})
+                    $("#preloadBox").hide();
+                }
             });
 
+            jQuery.timeline.addPageMarker(0);
+            jQuery.timeline.addPageMarker(700);
+            jQuery.timeline.addPageMarker(1200);
+            jQuery.timeline.addPageMarker(2800);
+
             $("#el1").addScrollax({
-                id            : "s1",
+                id            : "first",
                 start         : 400,
                 duration      : 600,
                 startanimation: {'margin-top': 0},
                 endanimation  : {'margin-top': -1000}
             });
 
+            $("#el1Bgnd").addScrollax({
+                id            : "first",
+                start         : 400,
+                duration      : 1000,
+                startanimation: {'backgroundX': 0, 'backgroundY': 0},
+                endanimation  : {'backgroundX': 0, 'backgroundY': 2000}
+            });
+
+
             $("#el2").addScrollax({
-                id          : "s2",
+                id          : "first",
                 start       : 400,
                 duration    : 300,
                 endanimation: {'top': 0}
             });
 
             $("#el2").addScrollax({
-                id            : "s3",
+                id            : "second",
                 start         : 1800,
                 duration      : 1000,
                 startanimation: {'top': 0},
                 endanimation  : {'top': 1200}
-            });
-
-            $("#el1Bgnd").addScrollax({
-                id            : "s4",
-                start         : 400,
-                duration      : 1000,
-                startanimation: {'backgroundX': 0, 'backgroundY': 0},
-                endanimation  : {'backgroundX': 0, 'backgroundY': 2000}
             });
 
             $.timeline.addEvent(900, function () {
@@ -149,6 +187,7 @@
                 }
             });
 
+            $("#parallaxIndex").createPageMarkerIndex();
         });
 
     </script>
@@ -156,9 +195,11 @@
 </head>
 <body>
 
+<div id="preloadBox" style="display: none">loading media: <span class="number"></span> </div>
+
 <!--<div id="console"></div>-->
 <div id="wrapper">
-    <a id="git" href="https://github.com/pupunzi"><img style="width:100px; position: absolute; z-index: 10; top: 30px; right: 30px; border: 0;" src="http://upload.wikimedia.org/wikipedia/commons/b/b3/GitHub.svg" alt="Fork me on GitHub"></a>
+    <div id="parallaxIndex"></div>
 
     <button onclick="$.scrollax.play(7)" style="position: absolute;z-index: 1000;top:10px; left:10px;">auto play
     </button>
@@ -200,7 +241,14 @@
                      data-endanimation="{'scale':1, 'opacity':1}"><br>
                 The web worker
             </h1>
-            <p>Today we’ll explore the life of this curious creature: the web worker. Its home is the entire web, this polluted ocean of information, a true wilderness. An international team of expert naturalist has been studying this species; after an expedition working closely with the natives, they defined a typical day of this species. A day This species is incredibly efficient in finding new sources of information, and consume it quickly. Millions of nanoseconds of innatural selection has produced this extraordinary creature. See how they wake up in the morning, checking immediately their Twitter stream. Then they get to work, while sending and receiving tweets and listening to podcasts. The older specimens still use email, and can still write paragraphs longer than 140 characters. They are anyway deemed to extinction. As other naturalists pointed out, a likely evolution is towards 26 character messages. At work, they keep getting and sharing information. Links are exchanged, pages visited, new ideas come and go, and most of this simply gets lost. </p>
+
+            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam
+                eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Praesent
+                commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis
+                parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis.
+                Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Etiam porta
+                sem malesuada magna mollis euismod. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+                auctor.</p>
         </div>
     </div>
 
@@ -213,23 +261,6 @@
 
         <h2>
             <button onclick="$.timeline.moveTo(0)">top</button>
-
-            <!-- Begin MailChimp Signup Form -->
-            <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-            <style type="text/css">
-                #mc_embed_signup{background:transparent; clear:left; font:14px Helvetica,Arial,sans-serif; margin-top: 50px; margin-left: 150px; width: 250px;}
-                    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-                       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-            </style>
-            <div id="mc_embed_signup" style="">
-                <form action="http://pupunzi.us6.list-manage2.com/subscribe/post?u=4346dc9633&amp;id=91a005172f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                    <label for="mce-EMAIL">Subscribe to my mailing list<br>to stay in touch.</label>
-                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-                    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-                </form>
-            </div>
-            <!--End mc_embed_signup-->
-
         </h2>
 
     </div>
