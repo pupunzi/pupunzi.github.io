@@ -14,49 +14,43 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 02/10/13 22.42
+ *  last modified: 23/11/13 18.10
  *  *****************************************************************************
  */
 
+/*Browser detection patch*/
+if (!jQuery.browser) {
+	jQuery.browser = {};
+	jQuery.browser.mozilla = !1;
+	jQuery.browser.webkit = !1;
+	jQuery.browser.opera = !1;
+	jQuery.browser.msie = !1;
+	var nAgt = navigator.userAgent;
+	jQuery.browser.ua = nAgt;
+	jQuery.browser.name = navigator.appName;
+	jQuery.browser.fullVersion = "" + parseFloat(navigator.appVersion);
+	jQuery.browser.majorVersion = parseInt(navigator.appVersion, 10);
+	var nameOffset, verOffset, ix;
+	if (-1 != (verOffset = nAgt.indexOf("Opera")))jQuery.browser.opera = !0, jQuery.browser.name = "Opera", jQuery.browser.fullVersion = nAgt.substring(verOffset + 6), -1 != (verOffset = nAgt.indexOf("Version")) && (jQuery.browser.fullVersion = nAgt.substring(verOffset + 8)); else if (-1 != (verOffset = nAgt.indexOf("MSIE")))jQuery.browser.msie = !0, jQuery.browser.name = "Microsoft Internet Explorer", jQuery.browser.fullVersion = nAgt.substring(verOffset + 5); else if (-1 != nAgt.indexOf("Trident")) {
+		jQuery.browser.msie = !0;
+		jQuery.browser.name = "Microsoft Internet Explorer";
+		var start = nAgt.indexOf("rv:") + 3, end = start + 4;
+		jQuery.browser.fullVersion = nAgt.substring(start, end)
+	} else-1 != (verOffset = nAgt.indexOf("Chrome")) ? (jQuery.browser.webkit = !0, jQuery.browser.name = "Chrome", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7)) : -1 != (verOffset = nAgt.indexOf("Safari")) ? (jQuery.browser.webkit = !0, jQuery.browser.name = "Safari", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7), -1 != (verOffset = nAgt.indexOf("Version")) && (jQuery.browser.fullVersion = nAgt.substring(verOffset + 8))) : -1 != (verOffset = nAgt.indexOf("AppleWebkit")) ? (jQuery.browser.webkit = !0, jQuery.browser.name = "Safari", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7), -1 != (verOffset = nAgt.indexOf("Version")) && (jQuery.browser.fullVersion = nAgt.substring(verOffset + 8))) : -1 != (verOffset = nAgt.indexOf("Firefox")) ? (jQuery.browser.mozilla = !0, jQuery.browser.name = "Firefox", jQuery.browser.fullVersion = nAgt.substring(verOffset + 8)) : (nameOffset = nAgt.lastIndexOf(" ") + 1) < (verOffset = nAgt.lastIndexOf("/")) && (jQuery.browser.name = nAgt.substring(nameOffset, verOffset), jQuery.browser.fullVersion = nAgt.substring(verOffset + 1), jQuery.browser.name.toLowerCase() == jQuery.browser.name.toUpperCase() && (jQuery.browser.name = navigator.appName));
+	-1 != (ix = jQuery.browser.fullVersion.indexOf(";")) && (jQuery.browser.fullVersion = jQuery.browser.fullVersion.substring(0, ix));
+	-1 != (ix = jQuery.browser.fullVersion.indexOf(" ")) && (jQuery.browser.fullVersion = jQuery.browser.fullVersion.substring(0, ix));
+	jQuery.browser.majorVersion = parseInt("" + jQuery.browser.fullVersion, 10);
+	isNaN(jQuery.browser.majorVersion) && (jQuery.browser.fullVersion = "" + parseFloat(navigator.appVersion), jQuery.browser.majorVersion = parseInt(navigator.appVersion, 10));
+	jQuery.browser.version = jQuery.browser.majorVersion;
+}
+
 /*******************************************************************************
  * jQuery.mb.components: jquery.mb.CSSAnimate
- * version: 1.0- 04/12/11 - 18
- * © 2001 - 2011 Matteo Bicocchi (pupunzi), Open Lab
- *
- * Licences: MIT, GPL
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
- *
- * email: mbicocchi@open-lab.com
- * site: http://pupunzi.com
- *
- *  params:
-
- @opt        -> the CSS object (ex: {top:300, left:400, ...})
- @duration   -> an int for the animation duration in milliseconds
- @ease       -> ease  ||  linear || ease-in || ease-out || ease-in-out  ||  cubic-bezier(<number>, <number>,  <number>,  <number>)
- @properties -> properties to which CSS3 transition should be applied.
- @callback   -> a callback function called once the transition end
-
- example:
-
- $(this).CSSAnimate({top: t, left:l, width:w, height:h}, 2000, "ease-out", "all", function() {el.anim();})
  ******************************************************************************/
 
-$.fn.CSSAnimate=function(a,c,h,i,j,e){return this.each(function(){var d=$(this);if(0!==d.length&&a){"function"==typeof c&&(e=c);"function"==typeof h&&(e=h);"function"==typeof i&&(e=i);"function"==typeof j&&(e=j);if("string"==typeof c)for(var k in $.fx.speeds)if(c==k){c=$.fx.speeds[k];break}else c=null;c||(c=$.fx.speeds._default);i||(i="cubic-bezier(0.65,0.03,0.36,0.72)");j||(j="all");h||(h=0);if(jQuery.support.transition){var b="",f="transitionEnd";$.browser.webkit?(b="-webkit-",f="webkitTransitionEnd"): $.browser.mozilla?(b="-moz-",f="transitionend"):$.browser.opera?(b="-o-",f="oTransitionEnd"):$.browser.msie&&(b="-ms-",f="msTransitionEnd");for(var g in a)"transform"===g&&(a[b+"transform"]=a[g],delete a[g]),"transform-origin"===g&&(a[b+"transform-origin"]=a[g],delete a[g]);d.css(b+"transition-property",j);d.css(b+"transition-duration",c+"ms");d.css(b+"transition-delay",h+"ms");d.css(b+"transition-timing-function",i);setTimeout(function(){d.css(a)},1);var l=function(){d.get(0).removeEventListener(f, l,!1);d.css(b+"transition","");"function"==typeof e&&e()};d.get(0).addEventListener(f,l,!1)}else d.animate(a,c,e)}})};$.fn.CSSAnimateStop=function(){var a="";$.browser.webkit?a="-webkit-":$.browser.mozilla?a="-moz-":$.browser.opera?a="-o-":$.browser.msie&&(a="-ms-");$(this).css(a+"transition","")}; $.support.transition=function(){var a=(document.body||document.documentElement).style;return void 0!==a.transition||void 0!==a.WebkitTransition||void 0!==a.MozTransition||void 0!==a.MsTransition||void 0!==a.OTransition}();
+jQuery.fn.CSSAnimate=function(a,b,k,l,f){return this.each(function(){var c=jQuery(this);if(0!==c.length&&a){"function"==typeof b&&(f=b,b=jQuery.fx.speeds._default);"function"==typeof k&&(f=k,k=0);"function"==typeof l&&(f=l,l="cubic-bezier(0.65,0.03,0.36,0.72)");if("string"==typeof b)for(var j in jQuery.fx.speeds)if(b==j){b=jQuery.fx.speeds[j];break}else b=null;if(jQuery.support.transition){var e="",h="transitionEnd";jQuery.browser.webkit?(e="-webkit-",h="webkitTransitionEnd"):jQuery.browser.mozilla? (e="-moz-",h="transitionend"):jQuery.browser.opera?(e="-o-",h="otransitionend"):jQuery.browser.msie&&(e="-ms-",h="msTransitionEnd");j=[];for(d in a){var g=d;"transform"===g&&(g=e+"transform",a[g]=a[d],delete a[d]);"transform-origin"===g&&(g=e+"transform-origin",a[g]=a[d],delete a[d]);j.push(g);c.css(g)||c.css(g,0)}d=j.join(",");c.css(e+"transition-property",d);c.css(e+"transition-duration",b+"ms");c.css(e+"transition-delay",k+"ms");c.css(e+"transition-timing-function",l);c.css(e+"backface-visibility", "hidden");setTimeout(function(){c.css(a)},0);setTimeout(function(){c.called||!f?c.called=!1:f()},b+20);c.on(h,function(a){c.off(h);c.css(e+"transition","");a.stopPropagation();"function"==typeof f&&(c.called=!0,f());return!1})}else{for(var d in a)"transform"===d&&delete a[d],"transform-origin"===d&&delete a[d],"auto"===a[d]&&delete a[d];if(!f||"string"===typeof f)f="linear";c.animate(a,b,f)}}})}; jQuery.fn.CSSAnimateStop=function(){var a="",b="transitionEnd";jQuery.browser.webkit?(a="-webkit-",b="webkitTransitionEnd"):jQuery.browser.mozilla?(a="-moz-",b="transitionend"):jQuery.browser.opera?(a="-o-",b="otransitionend"):jQuery.browser.msie&&(a="-ms-",b="msTransitionEnd");jQuery(this).css(a+"transition","");jQuery(this).off(b)}; jQuery.support.transition=function(){var a=(document.body||document.documentElement).style;return void 0!==a.transition||void 0!==a.WebkitTransition||void 0!==a.MozTransition||void 0!==a.MsTransition||void 0!==a.OTransition}();
 
 /*******************************************************************************
- * jQuery.mb.components: jquery.mb.disclose
- * version: 1.0
- * © 2001 - 2012 Matteo Bicocchi (pupunzi), Open Lab
- *
- * Licences: MIT, GPL
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
- *
- * email: mbicocchi@open-lab.com
- * site: http://pupunzi.com
- *
  DATA:
 
  CONTAINERS:
@@ -76,7 +70,6 @@ $.fn.CSSAnimate=function(a,c,h,i,j,e){return this.each(function(){var d=$(this);
  data-animationtime
  data-animationdelay
  data-ease
-
  ******************************************************************************/
 
 (function($){
@@ -84,7 +77,7 @@ $.fn.CSSAnimate=function(a,c,h,i,j,e){return this.each(function(){var d=$(this);
   $.disclose = {
     name:"mb.disclose",
     author:"Matteo Bicocchi",
-    version:"1.0",
+    version:"1.1",
     defaults:{
       slideIntervall:5000,
       inTimer:600,
@@ -143,6 +136,7 @@ $.fn.CSSAnimate=function(a,c,h,i,j,e){return this.each(function(){var d=$(this);
           }
           return;
         }
+
         el.page=0;
         el.canAnimate=true;
         el.hasTouch = 'ontouchstart' in window;
@@ -202,7 +196,6 @@ $.fn.CSSAnimate=function(a,c,h,i,j,e){return this.each(function(){var d=$(this);
       banner.show();
 
       var fn= banner.children().eq(0).data("onenter") ? eval("("+banner.children().eq(0).data("onenter")+")") : el.opt.onEnter;
-      console.debug(banner.children().eq(0).data("onenter"))
       if(typeof fn == "function")
         fn(el);
 
@@ -333,7 +326,7 @@ $.fn.CSSAnimate=function(a,c,h,i,j,e){return this.each(function(){var d=$(this);
         fn(el);
 
       setTimeout(function(){
-        $el.CSSAnimate($elAnim, el.opt.outTimer, null, el.opt.ease, "all", function(){
+        $el.CSSAnimate($elAnim, el.opt.outTimer, null, el.opt.ease, function(){
           $el.remove();
           el.canAnimate = true;
         });
@@ -346,7 +339,7 @@ $.fn.CSSAnimate=function(a,c,h,i,j,e){return this.each(function(){var d=$(this);
       /*ENTER*/
       el.actualBanner = $newEl;
       setTimeout(function(){
-        el.actualBanner.CSSAnimate({top:0, left:0, opacity:1, transform: "rotate(0deg) scale(1)" }, el.opt.inTimer,null, el.opt.ease, "all", function(){
+        el.actualBanner.CSSAnimate({top:0, left:0, opacity:1, transform: "rotate(0deg) scale(1)" }, el.opt.inTimer,null, el.opt.ease, function(){
           el.actualBanner.children().eq(0).addClass("in");
           var fn= $newElProp.data("onenter") ? eval("("+$newElProp.data("onenter")+")") : el.opt.onEnter;
           if(typeof fn == "function")
@@ -392,7 +385,7 @@ $.fn.CSSAnimate=function(a,c,h,i,j,e){return this.each(function(){var d=$(this);
 
         $el.css(cssStart);
         setTimeout(function(){
-          $el.CSSAnimate(cssEnd, time, cssDelay, el.opt.ease, "all", function(){});
+          $el.CSSAnimate(cssEnd, time, cssDelay, el.opt.ease, function(){});
         },100);
       });
     },
