@@ -29,9 +29,10 @@
 
     <title>mb.scrollax 1.0</title>
     <link href="css/mb.scrollax.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <!--<script type="text/javascript" src="inc/jquery-1.10.2.js"></script>-->
     <script type="text/javascript" src="inc/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="inc/prefixfree.min.js"></script>
+    <!--<script type="text/javascript" src="inc/prefixfree.min.js"></script>-->
     <script type="text/javascript" src="inc/jquery.mb.scrollax.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
@@ -48,18 +49,9 @@
             transform-origin: 0 0;
         }
 
-        #console {
-            position: fixed;
-            font-size: 20px;
-            background: white;
-            width: 200px;
-            padding: 20px;
-            z-index: 1000;
-            max-height: 100%;
-            overflow: auto;
-        }
 
         #wrapper {
+            moz-backface-visibility: hidden;
             backface-visibility: hidden;
 
             position: relative;
@@ -101,15 +93,14 @@
             width: 30px;
             height: 30px;
             margin: 5px;
-            background-color: #3E3E3E;
-            background-color: rgba(0,0,0,0.5);
+            background: rgb(0,0,0);
+            background: rgba(0,0,0,0.5);
             display: inline-block;
             position: relative;
             border-radius: 15px;
             z-index: 1000;
             cursor: pointer;
         }
-
         #parallaxIndex div.sel{
             width: 30px;
             height: 30px;
@@ -128,8 +119,7 @@
 
             $.scrollax.init({
                 showSteps: true,
-                wheelSpeed:10,
-                scrollStep:1,
+                stopOnlyAtMarkers:false,
                 preloadImages:true,
                 onBeforePreloading:function(){
                     $("body").css({opacity:0});
@@ -139,7 +129,7 @@
                     $("#preloadBox .number").html(counter+"/"+tot);
                 },
                 onEndPreloading:function(){
-                    $("body").css({opacity:1})
+                    $("body").css({opacity:1});
                     $("#preloadBox").hide();
                 }
             });
@@ -150,7 +140,6 @@
             jQuery.timeline.addPageMarker(2800);
 
             $("#el1").addScrollax({
-                id            : "first",
                 start         : 400,
                 duration      : 600,
                 startanimation: {'margin-top': 0},
@@ -158,25 +147,22 @@
             });
 
             $("#el1Bgnd").addScrollax({
-                id            : "first",
                 start         : 400,
-                duration      : 1000,
+                duration      : 500,
                 startanimation: {'backgroundX': 0, 'backgroundY': 0},
                 endanimation  : {'backgroundX': 0, 'backgroundY': 2000}
             });
 
 
             $("#el2").addScrollax({
-                id          : "first",
                 start       : 400,
                 duration    : 300,
                 endanimation: {'top': 0}
             });
 
             $("#el2").addScrollax({
-                id            : "second",
                 start         : 1800,
-                duration      : 1000,
+                duration      : 500,
                 startanimation: {'top': 0},
                 endanimation  : {'top': 1200}
             });
@@ -199,21 +185,28 @@
 
 <div id="preloadBox" style="display: none">loading media: <span class="number"></span> </div>
 
-<!--<div id="console"></div>-->
 <div id="wrapper">
     <div id="parallaxIndex"></div>
 
-    <button onclick="$.scrollax.play(7)" style="position: absolute;z-index: 1000;top:10px; left:10px;">auto play
+    <button onclick="$.scrollax.play()" style="position: absolute;z-index: 1000;top:10px; left:10px;">auto play
     </button>
 
     <div id="el1" class="block"
          style="position:absolute;  z-index: 2; width:100%; height: 100%; padding-top: 10%; background-color:#dbd5c0"
-         data-start="300" data-duration="2500" data-startanimation="{'top':0}" data-endanimation="{'top':-1000}">
+         data-start="300"
+         data-duration="2500"
+         data-startanimation="{'top':0}"
+         data-endanimation="{'top':-1000}">
         <div id="el1Bgnd"
              style="opacity:.3; background: url(img/bg_1.jpg) no-repeat 0 0; background-size: cover; position: absolute; top:0 ;left: 0; width: 100%; height: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.6)"
-             data-start="0" data-duration="600" data-startanimation="{'opacity':0}"
+             data-start="0"
+             data-duration="600"
+             data-startanimation="{'opacity':0}"
              data-endanimation="{'opacity':1}"></div>
-        <div style="position: relative" data-start="300" data-duration="100" data-startanimation="{'opacity':1}"
+        <div style="position: relative"
+             data-start="300"
+             data-duration="100"
+             data-startanimation="{'opacity':1}"
              data-endanimation="{'opacity':0}">
             <h1>
                 <img src="img/blogLogoBig.png"><br>
@@ -221,7 +214,10 @@
             </h1>
             <br><br>
 
-            <div id="startScrolling" data-start="0" data-duration="200" data-startanimation="{'opacity':1}"
+            <div id="startScrolling"
+                 data-start="0"
+                 data-duration="200"
+                 data-startanimation="{'opacity':1}"
                  data-endanimation="{'opacity':0}">
                 <h2>start scrolling</h2>
 
@@ -234,12 +230,20 @@
          style=" position:absolute; z-index: 1; width:100%; padding: 40px; height: 100%; padding-top: 20%; background-color:#89cfd3; top:40%; box-shadow: 0 0 10px rgba(0,0,0,0.6)">
         <div id="el2Bgnd"
              style="background: url(img/bg_2.jpg) 0 0; background-attachment: fixed; position: absolute; top:0 ;left: 0; width: 100%; height: 100%"
-             data-start="300" data-duration="1000" data-startanimation="{'opacity':1, 'backgroundY':0}"
+             data-start="300"
+             data-duration="1000"
+             data-startanimation="{'opacity':1, 'backgroundY':0}"
              data-endanimation="{'opacity':0, 'backgroundY':1000}"></div>
-        <div style="position: absolute; top:20%" data-start="1200" data-duration="1000" data-endanimation="{'top':600}">
+        <div style="position: absolute; top:20%"
+             data-start="1200"
+             data-duration="1000"
+             data-endanimation="{'top':600}">
             <h1>
-                <img src="img/blogLogoBig.png" style="transform-origin: 0 0" data-ease="easeOutBounce" data-start="800"
-                     data-duration="500" data-startanimation="{'scale':0, 'opacity':0}"
+                <img src="img/blogLogoBig.png" style="transform-origin: 0 0"
+                     data-ease="easeOutBounce"
+                     data-start="800"
+                     data-duration="500"
+                     data-startanimation="{'scale':0, 'opacity':0}"
                      data-endanimation="{'scale':1, 'opacity':1}"><br>
                 The web worker
             </h1>
@@ -257,7 +261,10 @@
 
     <div id="theEnd"
          style="position:absolute ;background: #2f302f; color:#fff; z-index: 0; width:100%; height: 100%; top:1000px; opacity:1; padding-top: 340px;"
-         data-start="1800" data-duration="800" data-ease="easeOutBounce" data-endanimation="{'top':0, 'opacity':1}">
+         data-start="1800"
+         data-duration="800"
+         data-ease="easeOutBounce"
+         data-endanimation="{'top':0, 'opacity':1}">
 
         <h1>The end</h1>
 

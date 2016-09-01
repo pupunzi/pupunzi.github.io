@@ -98,6 +98,38 @@ body{
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  /*
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    moz-transform-style: preserve-3d;
+    webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    moz-transform: translate3d(0,0,0);
+    webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    */
+
+}
+
+/* The back-face and the transform properties are needed to preserve performances */
+.scrollaxEl{
+  /*
+   -moz-backface-visibility: hidden;
+   -webkit-backface-visibility: hidden;
+   backface-visibility: hidden;
+
+   moz-transform-style: preserve-3d;
+   webkit-transform-style: preserve-3d;
+   transform-style: preserve-3d;
+
+
+   moz-transform: translate3d(0,0,0);
+   webkit-transform: translate3d(0,0,0);
+   transform: translate3d(0,0,0);
+ */
 }
 
 .square{

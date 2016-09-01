@@ -14,44 +14,16 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 07/01/14 22.50
+ *  last modified: 27/01/14 20.08
  *  *****************************************************************************
  */
 
 /*Browser detection patch*/
-(function () {
-	if (!(8 > jQuery.fn.jquery.split(".")[1])) {
-		jQuery.browser = {};
-		jQuery.browser.mozilla = !1;
-		jQuery.browser.webkit = !1;
-		jQuery.browser.opera = !1;
-		jQuery.browser.msie = !1;
-		var a = navigator.userAgent;
-		jQuery.browser.name = navigator.appName;
-		jQuery.browser.fullVersion = "" + parseFloat(navigator.appVersion);
-		jQuery.browser.majorVersion = parseInt(navigator.appVersion, 10);
-		var c, b;
-		if (-1 != (b = a.indexOf("Opera"))) {
-			if (jQuery.browser.opera = !0, jQuery.browser.name = "Opera", jQuery.browser.fullVersion = a.substring(b + 6), -1 != (b = a.indexOf("Version")))jQuery.browser.fullVersion = a.substring(b + 8)
-		} else if (-1 != (b = a.indexOf("MSIE")))jQuery.browser.msie = !0, jQuery.browser.name = "Microsoft Internet Explorer", jQuery.browser.fullVersion = a.substring(b + 5); else if (-1 != (b = a.indexOf("Chrome")))jQuery.browser.webkit = !0, jQuery.browser.name = "Chrome", jQuery.browser.fullVersion = a.substring(b + 7); else if (-1 != (b = a.indexOf("Safari"))) {
-			if (jQuery.browser.webkit = !0, jQuery.browser.name = "Safari", jQuery.browser.fullVersion = a.substring(b + 7), -1 != (b = a.indexOf("Version")))jQuery.browser.fullVersion = a.substring(b + 8)
-		} else if (-1 != (b = a.indexOf("Firefox")))jQuery.browser.mozilla = !0, jQuery.browser.name = "Firefox", jQuery.browser.fullVersion = a.substring(b + 8); else if ((c = a.lastIndexOf(" ") + 1) < (b = a.lastIndexOf("/")))jQuery.browser.name = a.substring(c, b), jQuery.browser.fullVersion = a.substring(b + 1), jQuery.browser.name.toLowerCase() == jQuery.browser.name.toUpperCase() && (jQuery.browser.name = navigator.appName);
-		if (-1 != (a = jQuery.browser.fullVersion.indexOf(";")))jQuery.browser.fullVersion = jQuery.browser.fullVersion.substring(0, a);
-		if (-1 != (a = jQuery.browser.fullVersion.indexOf(" ")))jQuery.browser.fullVersion = jQuery.browser.fullVersion.substring(0, a);
-		jQuery.browser.majorVersion = parseInt("" + jQuery.browser.fullVersion, 10);
-		isNaN(jQuery.browser.majorVersion) && (jQuery.browser.fullVersion = "" + parseFloat(navigator.appVersion), jQuery.browser.majorVersion = parseInt(navigator.appVersion, 10));
-		jQuery.browser.version = jQuery.browser.majorVersion
-	}
-})(jQuery);
-
-/*******************************************************************************
- * jQuery.mb.components: jquery.mb.CSSAnimate
- ******************************************************************************/
+var nAgt=navigator.userAgent;if(!jQuery.browser){jQuery.browser={},jQuery.browser.mozilla=!1,jQuery.browser.webkit=!1,jQuery.browser.opera=!1,jQuery.browser.safari=!1,jQuery.browser.chrome=!1,jQuery.browser.msie=!1,jQuery.browser.ua=nAgt,jQuery.browser.name=navigator.appName,jQuery.browser.fullVersion=""+parseFloat(navigator.appVersion),jQuery.browser.majorVersion=parseInt(navigator.appVersion,10);var nameOffset,verOffset,ix;if(-1!=(verOffset=nAgt.indexOf("Opera")))jQuery.browser.opera=!0,jQuery.browser.name="Opera",jQuery.browser.fullVersion=nAgt.substring(verOffset+6),-1!=(verOffset=nAgt.indexOf("Version"))&&(jQuery.browser.fullVersion=nAgt.substring(verOffset+8));else if(-1!=(verOffset=nAgt.indexOf("OPR")))jQuery.browser.opera=!0,jQuery.browser.name="Opera",jQuery.browser.fullVersion=nAgt.substring(verOffset+4);else if(-1!=(verOffset=nAgt.indexOf("MSIE")))jQuery.browser.msie=!0,jQuery.browser.name="Microsoft Internet Explorer",jQuery.browser.fullVersion=nAgt.substring(verOffset+5);else if(-1!=nAgt.indexOf("Trident")){jQuery.browser.msie=!0,jQuery.browser.name="Microsoft Internet Explorer";var start=nAgt.indexOf("rv:")+3,end=start+4;jQuery.browser.fullVersion=nAgt.substring(start,end)}else-1!=(verOffset=nAgt.indexOf("Chrome"))?(jQuery.browser.webkit=!0,jQuery.browser.chrome=!0,jQuery.browser.name="Chrome",jQuery.browser.fullVersion=nAgt.substring(verOffset+7)):-1!=(verOffset=nAgt.indexOf("Safari"))?(jQuery.browser.webkit=!0,jQuery.browser.safari=!0,jQuery.browser.name="Safari",jQuery.browser.fullVersion=nAgt.substring(verOffset+7),-1!=(verOffset=nAgt.indexOf("Version"))&&(jQuery.browser.fullVersion=nAgt.substring(verOffset+8))):-1!=(verOffset=nAgt.indexOf("AppleWebkit"))?(jQuery.browser.webkit=!0,jQuery.browser.name="Safari",jQuery.browser.fullVersion=nAgt.substring(verOffset+7),-1!=(verOffset=nAgt.indexOf("Version"))&&(jQuery.browser.fullVersion=nAgt.substring(verOffset+8))):-1!=(verOffset=nAgt.indexOf("Firefox"))?(jQuery.browser.mozilla=!0,jQuery.browser.name="Firefox",jQuery.browser.fullVersion=nAgt.substring(verOffset+8)):(nameOffset=nAgt.lastIndexOf(" ")+1)<(verOffset=nAgt.lastIndexOf("/"))&&(jQuery.browser.name=nAgt.substring(nameOffset,verOffset),jQuery.browser.fullVersion=nAgt.substring(verOffset+1),jQuery.browser.name.toLowerCase()==jQuery.browser.name.toUpperCase()&&(jQuery.browser.name=navigator.appName));-1!=(ix=jQuery.browser.fullVersion.indexOf(";"))&&(jQuery.browser.fullVersion=jQuery.browser.fullVersion.substring(0,ix)),-1!=(ix=jQuery.browser.fullVersion.indexOf(" "))&&(jQuery.browser.fullVersion=jQuery.browser.fullVersion.substring(0,ix)),jQuery.browser.majorVersion=parseInt(""+jQuery.browser.fullVersion,10),isNaN(jQuery.browser.majorVersion)&&(jQuery.browser.fullVersion=""+parseFloat(navigator.appVersion),jQuery.browser.majorVersion=parseInt(navigator.appVersion,10)),jQuery.browser.version=jQuery.browser.majorVersion}jQuery.browser.android=/Android/i.test(nAgt),jQuery.browser.blackberry=/BlackBerry|BB|PlayBook/i.test(nAgt),jQuery.browser.ios=/iPhone|iPad|iPod|webOS/i.test(nAgt),jQuery.browser.operaMobile=/Opera Mini/i.test(nAgt),jQuery.browser.windowsMobile=/IEMobile|Windows Phone/i.test(nAgt),jQuery.browser.kindle=/Kindle|Silk/i.test(nAgt),jQuery.browser.mobile=jQuery.browser.android||jQuery.browser.blackberry||jQuery.browser.ios||jQuery.browser.windowsMobile||jQuery.browser.operaMobile||jQuery.browser.kindle,jQuery.isMobile=jQuery.browser.mobile,jQuery.isTablet=jQuery.browser.mobile&&jQuery(window).width()>765,jQuery.isAndroidDefault=jQuery.browser.android&&!/chrome/i.test(nAgt);
 
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = /android/.test(ua);
 var isiOs = /(iphone|ipod|ipad)/.test(ua);
-var isOpera = /opera/.test(ua);
 
 /*events mapping*/
 var isDevice = 'ontouchstart' in window;
@@ -93,33 +65,25 @@ events.winResize = "resize";
 
 /*****************************************************************************/
 
-jQuery.fn.unselectable = function () {
-	return this.each(function () {
-		jQuery(this).css({
-			"-moz-user-select"  : "none",
-			"-khtml-user-select": "none",
-			"user-select"       : "none"
-		}).attr("unselectable", "on");
-	});
-};
-
-//jQuery.getScript("inc/fastfix.js");
-
 (function ($) {
 	$.scrollax = {
 		name    : "jquery.mb.scrollax",
 		author  : "Matteo Bicocchi (pupunzi)",
-		version : "1.1",
+		version : "1.5",
 		defaults: {
 			elements          : "[data-start]",
-			wheelSpeed        : 10,
-			scrollStep        : 5,
+			wheelSpeed        : 1,
+			//scrollStep should not be changed as this can compromize performance
+			scrollStep        : 2,
+			scrollSpeed       : 50,
 			direction         : "vertical",
 			showSteps         : true,
 			preloadImages     : true,
-			onBeforePreloading: function () { /*$("body").css({visibility:"hidden", opacity:0}); console.debug("start loading")*/},
-			onPreloading      : function (counter, tot) { /*console.debug(counter, "/", tot)*/},
-			onEndPreloading   : function () {/*$("body").css({visibility:"visible"}).fadeTo(1000,1); console.debug("images loaded")*/}
+			activateKeyboard  :true,
+			stopOnlyAtMarkers :true,
+			onBeforePreloading: function () {},
+			onPreloading      : function (counter, tot) {},
+			onEndPreloading   : function () {}
 		},
 
 		init: function (options) {
@@ -137,11 +101,12 @@ jQuery.fn.unselectable = function () {
 			$.timeline.scrollStep = $.scrollax.defaults.scrollStep *  10;
 //			direction works only for touch devices.
 			$.timeline.direction = $.scrollax.defaults.direction;
+			$.timeline.activateKeyboard = $.scrollax.defaults.activateKeyboard;
 
 			$.scrollax.els = $($.scrollax.defaults.elements);
 			$.scrollax.scrolled = 0;
 			$.scrollax.maxScroll = 0;
-			$.scrollax.els.each(function (i) {
+			$.scrollax.els.each(function () {
 				$.scrollax.addElement(this);
 			});
 
@@ -162,25 +127,29 @@ jQuery.fn.unselectable = function () {
 				var isPageMarker = $.timeline.pageMarkers.indexOf($.timeline.pos) >= 0;
 
 				if (isPageMarker){
-					/*
-					 var event = $.Event("pageMarker");
-					 event.pageMarker = $.timeline.pos;
-					 $(document).trigger(event);
-					 */
+					var event = $.Event("pageMarker");
+					event.pageMarker = $.timeline.pos;
+					$(document).trigger(event);
+
 					$.timeline.stopMoveBy();
+					clearInterval($.timeline.step);
+
+					if($.timeline.animationIsRunning )
+						$("body").off("mousewheel.moving").on("mousewheel.moving", function(){
+							$.timeline.stopMoveBy();
+							return false;
+						});
+
+
 					$(".pageMarker").removeClass("sel");
 					$("#slide_"+$.timeline.pos).addClass("sel");
+
+					if($(".pageMarker.clicked").length && $(".pageMarker.clicked").get(0).marker == $.timeline.pos)
+						$(".pageMarker.clicked").removeClass("clicked");
 				}
 
 			});
 
-			if (!$.browser.msie)
-				$(window).off(events.winResize + ".scrollax").on(events.winResize + ".scrollax", function () {
-					clearTimeout($.scrollax.restart);
-					$.scrollax.restart = setTimeout(function () {
-						self.location.href = self.location.href;
-					}, 300);
-				});
 
 		},
 
@@ -198,7 +167,7 @@ jQuery.fn.unselectable = function () {
 					obj[i] = $el.data()[i];
 				}
 			}
-
+			obj.id = el.id;
 			el.isInit = true;
 
 			/**
@@ -259,8 +228,6 @@ jQuery.fn.unselectable = function () {
 
 			if (!el.scrollax)
 				el.scrollax = [];
-			el.scrollax.push(obj);
-			el.scrollax = $.unique(el.scrollax);
 
 			/*Check the window scroll height according to animations timelines ************************/
 			$.scrollax.maxScroll = $.scrollax.maxScroll < obj.endScrollPos + $(window).height() ? obj.endScrollPos + $(window).height() : $.scrollax.maxScroll;
@@ -271,6 +238,9 @@ jQuery.fn.unselectable = function () {
 
 			if (obj.customEvent)
 				el.customEvent = obj.customEvent;
+
+			el.scrollax.push(obj);
+			el.scrollax = $.unique(el.scrollax);
 
 			return this;
 
@@ -317,14 +287,16 @@ jQuery.fn.unselectable = function () {
 				}
 
 				if (pos >= obj.startScrollPos && pos <= obj.endScrollPos) {
+
+
 					var animVal = $.scrollax.setPropVal(obj, pos);
 					var css = $.scrollax.generateCss(animVal);
 					$(el).css(css);
 
 					if (el.customEvent)
 						el.customEvent(pos, obj);
-
 				}
+
 			}
 		},
 
@@ -388,7 +360,7 @@ jQuery.fn.unselectable = function () {
 		},
 
 		play: function (speed) {
-			if (!speed) speed = 10;
+			if (!speed) speed = 1;
 			if ($.scrollax.autoplay) {
 				clearInterval($.scrollax.autoplay);
 				$.scrollax.autoplay = false;
@@ -423,12 +395,59 @@ jQuery.fn.unselectable = function () {
 			var el = this;
 			for(var index in jQuery.timeline.pageMarkers){
 				var marker = jQuery.timeline.pageMarkers[index];
+				if (typeof marker == "function")
+					continue;
 				var indexLine = jQuery("<div/>").attr({id: "slide_"+marker}).addClass("pageMarker");
 				indexLine.get(0).marker = marker;
 				indexLine.on("click",function(){
 					jQuery.timeline.moveTo(this.marker);
+					$(this).addClass("clicked");
 				});
 				el.append(indexLine);
+
+				if(marker == $.timeline.pos)
+					indexLine.addClass("sel");
+			}
+
+		},
+		addAnimation: function(from, to, delay, ease, time){
+
+			var el = this;
+
+			if(typeof from == undefined)
+				return;
+
+			if(typeof to == undefined)
+				return;
+
+			if (!ease)
+				ease = "cubic-bezier(0.65,0.03,0.36,0.72)";
+
+			if(!delay)
+				delay = 0;
+
+			if(!time)
+				time = 1500;
+
+			from = JSON.parse(from.replace(/'/g, "\""));
+			to =  JSON.parse(to.replace(/'/g, "\""));
+
+
+			if ($.timeline.dir == "forward"){
+				setTimeout(function(){
+
+					$.timeline.animationIsRunning = true;
+					clearTimeout($.timeline.donotmove);
+					$.timeline.donotmove = setTimeout(function(){
+						$.timeline.animationIsRunning = false;
+						$("body").off("mousewheel.moving");
+					},1500);
+
+					el.css(from).CSSAnimate(to,time,function(){});
+				},delay);
+
+			} else {
+				el.css(to).CSSAnimate(from,time,function(){});
 			}
 		}
 	};
@@ -436,11 +455,14 @@ jQuery.fn.unselectable = function () {
 	$.timeline = {
 		frames       : 4000,
 		pos          : 0,
+		interval     : 10,
+		activateKeyboard : true,
 		pageMarkers  : [],
+
 		buildScroller: function () {
 			$(".scrollaxerCont").remove();
 			var scroller = $("<div/>").addClass("scrollaxer").css({width: 20, height: $.timeline.frames + $(window).height()});
-			var scrollerCont = $("<div/>").addClass("scrollaxerCont").css({width: 50, position: "fixed", top: 0, right: 0, overflowX: "hidden", overflowY: "visible", height: "100%", opacity: .5, zIndex: 9999});
+			var scrollerCont = $("<div/>").addClass("scrollaxerCont").css({width: 50, position: "fixed", top: 0, right: 0, overflowX: "hidden", overflowY: $.browser.msie && $.browser.version<9 ? "scroll" : "visible", height: "100%", opacity: .5, zIndex: 9999});
 			scrollerCont.append(scroller);
 			scrollerCont.unselectable();
 			scrollerCont.on("mousewheel", function (event) {
@@ -451,9 +473,9 @@ jQuery.fn.unselectable = function () {
 				scrollerCont.on("mouseenter",function () {
 					$(this).animate({opacity: 1});
 				}).on("mouseleave", function () {
-							$.timeline.scroller.scrollTop($.timeline.pos);
-							$(this).animate({opacity: .5});
-						});
+					$.timeline.scroller.scrollTop($.timeline.pos);
+					$(this).animate({opacity: .5});
+				});
 			else
 				scrollerCont.css({opacity: 1});
 
@@ -464,16 +486,25 @@ jQuery.fn.unselectable = function () {
 
 				var oldScrolled = $.timeline.pos;
 				var newPos = $.timeline.scroller.scrollTop();
+				$.timeline.dir = oldScrolled < newPos ? "forward" : "backward";
+
+				if( ($.timeline.dir == "forward" && newPos < oldScrolled + $.timeline.interval) || ($.timeline.dir == "backward" && newPos > oldScrolled - $.timeline.interval) )
+					return;
+
 				var event = $.Event("timelineChanged");
+				event.pos = newPos;
+				$.timeline.pos = newPos;
+				$(document).trigger(event);
+
 				if (oldScrolled < newPos) {
-					for (var i = oldScrolled + 1; i <= newPos; i++) {
+					for (var i = oldScrolled ; i <= newPos; i+=$.timeline.interval) {
 						event.pos = i;
 						$.timeline.dir = "forward";
 						$.timeline.pos = i;
 						$(document).trigger(event);
 					}
 				} else if (oldScrolled > newPos){
-					for (i = oldScrolled - 1; i >= newPos; i--) {
+					for (i = oldScrolled ; i >= newPos; i-=$.timeline.interval) {
 						event.pos = i;
 						$.timeline.dir = "backward";
 						$.timeline.pos = i;
@@ -483,20 +514,28 @@ jQuery.fn.unselectable = function () {
 					event.pos = $.timeline.pos;
 					$(document).trigger(event);
 				}
+
 			});
 
 			if (!isDevice) {
 				$("body").on("mousewheel", function (event, delta, deltaX, deltaY) {
 
-					event.preventDefault();
 					if ($.scrollax.autoplay) {
 						clearInterval($.scrollax.autoplay);
 						$.scrollax.autoplay = false;
 					}
+
 					$.timeline.moveBy(-deltaY);
+					event.preventDefault();
+
 				});
 
+				if($.timeline.activateKeyboard)
+					$.timeline.keyboard();
+
+
 			} else {
+
 				$.timeline.touch = {};
 				$.timeline.touch.x = 0;
 				$.timeline.touch.y = 0;
@@ -538,6 +577,24 @@ jQuery.fn.unselectable = function () {
 			}
 		},
 
+		keyboard:function(){
+			$(document).on("keydown.scrollax",function(e){
+
+				switch(e.keyCode){
+					case 38:
+						$.timeline.moveBy(-1);
+						e.preventDefault();
+						break;
+					case 40:
+						$.timeline.moveBy(1);
+						e.preventDefault();
+						break;
+					default:
+						break;
+				}
+			})
+		},
+
 		addPageMarker: function (step) {
 			$.timeline.pageMarkers.push(step);
 		},
@@ -547,45 +604,71 @@ jQuery.fn.unselectable = function () {
 			if (($.timeline.isMoving && delta.sign() == $.timeline.runningDeltaSign) || !delta)
 				return;
 
-			clearInterval($.timeline.step);
+
+			if($.timeline.step)
+				clearInterval($.timeline.step);
 
 			$.timeline.isMoving = true;
 			$.timeline.runningDeltaSign = delta.sign();
 
 			var counter = 0;
-			$.timeline.step = setInterval(function () {
+			function moveSteps () {
 				counter++;
 				var reallyStop = true;
 
 				if (counter > ($.timeline.wheelSpeed / $.timeline.scrollStep)) {
-					for (var pmi in $.timeline.pageMarkers) {
-						var pm = $.timeline.pageMarkers[pmi];
-						if (pm > $.timeline.pos && delta.sign() == 1 && pm < ($.timeline.pos + ($.timeline.wheelSpeed * 2) + 1) ) { //&& !isDevice
-							reallyStop = false;
+
+					if( $.timeline.pageMarkers.length) {
+						for (var pmi in $.timeline.pageMarkers) {
+
+							var pm = $.timeline.pageMarkers[pmi];
+
+							if (
+									$.timeline.actualPageMarker != pm && (
+									(pm > $.timeline.pos && delta.sign() == 1 && pm < ($.timeline.pos + ($.timeline.wheelSpeed * 2) + 1)) ||
+									(pm < $.timeline.pos && delta.sign() == -1 && pm > ($.timeline.pos - ($.timeline.wheelSpeed * 2) -1 ))
+									)) {
+
+								$.timeline.actualPageMarker = pm;
+
+								clearInterval($.timeline.step);
+
+								reallyStop = false;
+								break;
+							}
 						}
 
+						if (reallyStop && !$.scrollax.defaults.stopOnlyAtMarkers )
+							$.timeline.stopMoveBy();
 					}
-					if (reallyStop)
-						$.timeline.stopMoveBy();
-				}
-				var d = $.timeline.scrollStep * delta.sign();
 
+				} else {
+					$.timeline.stopMoveBy();
+				}
+
+				var d = $.timeline.scrollStep * delta.sign();
 				$.timeline.delta = $.timeline.scroller.scrollTop() + d;
 				$.timeline.scroller.scrollTop($.timeline.delta);
-			},.1);
+
+			}
+
+			$.timeline.step = setInterval(moveSteps, $.scrollax.defaults.scrollSpeed);
 
 		},
 
 		stopMoveBy: function () {
-			clearInterval($.timeline.step);
+
+			if($.timeline.step)
+				clearInterval($.timeline.step);
 			$.timeline.isMoving = false;
+
 		},
 
 		moveTo         : function (val) {
-			var time = $.timeline.scroller.scrollTop() ? Math.abs($.timeline.scroller.scrollTop() * 2) : Math.abs(val * 5);
-			var time = 2000;
-			$.timeline.scroller.animate({scrollTop: val}, time, "linear");//"easeInOutQuint"
+			var time = 1500* Math.ceil(Math.abs((val-$.timeline.scroller.scrollTop())/1000));
+			$.timeline.scroller.animate({scrollTop: val}, time, "easeOutQuart");//"easeInOutQuint"
 		},
+
 		refresh        : function (val) {
 			$.timeline.frames = val;
 			$(".scrollaxer").css({height: $.timeline.frames});
@@ -608,9 +691,9 @@ jQuery.fn.unselectable = function () {
 		}
 	};
 
-
 	$.fn.scrollax = $.scrollax.init;
 	$.fn.createPageMarkerIndex = $.scrollax.createIndex;
+	$.fn.addAnimation = $.scrollax.addAnimation;
 	$.fn.renderAnimation = $.scrollax.renderAnimation;
 	$.fn.addScrollax = $.scrollax.addScrollax;
 
@@ -619,6 +702,11 @@ jQuery.fn.unselectable = function () {
 	jQuery.preloadImages = function (callback) {
 
 		var imagesArray = [];
+
+		if($.browser.msie && $.browser.version<9){
+			setTimeout(callback,5000);
+			return;
+		}
 
 		/*Images in stylesheets*/
 		var sheets = $("style");//array of stylesheets
@@ -655,61 +743,42 @@ jQuery.fn.unselectable = function () {
 			var img = $("<img/>");
 			img.attr("src", imagesArray[x]).on("load",function () {
 				counter++;
-				$.scrollax.defaults.onPreloading(counter, imagesArray.length);
 
+				$.scrollax.defaults.onPreloading(counter, imagesArray.length);
 				if (counter == imagesArray.length && typeof callback == "function")
 					callback();
 			}).on("error", function(){
-						counter++;
-						$.scrollax.defaults.onPreloading(counter, imagesArray.length);
-						if (counter == imagesArray.length && typeof callback == "function"){
-							callback();
-						}
-					})
+				counter++;
+				$.scrollax.defaults.onPreloading(counter, imagesArray.length);
+				if (counter == imagesArray.length && typeof callback == "function"){
+					callback();
+				}
+			})
 
 		}
-		return imagesArray;
 
+		return imagesArray;
 	}
 
 })(jQuery);
 
 
-
-jQuery.fn.addAnimation = function(from, to, delay, ease, time){
-
-	if(typeof from == undefined)
-		return;
-
-	if(typeof to == undefined)
-		return;
-
-	if (!ease)
-		ease = "cubic-bezier(0.65,0.03,0.36,0.72)";
-
-	if(!delay)
-		delay = 0;
-
-	if(!time)
-		time = 1500;
-
-	from = JSON.parse(from.replace(/'/g, "\""));
-	to =  JSON.parse(to.replace(/'/g, "\""));
-
-	if (jQuery.timeline.dir == "forward"){
-		jQuery(this).css(from).animate(to,time);
-	}else{
-		jQuery(this).css(to).animate(from,time);
-	}
-}
+jQuery.fn.unselectable = function () {
+	return this.each(function () {
+		jQuery(this).css({
+			"-moz-user-select"  : "none",
+			"-khtml-user-select": "none",
+			"user-select"       : "none"
+		}).attr("unselectable", "on");
+	});
+};
 
 Number.prototype.sign = function () {
 	return this > 0 ? 1 : -1;
 }
 
 if (!Array.prototype.indexOf){
-	Array.prototype.indexOf = function(elt)
-	{
+	Array.prototype.indexOf = function(elt) {
 		var len = this.length >>> 0;
 
 		var from = Number(arguments[1]) || 0;

@@ -107,12 +107,18 @@
 	<script>
 		$(function(){
 			$.scrollax.init({
-                wheelSpeed:10,
+                wheelSpeed:100,
                 scrollStep: 1,
                 showSteps:true
 			});
 
-			$.timeline.addEvent(100,function(){
+            jQuery.timeline.addPageMarker(0);
+            jQuery.timeline.addPageMarker(800);
+            jQuery.timeline.addPageMarker(2100);
+            jQuery.timeline.addPageMarker(4100);
+
+
+            $.timeline.addEvent(100,function(){
 				if($.timeline.dir == "forward"){
 					$("#startScrolling").fadeOut();
 				}else{
@@ -129,7 +135,7 @@
 			});
 
 			$("#el1Bgnd").addScrollax({
-				id:"first",
+				id:"second",
 				start:600,
 				duration:600,
 				startanimation:{'backgroundX':0, 'backgroundY':0},
@@ -145,7 +151,7 @@
 			});
 
 			$("#text1").addScrollax({
-				id:"first",
+				id:"third",
 				start:1350,
 				duration:600,
 				startanimation:{'margin-top':0},
@@ -274,8 +280,6 @@
 		<h1>The end</h1>
 
 	</div>
-
-
 
 </div>
 </body>
