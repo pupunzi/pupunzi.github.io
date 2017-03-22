@@ -127,7 +127,6 @@
             text-align: center;
             font-weight: 100;
             line-height: 1;
-
         }
 
         .mbBalloonOverlay {
@@ -158,11 +157,49 @@
                 background: linear-gradient(90deg, #ffffff 0%, #dcdcdc 100%);
                 box-shadow: 0 0 10px rgba(0,0,0,0.3);
             }
-
         }
 
-        .mbBalloonOpener.highlight{
+        .mbBalloonOpener.highlight {
             box-shadow: 0 0 30px 3px rgba(255, 255, 255, 0.90);
+        }
+
+
+        #forkOnGit{
+          position: fixed;
+          height: 149px;
+          width: 149px;
+          overflow:hidden;
+          padding: 0;
+          margin: 0;
+          top:0;
+          right: 0;
+        }
+
+        #forkOnGit a{
+
+          display: block;
+          width: 190px;
+          font-size: 14px;
+          font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT",
+          "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma,
+          Geneva, "Helvetica Neue", Helvetica, Arial, sans serif;
+
+          background-color: #333;
+          color: #FFF;
+          word-spacing: 2px;
+          text-decoration: none;
+          padding: 5px 15px 5px 25px;
+
+          position:relative;
+          left: 20px;
+          top: -20px;
+          text-align: center;
+
+          transform-origin: 0 0 ;
+          transform:rotate(45deg);
+
+          background-image: linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+
         }
 
 
@@ -171,11 +208,9 @@
     <script>
 
         $(function () {
-
             var isIframe=function(){var a=!1;try{self.location.href!=top.location.href&&(a=!0)}catch(b){a=!0}return a};if(!isIframe()){var logo=$("<a href='http://pupunzi.com/#mb.components/components.html' style='position:absolute;top:50px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");$("body").prepend(logo),$("#logo").fadeIn()}
 
             jQuery.balloon.init();
-
             setTimeout(function(){
                 $("#balloon2").showBalloon();
             },10);
@@ -184,8 +219,6 @@
                 var el = $(this);
                 el.showCode(el);
             });
-
-
         });
 
         function printOutHTML(el){
@@ -227,6 +260,8 @@
 </head>
 
 <body>
+<!--https://github.com/pupunzi/jquery.mb.balloon-->
+<div id="forkOnGit"><a href="https://github.com/pupunzi/jquery.mb.balloon">Fork me on GitHub</a></div>
 
 <div id="wrapper">
     <h1>A fancy, cleaver balloon for your content</h1>
