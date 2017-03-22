@@ -22,204 +22,213 @@
 
 <html>
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>jquery.mb.balloon</title>
+  <title>jquery.mb.balloon</title>
 
-    <link href="css/mb.balloon.css" media="all" rel="stylesheet" type="text/css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="inc/jquery.mb.balloon.js"></script>
+  <link href="css/mb.balloon.css" media="all" rel="stylesheet" type="text/css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script src="inc/jquery.mb.balloon.js"></script>
 
-    <style type="text/css">
+  <style type="text/css">
 
-        @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
-        *{
-            box-sizing: border-box;
-        }
+    *{
+      box-sizing: border-box;
+    }
 
-        html {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 14px;
-        }
+    html {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+    }
 
-        body {
-            position: relative;
-            min-width: 100%;
-            min-height: 100%;
-            background: linear-gradient(135deg, rgb(31, 97, 193) 0%, rgb(81, 150, 191) 100%);
-            background: linear-gradient(180deg, #ffa227 0%, #f2be01 100%);
-            color: #fff;
-            margin: 0;
-            padding: 100px 20px;
-        }
+    body {
+      position: relative;
+      min-width: 100%;
+      min-height: 100%;
+      background: linear-gradient(135deg, rgb(31, 97, 193) 0%, rgb(81, 150, 191) 100%);
+      background: linear-gradient(180deg, #ffa227 0%, #f2be01 100%);
+      color: #fff;
+      margin: 0;
+      padding: 100px 20px;
+    }
 
-        h1 {
-            margin: 10px;
-            padding: 0;
-            box-sizing: border-box;
-            font-size: 420%;
-            font-weight: 100;
-        }
+    h1 {
+      margin: 10px;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 420%;
+      font-weight: 100;
+      color: #444;
+    }
 
-        h3 {
-            margin-top: 0;
-        }
+    h2 {
+      margin: 10px;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 320%;
+      font-weight: 100;
+    }
 
-        a {
-            color: #fff;
-        }
+    h3 {
+      margin-top: 0;
+    }
 
-        #wrapper{
-            width: 100%;
-            position: relative;
-            margin: auto;
-            text-align: center;
-        }
+    a {
+      color: #fff;
+    }
 
-        .box {
-            position: relative;
-            display: inline-block;
-            margin: 20px 80px;
-            vertical-align: top;
-            padding: 10px;
-            text-align: center;
-            cursor: default;
-            max-width: 300px;
-            font-size: 18px;
-            color: #333;
-            border-radius: 5px;
-            border: 1px solid #f3f3f3;
-            min-height: 200px;
-            min-width: 340px;
-            /*background-color: rgba(229, 143, 39, 0.71);*/
-            background: linear-gradient(90deg, #ffffff 0%, #dcdcdc 100%);
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
+    #wrapper{
+      width: 100%;
+      position: relative;
+      margin: auto;
+      text-align: center;
+    }
 
-        input.opener {
-            position: relative;
-            display: inline-block;
-            margin: 10px 150px;
-            padding: 10px;
-            text-align: left;
-            cursor: default;
-            border: 1px solid #999;
-            background: rgba(250, 250, 250,.6);
-            max-width: 300px;
-            color: #333;
-        }
+    .box {
+      position: relative;
+      display: inline-block;
+      margin: 20px 80px;
+      vertical-align: top;
+      padding: 10px;
+      text-align: center;
+      cursor: default;
+      max-width: 300px;
+      font-size: 18px;
+      color: #333;
+      border-radius: 5px;
+      border: 1px solid #f3f3f3;
+      min-height: 200px;
+      min-width: 340px;
+      /*background-color: rgba(229, 143, 39, 0.71);*/
+      background: linear-gradient(90deg, #ffffff 0%, #dcdcdc 100%);
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
 
-        ::-webkit-input-placeholder {
-            color: rgba(0, 0, 0, 0.46);
-            font-size: 150%;
-        }
+    input.opener {
+      position: relative;
+      display: inline-block;
+      margin: 10px 150px;
+      padding: 10px;
+      text-align: left;
+      cursor: default;
+      border: 1px solid #999;
+      background: rgba(250, 250, 250,.6);
+      max-width: 300px;
+      color: #333;
+    }
 
-        ::-moz-placeholder {
-            color: rgba(0, 0, 0, 0.46);
-            font-size: 150%;
-        }
+    ::-webkit-input-placeholder {
+      color: rgba(0, 0, 0, 0.46);
+      font-size: 150%;
+    }
 
-        .balloon-large {
-            font-size: 350%;
-            text-align: center;
-            font-weight: 100;
-            line-height: 1;
-        }
+    ::-moz-placeholder {
+      color: rgba(0, 0, 0, 0.46);
+      font-size: 150%;
+    }
 
-        .mbBalloonOverlay {
-            /*background: linear-gradient(135deg, rgba(229, 143, 39, 0.70) 0%, rgba(242, 190, 1, 0.70) 100%);*/
-            background-color: rgba(33, 33, 33, 0.84);
-        }
+    .balloon-large {
+      font-size: 350%;
+      text-align: center;
+      font-weight: 100;
+      line-height: 1;
+    }
 
-        @media only screen
-        and (min-device-width: 320px)
-        and (max-device-width: 480px) {
+    .mbBalloonOverlay {
+      /*background: linear-gradient(135deg, rgba(229, 143, 39, 0.70) 0%, rgba(242, 190, 1, 0.70) 100%);*/
+      background-color: rgba(33, 33, 33, 0.84);
+    }
 
-            .box {
-                position: relative;
-                display: inline-block;
-                margin: 20px 0;
-                vertical-align: top;
-                padding: 10px;
-                text-align: center;
-                cursor: default;
-                max-width: 220px;
-                font-size: 18px;
-                color: #333;
-                border-radius: 5px;
-                border: 1px solid #f3f3f3;
-                min-height: 200px;
-                min-width: 340px;
-                /*background-color: rgba(229, 143, 39, 0.71);*/
-                background: linear-gradient(90deg, #ffffff 0%, #dcdcdc 100%);
-                box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    @media only screen
+    and (min-device-width: 320px)
+    and (max-device-width: 480px) {
+
+      .box {
+        position: relative;
+        display: inline-block;
+        margin: 20px 0;
+        vertical-align: top;
+        padding: 10px;
+        text-align: center;
+        cursor: default;
+        max-width: 220px;
+        font-size: 18px;
+        color: #333;
+        border-radius: 5px;
+        border: 1px solid #f3f3f3;
+        min-height: 200px;
+        min-width: 340px;
+        /*background-color: rgba(229, 143, 39, 0.71);*/
+        background: linear-gradient(90deg, #ffffff 0%, #dcdcdc 100%);
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      }
+    }
+
+    .mbBalloonOpener.highlight {
+      box-shadow: 0 0 30px 3px rgba(255, 255, 255, 0.90);
+    }
+
+    #forkOnGit{position: fixed;height: 150px;width: 150px;overflow:hidden;padding: 0;margin: 0;top:0;right: 0;z-index: 1;}
+    #forkOnGit a{display: block;width: 150%;font-size: 14px;font-family: Frutiger, "Frutiger Linotype", "Helvetica Neue", Helvetica, Arial, sans-serif;background-color: #333;color: #FFF;word-spacing: 2px;text-decoration: none;padding: 5px 15px 5px 25px;position:relative;left: 25px;top: -40px;text-align: center;transform-origin: 0 0 ;transform:rotate(45deg);}
+    #forkOnGit a:hover {background-color: #000;}
+
+  </style>
+
+  <script>
+
+    $(function () {
+      var isIframe=function(){var a=!1;try{self.location.href!=top.location.href&&(a=!0)}catch(b){a=!0}return a};if(!isIframe()){var logo=$("<a href='http://pupunzi.com/#mb.components/components.html' style='position:absolute;top:50px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");$("body").prepend(logo),$("#logo").fadeIn()}
+
+      jQuery.balloon.init();
+      setTimeout(function(){
+        $("#balloon2").showBalloon();
+      },10);
+
+      $(".opener").each(function(){
+        var el = $(this);
+        el.showCode(el);
+      });
+    });
+
+    function printOutHTML(el){
+      var html = el[0].outerHTML;
+      html=html.replace(/</g,"&lt;");
+      html=html.replace(/>/g,"&gt;");
+      return html;
+    }
+
+    function canClose(balloon) {
+
+      var input = balloon.find("input");
+      if (input.val().length > 0)
+        return confirm("Sure you want to close this balloon?");
+      else
+        return true;
+    }
+
+    $.fn.showCode = function(el){
+      return this.each(
+          function(){
+            var msg = "";
+            var data = el.data();
+            var c = 1;
+            for(var x in data){
+              msg += "<b>data-" + x + "</b> = " + data[x];
+              msg += ", ";
+              c++;
             }
-        }
-
-        .mbBalloonOpener.highlight {
-            box-shadow: 0 0 30px 3px rgba(255, 255, 255, 0.90);
-        }
-
-        #forkOnGit{position: fixed;height: 150px;width: 150px;overflow:hidden;padding: 0;margin: 0;top:0;right: 0;z-index: 1;}
-        #forkOnGit a{display: block;width: 150%;font-size: 14px;font-family: Frutiger, "Frutiger Linotype", "Helvetica Neue", Helvetica, Arial, sans-serif;background-color: #333;color: #FFF;word-spacing: 2px;text-decoration: none;padding: 5px 15px 5px 25px;position:relative;left: 25px;top: -40px;text-align: center;transform-origin: 0 0 ;transform:rotate(45deg);}
-        #forkOnGit a:hover {background-color: #000;}
-
-    </style>
-
-    <script>
-
-        $(function () {
-            var isIframe=function(){var a=!1;try{self.location.href!=top.location.href&&(a=!0)}catch(b){a=!0}return a};if(!isIframe()){var logo=$("<a href='http://pupunzi.com/#mb.components/components.html' style='position:absolute;top:50px;z-index:1000'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository'></a>");$("body").prepend(logo),$("#logo").fadeIn()}
-
-            jQuery.balloon.init();
-            setTimeout(function(){
-                $("#balloon2").showBalloon();
-            },10);
-
-            $(".opener").each(function(){
-                var el = $(this);
-                el.showCode(el);
-            });
-        });
-
-        function printOutHTML(el){
-            var html = el[0].outerHTML;
-            html=html.replace(/</g,"&lt;");
-            html=html.replace(/>/g,"&gt;");
-            return html;
-        }
-
-        function canClose(balloon) {
-
-            var input = balloon.find("input");
-            if (input.val().length > 0)
-                return confirm("Sure you want to close this balloon?");
-            else
-                return true;
-        }
-
-        $.fn.showCode = function(el){
-            return this.each(
-                    function(){
-                        var msg = "";
-                        var data = el.data();
-                        var c = 1;
-                        for(var x in data){
-                            msg += "<b>data-" + x + "</b> = " + data[x];
-                            msg += ", ";
-                            c++;
-                        }
 //                        var msg = el.data().toString(); // printOutHTML(el)
-                        var element = $("<div/>").append(msg).css({fontSize: "10px", marginTop:10});
-                        $(this).append(element);
-                    }
-            )
-        }
+            var element = $("<div/>").append(msg).css({fontSize: "10px", marginTop:10});
+            $(this).append(element);
+          }
+      )
+    }
 
-    </script>
+  </script>
 
 </head>
 
@@ -228,44 +237,45 @@
 <div id="forkOnGit"><a href="https://github.com/pupunzi/jquery.mb.balloon">Fork on GitHub</a></div>
 
 <div id="wrapper">
-    <h1>A fancy, cleaver balloon for your content</h1>
-    <br>
-    <br>
-    <br>
-    <div id="balloon1" class="opener box" data-balloon= "To close me you've to click on the x" data-position="up" data-addclose="true" data-bgcolor="#f0f0f0" data-bordercolor="#999" data-textcolor="#333" style="">
-        <h3>click me</h3>
-        (with overlay - custom color - close button)
-    </div>
-    <div id="balloon2" class="opener box" data-addoverlay="true" data-css="balloon-large" data-highlight="true" data-overlaycolor="linear-gradient(135deg, rgb(31, 97, 193) 0%, rgb(81, 150, 191) 100%)" data-overlayopacity=".98" data-bgcolor="#ffa227" data-balloon= "Welcome to the Balloon demo page" data-timer="5000" data-onlyonce="false" style="">
-        <h3>Show the balloon on document load</h3>
-        (with overlay - shows for 5 sec.)
-    </div>
-    <div id="balloon3" class="opener box" data-balloon= "{element} #domContent" data-event="click" data-addoverlay="false" style="">
-        <h3>click me</h3>
-        (without overlay)
-    </div>
-    <div id="balloon4" class="opener box" data-bgcolor="#f0f0f0" data-addclose="true" data-event="click" data-bordercolor="#999" data-textcolor="#333" data-balloon= "{ajax} balloon-ajax-content.html" data-canCloseCondition="canClose"  style="">
-        <h3>balloon4: Click me</h3>
-        (the content is from an ajax call)
-    </div>
-    <div id="balloon5" class="opener box" data-position="up" data-delay="1000" data-highlight="true" data-addoverlay="true" data-balloon= "{element} #domContent" data-event="hover" data-timer="3000" style="">
-        <h3>Rollover me</h3>
-        (on mouseover - has a delay of 2 sec. and shows for 3 sec.)
-    </div>
-    <div id="balloon6" class="opener box" data-bgcolor="#f0f0f0"  data-addclose="false" data-event="hover" data-bordercolor="#999" data-textcolor="#333" data-balloon= "{ajax} balloon-ajax-content.html"  style="">
-        <h3>Rollover me</h3>
-        (the content is from an ajax call)
-    </div>
-    <div id="inputTest" style="text-align: center">
+  <h1>jquery.mb.balloon</h1>
+  <h2>A fancy, cleaver balloon for your content</h2>
+  <br>
+  <br>
+  <br>
+  <div id="balloon1" class="opener box" data-balloon= "To close me you've to click on the x" data-position="up" data-addclose="true" data-bgcolor="#f0f0f0" data-bordercolor="#999" data-textcolor="#333" style="">
+    <h3>click me</h3>
+    (with overlay - custom color - close button)
+  </div>
+  <div id="balloon2" class="opener box" data-addoverlay="true" data-css="balloon-large" data-highlight="true" data-overlaycolor="linear-gradient(135deg, rgb(31, 97, 193) 0%, rgb(81, 150, 191) 100%)" data-overlayopacity=".98" data-bgcolor="#ffa227" data-balloon= "Welcome to the Balloon demo page" data-timer="5000" data-onlyonce="false" style="">
+    <h3>Show the balloon on document load</h3>
+    (with overlay - shows for 5 sec.)
+  </div>
+  <div id="balloon3" class="opener box" data-balloon= "{element} #domContent" data-event="click" data-addoverlay="false" style="">
+    <h3>click me</h3>
+    (without overlay)
+  </div>
+  <div id="balloon4" class="opener box" data-bgcolor="#f0f0f0" data-addclose="true" data-event="click" data-bordercolor="#999" data-textcolor="#333" data-balloon= "{ajax} balloon-ajax-content.html" data-canCloseCondition="canClose"  style="">
+    <h3>balloon4: Click me</h3>
+    (the content is from an ajax call)
+  </div>
+  <div id="balloon5" class="opener box" data-position="up" data-delay="1000" data-highlight="true" data-addoverlay="true" data-balloon= "{element} #domContent" data-event="hover" data-timer="3000" style="">
+    <h3>Rollover me</h3>
+    (on mouseover - has a delay of 2 sec. and shows for 3 sec.)
+  </div>
+  <div id="balloon6" class="opener box" data-bgcolor="#f0f0f0"  data-addclose="false" data-event="hover" data-bordercolor="#999" data-textcolor="#333" data-balloon= "{ajax} balloon-ajax-content.html"  style="">
+    <h3>Rollover me</h3>
+    (the content is from an ajax call)
+  </div>
+  <div id="inputTest" style="text-align: center">
 
-        <input type="text" class="opener" data-balloon = "Here is the balloon for the input" data-addoverlay="false" placeholder="Give me focus" >
-        <input type="text" class="opener" data-balloon = "Here is the balloon for the input 1" data-addoverlay="true" placeholder="Give me focus" >
-        <input type="text" class="opener" data-balloon = "Here is the balloon for the input 2" data-addoverlay="true" placeholder="Give me focus" >
+    <input type="text" class="opener" data-balloon = "Here is the balloon for the input" data-addoverlay="false" placeholder="Give me focus" >
+    <input type="text" class="opener" data-balloon = "Here is the balloon for the input 1" data-addoverlay="true" placeholder="Give me focus" >
+    <input type="text" class="opener" data-balloon = "Here is the balloon for the input 2" data-addoverlay="true" placeholder="Give me focus" >
 
-    </div>
-    <br>
-    <br>
-    <div style="overflow: scroll; height: 300px; box-shadow: inset 0 0 5px rgba(0,0,0,0.3); text-align: center">
+  </div>
+  <br>
+  <br>
+  <div style="overflow: scroll; height: 300px; box-shadow: inset 0 0 5px rgba(0,0,0,0.3); text-align: center">
    <span style="color:#fff">
         <br>▼
         <br>
@@ -289,24 +299,24 @@
         <br>
         <br>
        </span>
-        <div id="balloon7" class="opener box" data-addclose = "true" data-balloon = "Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna."  style="position:relative; margin: auto; clear: both;">
-            <h3>click me</h3>
-            (with overlay and close btn)
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+    <div id="balloon7" class="opener box" data-addclose = "true" data-balloon = "Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna."  style="position:relative; margin: auto; clear: both;">
+      <h3>click me</h3>
+      (with overlay and close btn)
     </div>
-    <div  style="position:relative; margin: auto; clear: both; color:#000000 ">
-        <a href="javascript:void(0)" id="balloon8" class="" data-bgcolor="#f0f0f0" data-addoverlay="true" data-bordercolor="#555" data-textcolor="#333" data-balloon = "{ajax} balloon-ajax-content.html">click me</a> (the content is from an ajax call)
-    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+  <div  style="position:relative; margin: auto; clear: both; color:#000000 ">
+    <a href="javascript:void(0)" id="balloon8" class="" data-bgcolor="#f0f0f0" data-addoverlay="true" data-bordercolor="#555" data-textcolor="#333" data-balloon = "{ajax} balloon-ajax-content.html">click me</a> (the content is from an ajax call)
+  </div>
 
 </div>
 
 <div id="domContent" data-contentForBalloon="true">
-    This content is from an DOM in-line element.
+  This content is from an DOM in-line element.
 </div>
 
 </body>
