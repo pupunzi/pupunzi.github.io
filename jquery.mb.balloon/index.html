@@ -206,7 +206,7 @@
     function canClose(balloon) {
 
       var input = balloon.find("input");
-      if (input.val().length > 0)
+      if (input.length && input.val().length > 0)
         return confirm("Sure you want to close this balloon?");
       else
         return true;
