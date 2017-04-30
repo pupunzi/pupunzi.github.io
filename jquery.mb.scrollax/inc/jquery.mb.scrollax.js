@@ -6,13 +6,13 @@
  *  Copyright (c) 2001-2014. Matteo Bicocchi (Pupunzi);
  *  Open lab srl, Firenze - Italy
  *  email: matteo@open-lab.com
- *  site: 	http://pupunzi.com
- *  blog:	http://pupunzi.open-lab.com
- * 	http://open-lab.com
+ *  site: 	https://pupunzi.com
+ *  blog:	https://pupunzi.open-lab.com
+ * 	https://open-lab.com
  *
  *  Licences: MIT, GPL
- *  http://www.opensource.org/licenses/mit-license.php
- *  http://www.gnu.org/licenses/gpl.html
+ *  https://www.opensource.org/licenses/mit-license.php
+ *  https://www.gnu.org/licenses/gpl.html
  *
  *  last modified: 27/01/14 20.08
  *  *****************************************************************************
@@ -34,10 +34,10 @@ events.end = isDevice ? "touchend" : "mouseup";
 events.winResize = "resize";
 
 /*jquery.mousewheel.js
- *! Copyright (c) 2011 Brandon Aaron (http://brandonaaron.net)
+ *! Copyright (c) 2011 Brandon Aaron (https://brandonaaron.net)
  * Licensed under the MIT License (LICENSE.txt).
- * Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
- * Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
+ * Thanks to: https://adomas.org/javascript-mouse-wheel/ for some pointers.
+ * Thanks to: Mathias Bank(https://www.mathias-bank.de) for a scope bug fix.
  * Thanks to: Seamus Leahy for adding deltaX and deltaY
  * Version: 3.0.6
  * Requires: 1.2.2+
@@ -352,7 +352,7 @@ events.winResize = "resize";
 
 				//Apply ease effects to the scroll animation
 				//f.ex.: $.easing.easeInQuad(null, elapsed, initialValue, amountOfChange, duration)
-				//cheat sheet: http://easings.net/
+				//cheat sheet: https://easings.net/
 				var ease = obj.ease ? obj.ease : jQuery.easing.def;
 				animCss[i] = $.easing[ease](null, scrolled, obj.startanimation[i], obj.endanimation[i] - obj.startanimation[i], obj.endScrollPos - obj.startScrollPos);
 			}

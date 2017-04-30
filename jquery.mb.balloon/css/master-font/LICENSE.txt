@@ -6,8 +6,8 @@ Font license info
    (c) Stephen Hutchings 2012
 
    Author:    Stephen Hutchings
-   License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://typicons.com/
+   License:   SIL (https://scripts.sil.org/OFL)
+   Homepage:  https://typicons.com/
 
 
 ## Iconic
@@ -15,8 +15,8 @@ Font license info
    Copyright (C) 2012 by P.J. Onori
 
    Author:    P.J. Onori
-   License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://somerandomdude.com/work/iconic/
+   License:   SIL (https://scripts.sil.org/OFL)
+   Homepage:  https://somerandomdude.com/work/iconic/
 
 
 ## Modern Pictograms
@@ -24,8 +24,8 @@ Font license info
    Copyright (c) 2012 by John Caserta. All rights reserved.
 
    Author:    John Caserta
-   License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://thedesignoffice.org/project/modern-pictograms/
+   License:   SIL (https://scripts.sil.org/OFL)
+   Homepage:  https://thedesignoffice.org/project/modern-pictograms/
 
 
 ## Font Awesome
@@ -34,7 +34,7 @@ Font license info
 
    Author:    Dave Gandy
    License:   SIL ()
-   Homepage:  http://fortawesome.github.com/Font-Awesome/
+   Homepage:  https://fortawesome.github.com/Font-Awesome/
 
 
 ## Entypo
@@ -42,8 +42,8 @@ Font license info
    Copyright (C) 2012 by Daniel Bruce
 
    Author:    Daniel Bruce
-   License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://www.entypo.com
+   License:   SIL (https://scripts.sil.org/OFL)
+   Homepage:  https://www.entypo.com
 
 
 ## MFG Labs
@@ -51,7 +51,7 @@ Font license info
    Copyright (C) 2012 by Daniel Bruce
 
    Author:    MFG Labs
-   License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://www.mfglabs.com/
+   License:   SIL (https://scripts.sil.org/OFL)
+   Homepage:  https://www.mfglabs.com/
 
 

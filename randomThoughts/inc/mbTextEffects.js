@@ -6,13 +6,13 @@
  *  Copyright (c) 2001-2014. Matteo Bicocchi (Pupunzi);
  *  Open lab srl, Firenze - Italy
  *  email: matteo@open-lab.com
- *  site: 	http://pupunzi.com
- *  blog:	http://pupunzi.open-lab.com
- * 	http://open-lab.com
+ *  site: 	https://pupunzi.com
+ *  blog:	https://pupunzi.open-lab.com
+ * 	https://open-lab.com
  *
  *  Licences: MIT, GPL
- *  http://www.opensource.org/licenses/mit-license.php
- *  http://www.gnu.org/licenses/gpl.html
+ *  https://www.opensource.org/licenses/mit-license.php
+ *  https://www.gnu.org/licenses/gpl.html
  *
  *  last modified: 07/01/14 22.50
  *  *****************************************************************************
@@ -162,7 +162,7 @@
 
   // Color Conversion functions from highlightFade
   // By Blair Mitchelmore
-  // http://jquery.offput.ca/highlightFade/
+  // https://jquery.offput.ca/highlightFade/
 
   // Parse strings looking for color tuples [255,255,255]
   function getRGB(color) {
@@ -210,7 +210,7 @@
 
   // Some named colors to work with
   // From Interface by Stefan Petre
-  // http://interface.eyecon.ro/
+  // https://interface.eyecon.ro/
 
   var colors = {
     aqua:[0,255,255],

@@ -6,13 +6,13 @@
  *  Copyright (c) 2001-2014. Matteo Bicocchi (Pupunzi);
  *  Open lab srl, Firenze - Italy
  *  email: matteo@open-lab.com
- *  site: 	http://pupunzi.com
- *  blog:	http://pupunzi.open-lab.com
- * 	http://open-lab.com
+ *  site: 	https://pupunzi.com
+ *  blog:	https://pupunzi.open-lab.com
+ * 	https://open-lab.com
  *
  *  Licences: MIT, GPL
- *  http://www.opensource.org/licenses/mit-license.php
- *  http://www.gnu.org/licenses/gpl.html
+ *  https://www.opensource.org/licenses/mit-license.php
+ *  https://www.gnu.org/licenses/gpl.html
  *
  *  last modified: 07/01/14 22.50
  *  *****************************************************************************
@@ -73,7 +73,7 @@ jQuery.fn.CSSAnimate = function (opt, duration, delay, ease, callback) {
 			}
 		}
 
-		//http://cssglue.com/cubic
+		//https://cssglue.com/cubic
 		//  ease  |  linear | ease-in | ease-out | ease-in-out  |  cubic-bezier(<number>, <number>,  <number>,  <number>)
 
 		if (!jQuery.support.transition) {

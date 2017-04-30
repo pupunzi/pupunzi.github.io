@@ -7,14 +7,14 @@
  _ Open Lab s.r.l., Florence - Italy                                                                                                                _
  _                                                                                                                                                  _
  _ email: matteo@open-lab.com                                                                                                                       _
- _ site: http://pupunzi.com                                                                                                                         _
- _       http://open-lab.com                                                                                                                        _
- _ blog: http://pupunzi.open-lab.com                                                                                                                _
- _ Q&A:  http://jquery.pupunzi.com                                                                                                                  _
+ _ site: https://pupunzi.com                                                                                                                         _
+ _       https://open-lab.com                                                                                                                        _
+ _ blog: https://pupunzi.open-lab.com                                                                                                                _
+ _ Q&A:  https://jquery.pupunzi.com                                                                                                                  _
  _                                                                                                                                                  _
  _ Licences: MIT, GPL                                                                                                                               _
- _    http://www.opensource.org/licenses/mit-license.php                                                                                            _
- _    http://www.gnu.org/licenses/gpl.html                                                                                                          _
+ _    https://www.opensource.org/licenses/mit-license.php                                                                                            _
+ _    https://www.gnu.org/licenses/gpl.html                                                                                                          _
  _                                                                                                                                                  _
  _ Copyright (c) 2001-2015. Matteo Bicocchi (Pupunzi);                                                                                              _
  ___________________________________________________________________________________________________________________________________________________*/
@@ -23,12 +23,12 @@
 
 	/* ------------------------------------------------------------------------------------------------------------------------------------------------
 	 * Bez @VERSION
-	 * http://github.com/rdallasgray/bez
+	 * https://github.com/rdallasgray/bez
 	 *
 	 * A plugin to convert CSS3 cubic-bezier co-ordinates to jQuery-compatible easing functions
 	 *
 	 * With thanks to Nikolay Nemshilov for clarification on the cubic-bezier maths
-	 * See http://st-on-it.blogspot.com/2011/05/calculating-cubic-bezier-function.html
+	 * See https://st-on-it.blogspot.com/2011/05/calculating-cubic-bezier-function.html
 	 *
 	 * Copyright @YEAR Robert Dallas Gray. All rights reserved.
 	 * Provided under the FreeBSD license: https://github.com/rdallasgray/bez/blob/master/LICENSE.txt
