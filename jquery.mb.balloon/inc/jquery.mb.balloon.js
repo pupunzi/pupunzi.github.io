@@ -107,6 +107,7 @@
 			jQuery("body").on("blur", "[data-balloon]", function (e) {
 				$(this).hideBalloon();
 			});
+
 		},
 
 		show: function (event, opt, anim) {
@@ -140,8 +141,6 @@
 					jQuery.extend(self.opt, jQuery.balloon.defaults, $self.data());
 				}
 
-				$self.addClass("mbBalloonOpener");
-
 				self.isInit = true;
 
 			} else {
@@ -150,8 +149,7 @@
 
 			}
 
-			//$("body").addClass("mbBalloonBlur");
-//			$self.addClass("mbBalloonOpened");
+			$self.addClass("mbBalloonOpener");
 
 			if (typeof event == "undefined")
 				self.opt.oncursor = false;
@@ -223,6 +221,7 @@
 			}
 
 			if (self.opt.addclose) {
+
 				self.opt.addoverlay = true;
 				var close = jQuery("<div/>").addClass("mbBalloonClose");
 				self.$balloonContainer.append(close);
@@ -231,6 +230,7 @@
 				close.on("click", function () {
 					$self.hideBalloon();
 				})
+
 			};
 
 			var target = self.opt.target != "self" ? jQuery(self.opt.target) : $self;
@@ -316,6 +316,7 @@
 					if (anim) {
 
 						if (self.opt.addoverlay) {
+
 							balloonOverlay.fadeTo(self.opt.animTime, self.opt.overlayopacity, function () {
 								jQuery(".mbBalloonOpener").not($self).each(function () {
 									if (this.displayed)
@@ -334,14 +335,17 @@
 								if (this.displayed)
 									jQuery(this).hideBalloon(null, {}, false);
 							});
+
 						}
 						$self.addClass("mbBalloonOpened");
 
 					} else {
+
 						balloonOverlay.css({opacity: self.opt.overlayopacity});
 						self.$balloonContainer.css({opacity: 1});
 						jQuery("body").css({overflow: "hidden"});
 						$self.addClass("mbBalloonOpened");
+
 					}
 
 					if (self.opt.timer && !self.opt.addclose)
@@ -460,6 +464,9 @@
 					if (self.$containment && !self.$containment.is("body"))
 						self.$containment.css("overflow", self.containment.overflow);
 				}
+
+				$self.removeClass("mbBalloonOpener");
+
 			}
 		},
 
