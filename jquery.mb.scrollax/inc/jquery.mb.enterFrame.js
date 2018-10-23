@@ -6,7 +6,7 @@
  *
  *  Copyright (c) 2001-2014. Matteo Bicocchi (Pupunzi);
  *  Open lab srl, Firenze - Italy
- *  email: matteo@open-lab.com
+ *  email: matbicoc@gmail.com
  *  site: 	https://pupunzi.com
  *  blog:	https://pupunzi.open-lab.com
  * 	https://open-lab.com
